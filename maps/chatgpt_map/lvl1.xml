@@ -1,0 +1,413 @@
+<xml>
+    <name>CaveAdventure</name>
+    <room>
+        <num>0</num>
+        <name>Entrance</name>
+        <desc>You are at the entrance of a large, winding cave system. The air is damp and cool.</desc>
+        <exits>
+            <exit>1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>-1</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>1</num>
+        <name>Twisting Path</name>
+        <desc>The path twists and turns, with occasional drops of water falling from the ceiling.</desc>
+        <exits>
+            <exit>2</exit>
+            <exit>0</exit>
+            <exit>3</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>0</roomitem>
+        </items>
+        <enemies>
+            <roomenemy>0</roomenemy>
+        </enemies>
+    </room>
+    <room>
+        <num>2</num>
+        <name>Underground Lake</name>
+        <desc>An underground lake stretches out before you, the water eerily still.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>1</exit>
+            <exit>-1</exit>
+            <exit>4</exit>
+        </exits>
+        <items>
+            <roomitem>1</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>3</num>
+        <name>Crystal Cavern</name>
+        <desc>Crystals jut out from the walls, casting a faint glow.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>5</exit>
+            <exit>1</exit>
+        </exits>
+        <items>
+            <roomitem>-1</roomitem>
+        </items>
+        <enemies>
+            <roomenemy>1</roomenemy>
+        </enemies>
+    </room>
+    <room>
+        <num>4</num>
+        <name>Hidden Alcove</name>
+        <desc>A hidden alcove, almost completely concealed by rock formations.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>2</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>2</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>5</num>
+        <name>Spider's Nest</name>
+        <desc>The air is thick with cobwebs, and you can see movement in the shadows.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>6</exit>
+            <exit>3</exit>
+        </exits>
+        <items>
+            <roomitem>3</roomitem>
+        </items>
+        <enemies>
+            <roomenemy>2</roomenemy>
+        </enemies>
+    </room>
+    <room>
+        <num>6</num>
+        <name>Mushroom Grove</name>
+        <desc>A grove filled with bioluminescent mushrooms, casting an eerie light.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>5</exit>
+        </exits>
+        <items>
+            <roomstatitem>0</roomstatitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>7</num>
+        <name>Stalactite Chamber</name>
+        <desc>Sharp stalactites hang from the ceiling, dripping water periodically.</desc>
+        <exits>
+            <exit>8</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>4</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>8</num>
+        <name>Ancient Shrine</name>
+        <desc>Ruins of an ancient shrine, with carvings that tell forgotten stories.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>7</exit>
+            <exit>9</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>5</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>9</num>
+        <name>Hidden Tunnel</name>
+        <desc>A hidden tunnel that is difficult to spot unless you know it's there.</desc>
+        <exits>
+            <exit>10</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>8</exit>
+        </exits>
+        <items>
+            <roomweapon>1</roomweapon>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>10</num>
+        <name>Boss Lair</name>
+        <desc>The air here feels heavier, and a sense of dread fills the chamber.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>9</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>-1</roomitem>
+        </items>
+        <enemies>
+            <roomenemy>3</roomenemy>
+        </enemies>
+    </room>
+    <item>
+        <num>0</num>
+        <name>Old Map</name>
+        <desc>An old, tattered map that hints at hidden treasures.</desc>
+        <updroomdesc>You are at the twisting path, but the old map is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The map shows a hidden path!</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>1</num>
+        <name>Gemstone</name>
+        <desc>A bright, sparkling gemstone.</desc>
+        <updroomdesc>You are at the underground lake, but the gemstone is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The gemstone radiates a calming glow.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>2</num>
+        <name>Ancient Relic</name>
+        <desc>An ancient relic with strange markings.</desc>
+        <updroomdesc>You are in the hidden alcove, but the ancient relic is gone.</updroomdesc>
+        <portable>0</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The relic hums with power.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>3</num>
+        <name>Spider Silk</name>
+        <desc>Strong, resilient silk from a spider's nest.</desc>
+        <updroomdesc>You are in the spider's nest, but the spider silk is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The silk feels incredibly strong.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>4</num>
+        <name>Stalactite Fragment</name>
+        <desc>A sharp fragment of a stalactite.</desc>
+        <updroomdesc>You are in the stalactite chamber, but the stalactite fragment is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The fragment could be used as a makeshift weapon.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>5</num>
+        <name>Ancient Talisman</name>
+        <desc>A talisman that seems to pulse with an ancient energy.</desc>
+        <updroomdesc>You are in the ancient shrine, but the talisman is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The talisman emits a faint glow.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <statitem>
+        <num>0</num>
+        <name>Healing Herb</name>
+        <desc>A herb known for its healing properties.</desc>
+        <updroomdesc>You are in the mushroom grove, but the healing herb is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The herb restores your health.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>1</disposable>
+        <hpchange>10</hpchange>
+    </statitem>
+    <weapon>
+        <num>0</num>
+        <name>Short Sword</name>
+        <desc>A short, well-balanced sword.</desc>
+        <updroomdesc>You are in the hidden tunnel, but the short sword is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The short sword feels balanced and sharp.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>5</damage>
+    </weapon>
+    <weapon>
+        <num>1</num>
+        <name>Dagger</name>
+        <desc>A small, sharp dagger.</desc>
+        <updroomdesc>You are in the hidden tunnel, but the dagger is gone.</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The dagger is perfect for close combat.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>3</damage>
+    </weapon>
+    <weapon>
+        <num>2</num>
+        <name>Crystal Shards</name>
+        <desc>A collection of crystal shards</desc>
+        <updroomdesc>Placeholder</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>Placeholder.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>3</damage>
+    </weapon>
+    <weapon>
+        <num>3</num>
+        <name>Spider claws</name>
+        <desc>The sharp claws of the spider</desc>
+        <updroomdesc>Placeholder</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>placeholder</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>2</damage>
+    </weapon>
+    <weapon>
+        <num>4</num>
+        <name>Troll hands</name>
+        <desc>The sharp claws of the spider</desc>
+        <updroomdesc>Placeholder</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>placeholder</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>4</damage>
+    </weapon>
+    <enemy>
+        <num>0</num>
+        <name>Goblin</name>
+        <description>A small, sneaky goblin.</description>
+        <deaddesc>The goblin lies defeated.</deaddesc>
+        <enemyweapon>1</enemyweapon>
+        <hp>8</hp>
+        <loot>
+            <lootitem>2</lootitem>
+        </loot>
+    </enemy>
+    <enemy>
+        <num>1</num>
+        <name>Crystal Golem</name>
+        <description>A golem made of crystal, slow but powerful.</description>
+        <deaddesc>The crystal golem crumbles into shards.</deaddesc>
+        <enemyweapon>2</enemyweapon>
+        <hp>15</hp>
+        <loot>
+            <lootitem>4</lootitem>
+        </loot>
+    </enemy>
+        <enemy>
+        <num>2</num>
+        <name>Giant Spider</name>
+        <description>A giant spider lurking in the shadows.</description>
+        <deaddesc>The giant spider collapses, its legs curling inward.</deaddesc>
+        <enemyweapon>3</enemyweapon>
+        <hp>12</hp>
+        <loot>
+            <lootitem>3</lootitem>
+        </loot>
+    </enemy>
+    <enemy>
+        <num>3</num>
+        <name>Cave Troll</name>
+        <description>A large, menacing cave troll.</description>
+        <deaddesc>The cave troll falls to the ground, defeated.</deaddesc>
+        <enemyweapon>4</enemyweapon>
+        <hp>20</hp>
+        <loot>
+            <lootitem>5</lootitem>
+        </loot>
+    </enemy>
+    <enemy>
+        <num>4</num>
+        <name>Cave Wyrm</name>
+        <description>A fearsome cave wyrm, guarding the depths of the cave.</description>
+        <deaddesc>The cave wyrm lets out a final roar before collapsing.</deaddesc>
+        <enemyweapon>0</enemyweapon>
+        <hp>25</hp>
+        <loot>
+            <lootitem>6</lootitem>
+        </loot>
+    </enemy>
+
+</xml>

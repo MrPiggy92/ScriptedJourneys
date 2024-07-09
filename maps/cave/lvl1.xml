@@ -1,0 +1,78 @@
+<xml>
+    <name>Cave Adventure</name>
+    <room>
+        <num>0</num>
+        <name>Main Cavern</name>
+        <desc>You are standing in a large cavern</desc>
+        <exits>
+            <exit>1</exit>
+            <exit>2</exit>
+            <exit>3</exit>
+            <exit>4</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>1</num>
+        <name>Armoury</name>
+        <desc>You are standing in what appears to be an armoury. The walls are covered in weapons and armour.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>0</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>2</num>
+        <name>Tunnel</name>
+        <desc>You are standing in a long tunnel that goes who-knows-where.</desc>
+        <exits>
+            <exit>0</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>3</num>
+        <name>Bedroom</name>
+        <desc>You are standing in a ... bedroom?</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>0</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>4</num>
+        <name>Entrance</name>
+        <desc>You leave the cave, blinking in the sunlight.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>0</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+</xml>
