@@ -4,21 +4,25 @@
 import rooms as roomsObject
 import items
 import enemy as enemyObject
+import utils
+
 import xml.etree.ElementTree as ET
 import os
 
 class Map:
     def __init__(self, folder):
         self.folder = folder
-        self.items, self.rooms, self.enemies = self.load(folder)
-        #self.rooms.append(room.Room(0, "chamber", "A big cave", [None, None, None, None], None, None, None))
-        #self.rooms.append(room.Room(1, "room", "Another big cave", [None, None, None, None], None, None, None))
-        #
-        #self.rooms[0].exits = [self.rooms[1], None, None, None]
-        #self.rooms[1].exits = [None, self.rooms[0], None, None]
+        self.level = 1
+        self.items, self.rooms, self.enemies = self.load(folder, self.level)
+        self.bossDefeated = False
     
-    def load(self, folder):
-        tree = ET.parse(os.path.join("/home/arco/Documents/Python/Text_adventure", folder, "lvl1.xml"))
+    def next_level(self):
+        self.level += 1
+        utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
+        self.items, self.rooms, self.enemies = self.load(folder, self.level)
+    
+    def load(self, folder, levelnum):
+        tree = ET.parse(os.path.join("/home/arco/Documents/Python/Text_adventure", folder, f"lvl{levelnum}.xml"))
         root = tree.getroot()
         
         mapitems = []
@@ -37,7 +41,10 @@ class Map:
         for item in mapitems:
             if item.revealsitem != None:
                 item.revealsitem = mapitems[item.revealsitem]
-            #if item.
+            if item.addsroomitem != None:
+                item.addsroomitem = mapitems[item.addsroomitem]
+            if item.removesroomitem != None:
+                item.removesroomitem = mapitems[item.removesroomitem]
         
         mapstatitems = []
         for statitem in root.iter("statitem"):

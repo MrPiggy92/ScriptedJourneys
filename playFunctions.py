@@ -1,4 +1,6 @@
 import utils, items
+import enemy as enemyObject
+from random import random
 
 def showhpbar(player):
     # Calculate the percentage of hit points
@@ -68,7 +70,7 @@ def listexits(player):
         utils.output("You see an exit to the West.", "blue")
 
 
-def fight(enemy_name, player):
+def fight(enemy_name, player, map):
     current_room = player.currentroom
     enemy = None
 
@@ -86,14 +88,26 @@ def fight(enemy_name, player):
         while enemy.alive and player.hp > 0:
             # Player's turn
             player_damage = player.weapon.damage
+            hit_or_miss = random()
+            if hit_or_miss > 0.9:
+                player_damage += 1
+            elif hit_or_miss < 0.1:
+                player_damage -= 1
+                player_damage = 0 if player_damage < 0 else player_damage
+            else:
+                pass
+                
             enemy.hp -= player_damage
-            utils.output(f"You hit the {enemy.name} with your {player.weapon.name}. It causes {player_damage} damage.", "green")
+            if player.weapon.damage != player_damage:
+                utils.output(f"You hit the {enemy.name} with your {player.weapon.name}. {'Critical hit!' if player_damage > player.weapon.damage else 'Just a scratch.'} It causes {player_damage} damage.", "green")
+            else:
+                utils.output(f"You hit the {enemy.name} with your {player.weapon.name}. It causes {player_damage} damage.", "green")
 
             # Check enemy's HP
             if enemy.hp <= 0:
                 enemy.alive = False
                 utils.output(f"The {enemy.name} has been defeated!", "red")
-                lootbody(enemy, player)
+                lootbody(enemy, player, map)
                 break
 
             # Enemy's turn
@@ -112,13 +126,13 @@ def fight(enemy_name, player):
         utils.output("There is no such enemy here.", "magenta")
 
 
-def lootbody(enemy, player):
+def lootbody(enemy, player, map):
     current_room = player.currentroom
 
     utils.output(f"You defeated the {enemy.name} in combat!", "bright_yellow")
     utils.output(f"You find the following items on the {enemy.name}'s body:", "clear")
 
-    if enemy.weapon != None:
+    if enemy.weapon is not None:
         current_room.items.append(enemy.weapon)
         utils.output(f"- {enemy.weapon.name}", "yellow")
 
@@ -129,6 +143,8 @@ def lootbody(enemy, player):
 
     # Remove the enemy from the room
     current_room.enemies.remove(enemy)
+    if isinstance(enemy, enemyObject.Boss):
+        map.bossDefeated = True
 
 
 def checkhp(player):
@@ -142,7 +158,7 @@ def checkhp(player):
 def listroomitems(player):
     current_room = player.currentroom
     if current_room.items:
-        utils.output(f"You see the following items:", "clear")
+        utils.output(f"You see the following items:", "blue")
         for item in current_room.items:
             utils.output("- " + item.name, "yellow")
     else:
@@ -156,8 +172,8 @@ def trytotake(item, player):
 
         if room_item.name.lower() == item.lower():
             if isinstance(room_item, items.StatItem):
-                player.hp += room_item.hp_change
-                utils.output(room_item.usedesc, "green")
+                player.inventory.append(room_item)
+                utils.output(f"You have taken the {room_item.name}.", "blue")
                 current_room.items.remove(room_item)
                 return
 
@@ -240,6 +256,8 @@ def trytouse(item, player):
             if inventory_item.usedin == current_room.number or inventory_item.usedin == None:
                 if isinstance(inventory_item, items.StatItem):
                     player.hp += inventory_item.hp_change
+                    if player.hp > 10:
+                        player.hp = 10
                 if inventory_item.removesroomitem is not None:
                     print(inventory_item.removesroomitem)
                     current_room.items.remove(inventory_item.removesroomitem)
@@ -253,7 +271,7 @@ def trytouse(item, player):
                     player.inventory.remove(inventory_item)
                 return
             elif inventory_item.usedin == 9999:
-                utils.output(f"You can't use the {inventory_item.name} again here.", "magenta")
+                utils.output(f"You can't use the {inventory_item.name} again.", "magenta")
                 return
             else:
                 utils.output(f"You can't use the {inventory_item.name} here.", "magenta")

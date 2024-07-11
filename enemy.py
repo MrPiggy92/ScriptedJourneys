@@ -11,3 +11,8 @@ class Enemy:
         self.weapon = weapon
         self.hp = hp
         self.loot = loot
+
+class Boss(Enemy):
+    def __init__(self, num, name, alive, description, deaddesc, weapon, hp, loot, map):
+        super().__init__(num, name, alive, description, deaddesc, weapon, hp, loot)
+        

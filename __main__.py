@@ -43,15 +43,15 @@ def play(name):
             trytouse(item_name, my_player)
         elif action_input.lower().startswith("fight "):
             enemy_name = action_input[6:]
-            fight(enemy_name, my_player)
+            fight(enemy_name, my_player, my_map)
         elif action_input.lower().startswith("move "):
             trytomove(action_input.upper()[5:], my_player)
         elif action_input.lower().startswith("quit"):
             exit()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
-        elif action_input.lower() == "restricted":
-            play("restricted")
+        elif action_input.lower() == "next":
+            my_map.next_level()
         else:
             utils.output("You can't do that.", "magenta")
 
