@@ -19,10 +19,10 @@ class Map:
     def next_level(self):
         self.level += 1
         utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
-        self.items, self.rooms, self.enemies = self.load(folder, self.level)
+        self.items, self.rooms, self.enemies = self.load(self.folder, self.level)
     
     def load(self, folder, levelnum):
-        tree = ET.parse(os.path.join("/home/arco/Documents/Python/Text_adventure", folder, f"lvl{levelnum}.xml"))
+        tree = ET.parse(os.path.join("/home/arco/Documents/Python/text_adventure", folder, f"lvl{levelnum}.xml"))
         root = tree.getroot()
         
         mapitems = []
@@ -100,6 +100,22 @@ class Map:
             #print(len(enemydata))
             enemies.append(enemyObject.Enemy(enemydata[0], enemydata[1], True, enemydata[2], enemydata[3], mapweapons[enemydata[4]], enemydata[5], enemydata[6]))
         
+        bosslist = list(root.iter("boss"))
+        bossdata = []
+        for data in bosslist[0]:
+            if data.tag == "loot":
+                data.text = []
+                for item in data:
+                    if item.tag == "lootitem":
+                        data.text.append(mapitems[int(item.text)])
+            try:
+                data.text = int(data.text)
+            except:
+                pass
+            bossdata.append(None if data.text == -1 else data.text)
+            print("hi")
+        boss = enemyObject.Boss(bossdata[0], bossdata[1], True, bossdata[2], bossdata[3], mapweapons[bossdata[4]], bossdata[5], bossdata[6])
+        
         rooms = []
         for room in root.iter("room"):
             roomdata = []
@@ -127,7 +143,10 @@ class Map:
                     data.text = []
                     counter = 0
                     for enemy in data:
-                        data.text.append(enemies[int(enemy.text)] if enemy.text != "-1" else None)
+                        if enemy.tag == "roomboss":
+                            data.text.append(boss)
+                        else:
+                            data.text.append(enemies[int(enemy.text)] if enemy.text != "-1" else None)
                         counter += 1
                     if counter == 0:
                         data.text = None

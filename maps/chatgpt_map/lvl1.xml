@@ -138,6 +138,7 @@
         <items>
         </items>
         <enemies>
+            <roomboss>0</roomboss>
         </enemies>
     </room>
     
