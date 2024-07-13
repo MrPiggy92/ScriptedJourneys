@@ -42,7 +42,6 @@ This game is a multi-map text-based adventure where you navigate through various
 - **Item Management:** Collect and use items to overcome obstacles.
 
 ## Contributing
-
 We welcome contributions to improve the game! To contribute:
 1. Fork the repository and clone it locally.
 2. Create a new branch for your feature (`git checkout -b feature/new-feature`).
