@@ -52,7 +52,8 @@ We welcome contributions to improve the game! To contribute:
 
 ## Authors
 
-- [Sam](https://github.com/Mr-Piggy) - Initial work
+- [Sam](https://github.com/Mr-Piggy) - Most work
+- [Linux Format](https://linuxformat.com) - Inspiration and some basic functions
 
 ## License
 
