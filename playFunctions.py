@@ -4,7 +4,7 @@ from random import random
 
 def showhpbar(player):
     # Calculate the percentage of hit points
-    progress = player.hp / 10.0 * 100
+    progress = player.hp / 10.0 * 100 if player.hp > 0 else 0
 
     # Determine the color based on HP value
     if player.hp >= 7:
@@ -20,7 +20,7 @@ def showhpbar(player):
     bar = '█' * filled_length + '-' * (bar_length - filled_length)
 
     # Print the progress bar with the appropriate color
-    utils.output(f"HP: [{bar}] {player.hp}/10 HP", hp_color)
+    utils.output(f"HP: [{bar}] {player.hp if player.hp > 0 else 0}/10 HP", hp_color)
     return
 
 
@@ -225,7 +225,7 @@ def listenemies(player):
 
     for enemy in current_room.enemies:
         if enemy.alive:
-            utils.output(enemy.description, "red")
+            utils.output(enemy.description + " The final boss", "red")
         else:
             utils.output(enemy.deaddesc, "red")
 
