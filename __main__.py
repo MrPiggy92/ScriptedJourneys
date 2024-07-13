@@ -16,12 +16,12 @@ def play(name):
     
     my_map = map.Map(os.path.join("maps", name))
     
-    my_player = player.Player(player_name, my_map.rooms[0], [], 10, [])
+    my_player = player.Player(player_name, my_map.rooms[0], 10, [])
 
 
     while True:
         utils.output("\n", "clear")
-        checkhp(my_player)
+        checkhp(my_player, my_map)
         utils.output(my_player.currentroom.name, "bright_cyan")
         utils.output(my_player.currentroom.description, "clear")
         listroomitems(my_player)

@@ -28,7 +28,7 @@ def trytomove(direction, player):
     current_room = player.currentroom
     exits = current_room.exits
     
-    direction = direction[0]
+    direction = direction[0] if direction != '' else ''
 
     if direction in ['N', 'S', 'E', 'W']:
         direction_index = ['N', 'S', 'E', 'W'].index(direction)
@@ -82,6 +82,7 @@ def fight(enemy_name, player, map):
         if room_enemy.name.lower() == enemy_name.lower():
             enemy = room_enemy
             break
+    print(enemy.hp)
 
     if enemy and enemy.alive:
         utils.output(f"A battle begins with the {enemy.name}!", "red")
@@ -117,11 +118,11 @@ def fight(enemy_name, player, map):
             showhpbar(player)
 
             # Check player's HP
-            checkhp(player)
+            if checkhp(player, map) <= 0:
+                break
 
         if player.hp <= 0:
-            utils.output(f"You have been defeated! Game Over.", "red")
-            exit(0)
+            die(player, map)
     else:
         utils.output("There is no such enemy here.", "magenta")
 
@@ -147,12 +148,13 @@ def lootbody(enemy, player, map):
         map.bossDefeated = True
 
 
-def checkhp(player):
+def checkhp(player, map):
+    hp = player.hp
     if player.hp > 10:
         player.hp = 10
     elif player.hp <= 0:
-        utils.output("You have been killed! Game Over.", "bright_red")
-        exit(0)
+        die(player, map)
+    return hp
 
 
 def listroomitems(player):
@@ -225,7 +227,10 @@ def listenemies(player):
 
     for enemy in current_room.enemies:
         if enemy.alive:
-            utils.output(enemy.description + " The final boss", "red")
+            if isinstance(enemy, enemyObject.Boss):
+                utils.output(enemy.description + " The final boss", "red")
+            else:
+                utils.output(enemy.description, "red")
         else:
             utils.output(enemy.deaddesc, "red")
 
@@ -278,3 +283,14 @@ def trytouse(item, player):
                 return
 
     utils.output(f"You don't have the {item}.", "magenta")
+
+def die(player, map):
+    utils.output(f"You have been defeated! Try again.", "bright_red")
+    for item in player.inventory:
+        player.currentroom.items.append(item)
+    if player.weapon.name != "Fists":
+        player.currentroom.items.append(player.weapon)
+    player.inventory = []
+    player.weapon = items.Weapon(0, "Fists", "Your fists, ready for punching", None, True, None, 0, None, None, None, None, 0, 0.5)
+    player.hp = 10
+    player.currentroom = map.rooms[0]
