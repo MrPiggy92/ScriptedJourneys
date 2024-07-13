@@ -46,12 +46,32 @@ def play(name):
             fight(enemy_name, my_player, my_map)
         elif action_input.lower().startswith("move "):
             trytomove(action_input.upper()[5:], my_player)
+        elif action_input.lower().startswith("go "):
+            trytomove(action_input.upper()[3:], my_player)
         elif action_input.lower().startswith("quit"):
             exit()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
         elif action_input.lower() == "next":
             my_map.next_level()
+        elif action_input.lower().startswith("t "):
+            item_name = action_input[2:]
+            trytotake(item_name, my_player)
+        elif action_input.lower() == "i":
+            listinventory(my_player)
+        elif action_input.lower().startswith("l "):
+            item_name = action_input[2:]
+            lookat(item_name, my_player)
+        elif action_input.lower().startswith("u "):
+            item_name = action_input[2:]
+            trytouse(item_name, my_player)
+        elif action_input.lower().startswith("f "):
+            enemy_name = action_input[2:]
+            fight(enemy_name, my_player, my_map)
+        elif action_input.lower().startswith("m "):
+            trytomove(action_input.upper()[2:], my_player)
+        elif action_input.lower() == 'q':
+            exit()
         else:
             utils.output("You can't do that.", "magenta")
 
