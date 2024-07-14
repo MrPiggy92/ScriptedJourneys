@@ -259,7 +259,7 @@ def lookat(item, player):
     utils.output(f"There is no {item} here.", "magenta")
 
 
-def trytouse(item, player):
+def trytouse(item, player, map):
     current_room = player.currentroom
 
     for inventory_item in player.inventory:
@@ -267,8 +267,7 @@ def trytouse(item, player):
             if inventory_item.usedin == current_room.number or inventory_item.usedin == None:
                 if isinstance(inventory_item, items.StatItem):
                     player.hp += inventory_item.hp_change
-                    if player.hp > 10:
-                        player.hp = 10
+                    checkhp(player, map)
                 if inventory_item.removesroomitem is not None:
                     print(inventory_item.removesroomitem)
                     current_room.items.remove(inventory_item.removesroomitem)

@@ -217,13 +217,13 @@
     </statitem>
     <statitem>
         <num>1</num>
-        <name>Powerful Health Potion</name>
+        <name>Health Potion</name>
         <desc>A vial full of glowing pink liquid.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
-        <usedesc>The Powerful Health Potion heals 7 HP.</usedesc>
+        <usedesc>The Health Potion heals 7 HP.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
@@ -232,13 +232,13 @@
     </statitem>
     <statitem>
         <num>2</num>
-        <name>Healing Herb</name>
-        <desc>A faintly glowing vibrant leaf.</desc>
+        <name>Health Potion</name>
+        <desc>A vial full of glowing pink liquid.</desc>
         <updroomdesc>This large, oppressive chamber was the lair of a fearsome cave troll.</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
-        <usedesc>The Healing Herb heals all your HP.</usedesc>
+        <usedesc>The Health Potion heals all your HP.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>

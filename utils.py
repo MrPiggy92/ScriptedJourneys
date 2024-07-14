@@ -2,6 +2,7 @@ import time
 
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
+    text = wrap_text(text)
     for char in text:
         print(char, end='', flush=True)
         time.sleep(delay)
@@ -26,6 +27,18 @@ def colourify(colour):
         "bright_cyan": "\033[0;96m",
         "bright_white": "\033[0;97m",
         "clear": "\033[0m",
-        "orange": "\033[38;2;255;165;0m"
+        "orange": "\033[38;2;255;165;0m",
+        "bold_pink": "\033[1m\033[38;2;255;105;180m"
     }
     return colours[colour]
+
+def wrap_text(text, line_length=160):
+    lines = []
+    while len(text) > line_length:
+        wrap_pos = text.rfind(' ', 0, line_length)
+        if wrap_pos == -1:
+            wrap_pos = line_length
+        lines.append(text[:wrap_pos])
+        text = text[wrap_pos:].lstrip()
+    lines.append(text)
+    return "\n".join(lines)
