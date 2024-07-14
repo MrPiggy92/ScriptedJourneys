@@ -294,3 +294,4 @@ def die(player, map):
     player.weapon = items.Weapon(0, "Fists", "Your fists, ready for punching", None, True, None, 0, None, None, None, None, 0, 0.5)
     player.hp = 10
     player.currentroom = map.rooms[0]
+    input()
