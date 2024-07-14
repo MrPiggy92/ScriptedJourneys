@@ -120,6 +120,12 @@ def fight(enemy_name, player, map):
             # Check player's HP
             if checkhp(player, map) <= 0:
                 break
+            
+            utils.output("Continue?", "magenta")
+            run = input("> ").lower()
+            if run.startswith('n'):
+                utils.output(f"You have run away from the {enemy.name}.", "magenta")
+                break
 
         if player.hp <= 0:
             die(player, map)
