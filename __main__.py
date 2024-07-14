@@ -18,7 +18,9 @@ def play(name):
     
     my_player = player.Player(player_name, my_map.rooms[0], 10, [])
     
-    utils.output(my_map.opening_text, "bold_pink")
+    utils.output(my_map.opening_text, "bold_pink", 0.03)
+    
+    input()
 
 
     while True:

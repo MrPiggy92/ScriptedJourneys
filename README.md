@@ -39,6 +39,7 @@ This game is a multi-map text-based adventure where you navigate through various
 ### Features
 - **Multiple Maps:** Explore different environments such as dungeons, forests, and towns.
 - **Item Management:** Collect and use items to overcome obstacles.
+- **Mini-bosses:** Fight small bosses as you work your way up the levels.
 
 ## Contributing
 

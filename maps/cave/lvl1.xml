@@ -153,7 +153,7 @@
         <usedin>2</usedin>
         <usedesc>The Crystal Shard lights up the room.</usedesc>
         <removesroomitem>-1</removesroomitem>
-        <addsroomitem>1</addsroomitem>
+        <addsroomitem type="item">1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>1</disposable>
     </item>
