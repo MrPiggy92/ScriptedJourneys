@@ -13,37 +13,22 @@ class Map:
     def __init__(self, folder):
         self.folder = folder
         self.level = 1
-        self.items, self.rooms, self.enemies = self.load()
-        home = os.path.expanduser('~')
-        with open(os.path.join(f"{home}/Documents/Python/text_adventure", self.folder, "open.txt")) as txt:
-            self.opening_text = txt.read()
+        self.items, self.rooms, self.enemies = self.load(folder, self.level)
         self.bossDefeated = False
     
     def next_level(self):
         self.level += 1
         utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
-        self.items, self.rooms, self.enemies = self.load()
+        self.items, self.rooms, self.enemies = self.load(self.folder, self.level)
     
-    def load(self):
-        home = os.path.expanduser('~')
-        tree = ET.parse(os.path.join(f"{home}/Documents/Python/text_adventure", self.folder, f"lvl{self.level}.xml"))
-        #tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
+    def load(self, folder, levelnum):
+        tree = ET.parse(os.path.join("/home/arco/Documents/Python/text_adventure", folder, f"lvl{levelnum}.xml"))
         root = tree.getroot()
         
         mapitems = []
         for item in root.iter("item"):
             itemdata = []
             for data in item:
-                if data.text != "-1":
-                    try:
-                        if data.attrib["type"] == "weapon":
-                            data.text = "weapon" + data.text
-                        elif data.attrib["type"] == "statitem":
-                            data.text = "statitem" + data.text
-                        else:
-                            data.text = "item" + data.text
-                    except:
-                        pass
                 try:
                     data.text = int(data.text)
                 except:
@@ -53,21 +38,18 @@ class Map:
             #print(itemdata)
             mapitems.append(items.Item(itemdata[0], itemdata[1], itemdata[2], itemdata[3], itemdata[4], itemdata[5], itemdata[6], itemdata[7], itemdata[8], itemdata[9], itemdata[10], itemdata[11]))
         
+        for item in mapitems:
+            if item.revealsitem != None:
+                item.revealsitem = mapitems[item.revealsitem]
+            if item.addsroomitem != None:
+                item.addsroomitem = mapitems[item.addsroomitem]
+            if item.removesroomitem != None:
+                item.removesroomitem = mapitems[item.removesroomitem]
         
         mapstatitems = []
         for statitem in root.iter("statitem"):
             statitemdata = []
             for data in statitem:
-                if data.text != "-1":
-                    try:
-                        if data.attrib["type"] == "weapon":
-                            data.text = "weapon" + data.text
-                        elif data.attrib["type"] == "statitem":
-                            data.text = "statitem" + data.text
-                        else:
-                            data.text = "item" + data.text
-                    except:
-                        pass
                 try:
                     data.text = int(data.text)
                 except:
@@ -77,20 +59,15 @@ class Map:
             #print(statitemdata)
             mapstatitems.append(items.StatItem(statitemdata[0], statitemdata[1], statitemdata[2], statitemdata[3], statitemdata[4], statitemdata[5], statitemdata[6], statitemdata[7], statitemdata[8], statitemdata[9], statitemdata[10], statitemdata[11], statitemdata[12]))
         
+        for statitem in mapstatitems:
+            if statitem.revealsitem != None:
+                statitem.revealsitem = mapstatitems[statitem.revealsitem]
+            #if statitem.
+        
         mapweapons = []
         for weapon in root.iter("weapon"):
             weapondata = []
             for data in weapon:
-                if data.text != "-1":
-                    try:
-                        if data.attrib["type"] == "weapon":
-                            data.text = "weapon" + data.text
-                        elif data.attrib["type"] == "statitem":
-                            data.text = "statitem" + data.text
-                        else:
-                            data.text = "item" + data.text
-                    except:
-                        pass
                 try:
                     data.text = int(data.text)
                 except:
@@ -101,74 +78,9 @@ class Map:
             #print(len(weapondata))
             mapweapons.append(items.Weapon(weapondata[0], weapondata[1], weapondata[2], weapondata[3], weapondata[4], weapondata[5], weapondata[6], weapondata[7], weapondata[8], weapondata[9], weapondata[10], weapondata[11], weapondata[12]))
         
-        for item in mapitems:
-            if item.revealsitem != None:
-                if item.revealsitem.startswith("i"):
-                    item.revealsitem = mapitems[int(item.revealsitem[4:])]
-                elif item.revealsitem.startswith("s"):
-                    item.revealsitem = mapstatitems[int(item.revealsitem[8:])]
-                else:
-                    item.revealsitem = mapweapons[int(item.revealsitem[6:])]
-            if item.addsroomitem != None:
-                if item.addsroomitem.startswith("i"):
-                    item.addsroomitem = mapitems[int(item.addsroomitem[4:])]
-                elif item.addsroomitem.startswith("s"):
-                    item.addsroomitem = mapstatitems[int(item.addsroomitem[8:])]
-                else:
-                    item.addsroomitem = mapweapons[int(item.addsroomitem[6:])]
-            if item.removesroomitem != None:
-                if item.removesroomitem.startswith("i"):
-                    item.removesroomitem = mapitems[int(item.removesroomitem[4:])]
-                elif item.removesroomitem.startswith("s"):
-                    item.removesroomitem = mapstatitems[int(item.removesroomitem[8:])]
-                else:
-                    item.removesroomitem = mapweapons[int(item.removesroomitem[6:])]
-        
-        for item in mapstatitems:
-            if item.revealsitem != None:
-                if item.revealsitem.startswith("i"):
-                    item.revealsitem = mapitems[int(item.revealsitem[4:])]
-                elif item.revealsitem.startswith("s"):
-                    item.revealsitem = mapstatitems[int(item.revealsitem[8:])]
-                else:
-                    item.revealsitem = mapweapons[int(item.revealsitem[6:])]
-            if item.addsroomitem != None:
-                if item.addsroomitem.startswith("i"):
-                    item.addsroomitem = mapitems[int(item.addsroomitem[4:])]
-                elif item.addsroomitem.startswith("s"):
-                    item.addsroomitem = mapstatitems[int(item.addsroomitem[8:])]
-                else:
-                    item.addsroomitem = mapweapons[int(item.addsroomitem[6:])]
-            if item.removesroomitem != None:
-                if item.removesroomitem.startswith("i"):
-                    item.removesroomitem = mapitems[int(item.removesroomitem[4:])]
-                elif item.removesroomitem.startswith("s"):
-                    item.removesroomitem = mapstatitems[int(item.removesroomitem[8:])]
-                else:
-                    item.removesroomitem = mapweapons[int(item.removesroomitem[6:])]
-        
-        for item in mapweapons:
-            if item.revealsitem != None:
-                if item.revealsitem.startswith("i"):
-                    item.revealsitem = mapitems[int(item.revealsitem[4:])]
-                elif item.revealsitem.startswith("s"):
-                    item.revealsitem = mapstatitems[int(item.revealsitem[8:])]
-                else:
-                    item.revealsitem = mapweapons[int(item.revealsitem[6:])]
-            if item.addsroomitem != None:
-                if item.addsroomitem.startswith("i"):
-                    item.addsroomitem = mapitems[int(item.addsroomitem[4:])]
-                elif item.addsroomitem.startswith("s"):
-                    item.addsroomitem = mapstatitems[int(item.addsroomitem[8:])]
-                else:
-                    item.addsroomitem = mapweapons[int(item.addsroomitem[6:])]
-            if item.removesroomitem != None:
-                if item.removesroomitem.startswith("i"):
-                    item.removesroomitem = mapitems[int(item.removesroomitem[4:])]
-                elif item.removesroomitem.startswith("s"):
-                    item.removesroomitem = mapstatitems[int(item.removesroomitem[8:])]
-                else:
-                    item.removesroomitem = mapweapons[int(item.removesroomitem[6:])]
+        for weapon in mapweapons:
+            if weapon.revealsitem != None:
+                weapon.revealsitem = mapweapons[weapon.revealsitem]
         
         enemies = []
         for enemy in root.iter("enemy"):
@@ -201,6 +113,7 @@ class Map:
             except:
                 pass
             bossdata.append(None if data.text == -1 else data.text)
+            print("hi")
         boss = enemyObject.Boss(bossdata[0], bossdata[1], True, bossdata[2], bossdata[3], mapweapons[bossdata[4]], bossdata[5], bossdata[6])
         
         rooms = []

@@ -17,8 +17,6 @@ def play(name):
     my_map = map.Map(os.path.join("maps", name))
     
     my_player = player.Player(player_name, my_map.rooms[0], 10, [])
-    
-    utils.output(my_map.opening_text, "bold_pink")
 
 
     while True:
@@ -42,7 +40,7 @@ def play(name):
             lookat(item_name, my_player)
         elif action_input.lower().startswith("use "):
             item_name = action_input[4:]
-            trytouse(item_name, my_player, my_map)
+            trytouse(item_name, my_player)
         elif action_input.lower().startswith("fight "):
             enemy_name = action_input[6:]
             fight(enemy_name, my_player, my_map)
@@ -54,7 +52,7 @@ def play(name):
             exit()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
-        elif action_input.lower() == "next" or action_input.lower() == 'n':
+        elif action_input.lower() == "next":
             my_map.next_level()
         elif action_input.lower().startswith("t "):
             item_name = action_input[2:]
@@ -66,7 +64,7 @@ def play(name):
             lookat(item_name, my_player)
         elif action_input.lower().startswith("u "):
             item_name = action_input[2:]
-            trytouse(item_name, my_player, my_map)
+            trytouse(item_name, my_player)
         elif action_input.lower().startswith("f "):
             enemy_name = action_input[2:]
             fight(enemy_name, my_player, my_map)
