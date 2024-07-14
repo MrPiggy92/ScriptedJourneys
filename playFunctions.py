@@ -120,6 +120,11 @@ def fight(enemy_name, player, map):
             # Check player's HP
             if checkhp(player, map) <= 0:
                 break
+            
+            run = input().lower()
+            if run.startswith('r') or run.startswith('q'):
+                utils.output(f"You have run away from the {enemy.name}.", "green")
+                break
 
         if player.hp <= 0:
             die(player, map)
@@ -253,7 +258,7 @@ def lookat(item, player):
     utils.output(f"There is no {item} here.", "magenta")
 
 
-def trytouse(item, player):
+def trytouse(item, player, map):
     current_room = player.currentroom
 
     for inventory_item in player.inventory:
@@ -261,8 +266,7 @@ def trytouse(item, player):
             if inventory_item.usedin == current_room.number or inventory_item.usedin == None:
                 if isinstance(inventory_item, items.StatItem):
                     player.hp += inventory_item.hp_change
-                    if player.hp > 10:
-                        player.hp = 10
+                    checkhp(player, map)
                 if inventory_item.removesroomitem is not None:
                     print(inventory_item.removesroomitem)
                     current_room.items.remove(inventory_item.removesroomitem)
@@ -294,3 +298,4 @@ def die(player, map):
     player.weapon = items.Weapon(0, "Fists", "Your fists, ready for punching", None, True, None, 0, None, None, None, None, 0, 0.5)
     player.hp = 10
     player.currentroom = map.rooms[0]
+    input()
