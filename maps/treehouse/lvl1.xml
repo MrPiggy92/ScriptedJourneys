@@ -3,7 +3,7 @@
     <room>
         <num>0</num>
         <name>Hallway</name>
-        <desc>The air is damp and cold, the walls are rough and jagged. </desc>
+        <desc>A long hallway with wooden walls.</desc>
         <exits>
             <exit>1</exit>
             <exit>-1</exit>
@@ -18,7 +18,7 @@
     <room>
         <num>1</num>
         <name>Bathroom</name>
-        <desc>The air is damp and cold, the walls are rough and jagged. </desc>
+        <desc>An old-fashioned wooden bathroom.</desc>
         <exits>
             <exit>-1</exit>
             <exit>0</exit>
@@ -34,7 +34,7 @@
     <room>
         <num>2</num>
         <name>Living Room</name>
-        <desc>The air is damp and cold, the walls are rough and jagged. </desc>
+        <desc>A nice-looking room to have in your house.</desc>
         <exits>
             <exit>-1</exit>
             <exit>-1</exit>
@@ -50,7 +50,7 @@
     <room>
         <num>3</num>
         <name>Kitchen</name>
-        <desc>The air is damp and cold, the walls are rough and jagged. </desc>
+        <desc>A pristine but dark kitchen.</desc>
         <exits>
             <exit>-1</exit>
             <exit>-1</exit>
@@ -89,7 +89,7 @@
         <usedesc>The Glowing Embers light up the room, revealing a sword in one corner</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem type="weapon">1</addsroomitem>
-        <useroomdesc>-1</useroomdesc>
+        <useroomdesc>A pristine kitchen.</useroomdesc>
         <disposable>0</disposable>
     </item>
     
