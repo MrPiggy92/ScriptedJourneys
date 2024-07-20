@@ -1,0 +1,34 @@
+{
+  "id": "com.MrPiggy.AdventureGame",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "22.08",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "wrapper.sh",
+  "finish-args": [
+    "--filesystem=home",
+    "--socket=x11",
+    "--socket=wayland"
+  ],
+  "modules": [
+    {
+      "name": "AdventureGame",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "dir",
+          "path": "../src"
+        },
+        {
+            "type": "dir",
+            "path": "../wrapper"
+        }
+      ],
+      "build-commands": [
+        "mkdir -p /app/bin",
+        "cp *.py /app/bin/",
+        "cp wrapper.sh /app/bin/",
+        "chmod +x /app/bin/wrapper.sh"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+modules:
+  - name: AdventureGame
+    buildsystem: simple
+    sources:
+      - type: dir
+        path: src
