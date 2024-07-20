@@ -27,7 +27,7 @@
         </exits>
         <items>
             <roomitem>0</roomitem>
-            <roomstatitem>1</roomstatitem>
+            <roomstatitem>0</roomstatitem>
         </items>
         <enemies>
         </enemies>
