@@ -80,4 +80,4 @@ def play(name):
             utils.output("You can't do that.", "magenta")
 
 if __name__ == "__main__":
-    play(sys.argv[1])
+    play(input("Which map do you want to play? "))
