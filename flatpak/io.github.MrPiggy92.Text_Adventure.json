@@ -1,13 +1,14 @@
 {
-  "id": "com.MrPiggy.AdventureGame",
+  "id": "io.github.MrPiggy92.Text_Adventure",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "22.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "wrapper.sh",
   "finish-args": [
     "--filesystem=home",
-    "--socket=x11",
-    "--socket=wayland"
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--share=ipc"
   ],
   "modules": [
     {

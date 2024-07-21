@@ -8,6 +8,7 @@ import player
 
 import os
 import sys
+import time
 
 def play(name):
     utils.output("What is your name, brave adventurer? ", "magenta")
@@ -20,7 +21,7 @@ def play(name):
     
     utils.output(my_map.opening_text, "bold_pink", 0.03)
     
-    input()
+    time.sleep(0.5)
 
 
     while True:
@@ -56,6 +57,8 @@ def play(name):
             exit()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
+        elif action_input.lower().startswith("cast "):
+            castspell(action_input.lower()[5:], my_player, my_map)
         elif action_input.lower() == "next" or action_input.lower() == 'n':
             my_map.next_level()
         elif action_input.lower().startswith("t "):
@@ -76,6 +79,8 @@ def play(name):
             trytomove(action_input.upper()[2:], my_player)
         elif action_input.lower() == 'q':
             exit()
+        elif action_input.lower().startswith('c '):
+            castspell(action_input.lower()[2:], my_player, my_map)
         else:
             utils.output("You can't do that.", "magenta")
 

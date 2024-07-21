@@ -4,7 +4,9 @@
 import rooms as roomsObject
 import items
 import enemy as enemyObject
+import spell as spellObject
 import utils
+import playFunctions
 
 import xml.etree.ElementTree as ET
 import os
@@ -13,7 +15,7 @@ class Map:
     def __init__(self, folder):
         self.folder = folder
         self.level = 1
-        self.items, self.rooms, self.enemies = self.load()
+        self.items, self.rooms, self.enemies, self.spells = self.load()
         home = os.path.expanduser('~')
         with open(os.path.join(f"{home}/Documents/Python/text_adventure", self.folder, "open.txt")) as txt:
             self.opening_text = txt.read()
@@ -253,4 +255,21 @@ class Map:
             room.exits[3] = rooms[int(room.exits[3])] if room.exits[3] != -1 else None
         #print(rooms[0].exits)
         
-        return mapitems, rooms, enemies
+        spells = []
+        for spell in root.iter("spell"):
+            spelldata = []
+            for data in spell:
+                try:
+                    data.text = int(data.text)
+                except:
+                    pass
+                spelldata.append(data.text)
+            spells.append(spellObject.Spell(spelldata[0], spelldata[1], spelldata[2], spelldata[3]))
+        
+        for spell in spells:
+            if playFunctions.safetorun(spell):
+                pass
+            else:
+                utils.output(f"Spell {spell.name} has been disabled due to a potential security hazard.", "magenta")
+        
+        return mapitems, rooms, enemies, spells

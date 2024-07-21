@@ -1,6 +1,7 @@
 import utils, items
 import enemy as enemyObject
 from random import random
+from time import sleep
 
 def showhpbar(player):
     # Calculate the percentage of hit points
@@ -39,35 +40,17 @@ def trytomove(direction, player):
     utils.output("You can't go that way.", "magenta")
 
 
-def tutorial():
-    utils.output("To move, type 'MOVE <direction>'", "green")
-    utils.output(' ', "green")
-    utils.output("To fight, type 'FIGHT <enemy>", "green")
-    utils.output(' ', "green")
-    utils.output("To take an item in the room you're in, type 'TAKE <item>'. To use an item in your inventory, type 'USE <item>'. And to have a closer look at an item in the room, type 'LOOK <item>'.", "green")
-    utils.output(' ', "green")
-    utils.output("To list your inventory, just type 'INVENTORY'. This will show all your items, your HP, and your current weapon.", "green")
-    utils.output(' ', "green")
-
-
-def checkkeys(player):
-    currentroom = player.currentroom
-    if currentroom.key != None and currentroom.key in player.keyring:
-        utils.output(currentroom.key.keyusedesc, "blue")
-        currentroom.description = currentroom.key.keyroomdesc
-        currentroom.exits = currentroom.key.keyexits
-        currentroom.key = None
 
 
 def listexits(player):
     if player.currentroom.exits[0] != None:
-        utils.output("You see an exit to the North.", "blue")
+        utils.output("You see an exit to the North.", "clear")
     if player.currentroom.exits[1] != None:
-        utils.output("You see an exit to the South.", "blue")
+        utils.output("You see an exit to the South.", "clear")
     if player.currentroom.exits[2] != None:
-        utils.output("You see an exit to the East.", "blue")
+        utils.output("You see an exit to the East.", "clear")
     if player.currentroom.exits[3] != None:
-        utils.output("You see an exit to the West.", "blue")
+        utils.output("You see an exit to the West.", "clear")
 
 
 def fight(enemy_name, player, map):
@@ -166,11 +149,11 @@ def checkhp(player, map):
 def listroomitems(player):
     current_room = player.currentroom
     if current_room.items:
-        utils.output(f"You see the following items:", "blue")
+        utils.output(f"You see the following items:", "clear")
         for item in current_room.items:
             utils.output("- " + item.name, "yellow")
     else:
-        utils.output("There are no items here.", "blue")
+        utils.output("There are no items here.", "clear")
 
 
 def trytotake(item, player):
@@ -181,12 +164,12 @@ def trytotake(item, player):
         if room_item.name.lower() == item.lower():
             if isinstance(room_item, items.StatItem):
                 player.inventory.append(room_item)
-                utils.output(f"You have taken the {room_item.name}.", "blue")
+                utils.output(f"You have taken the {room_item.name}.", "clear")
                 current_room.items.remove(room_item)
                 return
 
             if isinstance(room_item, items.Weapon):
-                utils.output(f"You have taken the {room_item.name}.", "blue")
+                utils.output(f"You have taken the {room_item.name}.", "clear")
                 player.weapon = room_item
                 current_room.items.remove(room_item)
                 return
@@ -194,7 +177,7 @@ def trytotake(item, player):
             if room_item.portable:
                 player.inventory.append(room_item)
                 current_room.items.remove(room_item)
-                utils.output(f"You have taken the {room_item.name}.", "blue")
+                utils.output(f"You have taken the {room_item.name}.", "clear")
                 if room_item.updroomdesc is not None:
                     current_room.description = room_item.updroomdesc
             else:
@@ -211,9 +194,9 @@ def listinventory(player):
     showhpbar(player)
 
     if player.weapon is not None:
-        utils.output("Current weapon:" + player.weapon.name, "blue")
+        utils.output("Current weapon:" + player.weapon.name, "clear")
     else:
-        utils.output("Current weapon: None", "blue")
+        utils.output("Current weapon: None", "clear")
 
     # utils.output the inventory items in a colored section
     utils.output("You are carrying:", "clear")
@@ -228,7 +211,7 @@ def listenemies(player):
     current_room = player.currentroom
 
     if current_room.enemies == None:
-        utils.output("There are no enemies here.", "blue")
+        utils.output("There are no enemies here.", "clear")
         return
 
     for enemy in current_room.enemies:
@@ -299,4 +282,25 @@ def die(player, map):
     player.weapon = items.Weapon(0, "Fists", "Your fists, ready for punching", None, True, None, 0, None, None, None, None, 0, 0.5)
     player.hp = 10
     player.currentroom = map.rooms[0]
-    input()
+    sleep(0.5)
+
+def castspell(spell, player, map):
+    for mapspell in map.spells:
+        if mapspell.name.lower() == spell:
+            spell = mapspell
+            break
+    if type(spell) == str:
+        utils.output("This spell does not exist.", "magenta")
+        return
+    if safetorun(spell):
+        exec(spell.effect)
+        utils.output(spell.description, "blue")
+        checkhp(player, map)
+    else:
+        utils.output("This spell has been disabled due to a potential security hazard.", "magenta")
+
+def safetorun(spell):
+    spell = spell.effect
+    if "__" in spell:
+        return False
+    return True

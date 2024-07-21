@@ -10,9 +10,7 @@
             <exit>-1</exit>
             <exit>-1</exit>
         </exits>
-        <key>-1</key>
         <items>
-            <roomitem>-1</roomitem>
         </items>
         <enemies>
             <roomenemy>0</roomenemy>
@@ -28,14 +26,12 @@
             <exit>-1</exit>
             <exit>-1</exit>
         </exits>
-        <key>-1</key>
         <items>
             <roomitem>0</roomitem>
             <roomstatitem>0</roomstatitem>
             <roomweapon>0</roomweapon>
         </items>
         <enemies>
-            <roomenemy>-1</roomenemy>
         </enemies>
     </room>
     <item>
@@ -44,7 +40,7 @@
         <desc>An item</desc>
         <updroomdesc>You are standing in a colourful room with no item</updroomdesc>
         <portable>1</portable>
-        <revealsitem>1</revealsitem>
+        <revealsitem type="item">1</revealsitem>
         <usedin>0</usedin>
         <usedesc>Item1 does nothing</usedesc>
         <removesroomitem>-1</removesroomitem>
@@ -136,4 +132,20 @@
             <lootitem>2</lootitem>
         </loot>
     </enemy>
+    <boss>
+        <num>0</num>
+        <name>boss1</name>
+        <description>A big boss</description>
+        <deaddesc>You have kiled the boss</deaddesc>
+        <enemyweapon>0</enemyweapon>
+        <hp>8</hp>
+        <loot>
+        </loot>
+    </boss>
+    <spell>
+        <num>0</num>
+        <name>die</name>
+        <description>This spell kills you.</description>
+        <effect>player.hp = 0</effect>
+    </spell>
 </xml>
