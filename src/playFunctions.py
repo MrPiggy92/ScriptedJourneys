@@ -65,7 +65,7 @@ def fight(enemy_name, player, map):
         if room_enemy.name.lower() == enemy_name.lower():
             enemy = room_enemy
             break
-    print(enemy.hp)
+    #print(enemy.hp)
 
     if enemy and enemy.alive:
         utils.output(f"A battle begins with the {enemy.name}!", "red")

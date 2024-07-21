@@ -8,18 +8,19 @@ Welcome to our text-based adventure game! Embark on an exciting journey filled w
 - Python 3.x
 
 ### Installation
-1. Clone the repository:
+1. Download the Flatpak:
 ```bash
-git clone https://github.com/Mr-Piggy/text-adventure.git
+curl https://github.com/MrPiggy92/text_adventure/raw/master/AdventureGame.flatpak
 ```
-2. Navigate to the project directory:
+2. Install the Flatpak:
 ```bash
-cd text-adventure
+flatpak --user install AdventureGame.flatpak
 ```
-3. Run the game:
+3. Run the Flatpak:
 ```bash
-python3 . <name of the map>
+flatpak run io.github.MrPiggy92.text_adventure
 ```
+We are working on a Flathub submission and a main menu entry, so those should be coming shortly.
 
 
 ## Gameplay
@@ -35,6 +36,7 @@ This game is a multi-map text-based adventure where you navigate through various
 - Use items using `use <item>`
 - Fight enemies using `fight <enemy>`
 - Check your inventory using `inventory`
+- Cast spells using `cast <spell>`
 
 ### Features
 - **Multiple Maps:** Explore different environments such as dungeons, forests, and towns.
