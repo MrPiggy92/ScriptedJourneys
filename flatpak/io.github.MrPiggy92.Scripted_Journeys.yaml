@@ -1,6 +1,8 @@
 modules:
-  - name: AdventureGame
+  - name: Scripted_Journeys
     buildsystem: simple
     sources:
       - type: dir
         path: src
+      - type: dir
+        path: wrapper

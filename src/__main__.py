@@ -32,8 +32,10 @@ def play(name):
         listroomitems(my_player)
         listenemies(my_player)
         listexits(my_player)
-    
+        
+        print(utils.colourify("magenta"))
         action_input = input("> ")
+        print(utils.colourify("clear"))
     
         if action_input.lower().startswith("take "):
             item_name = action_input[5:]

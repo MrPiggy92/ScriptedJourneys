@@ -1,4 +1,4 @@
-# Text-Based Adventure Game
+# Scripted Journeys
 
 Welcome to our text-based adventure game! Embark on an exciting journey filled with challenges and decisions that shape your destiny.
 

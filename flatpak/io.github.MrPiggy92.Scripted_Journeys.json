@@ -1,5 +1,5 @@
 {
-  "id": "io.github.MrPiggy92.Text_Adventure",
+  "id": "io.github.MrPiggy92.Scripted_Journeys",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "22.08",
   "sdk": "org.freedesktop.Sdk",
@@ -12,7 +12,7 @@
   ],
   "modules": [
     {
-      "name": "AdventureGame",
+      "name": "Scripted_Journeys",
       "buildsystem": "simple",
       "sources": [
         {
