@@ -22,13 +22,18 @@
         {
             "type": "dir",
             "path": "../wrapper"
+        },
+        {
+            "type": "dir",
+            "path": "../maps"
         }
       ],
       "build-commands": [
         "mkdir -p /app/bin",
         "cp *.py /app/bin/",
         "cp wrapper.sh /app/bin/",
-        "chmod +x /app/bin/wrapper.sh"
+        "chmod +x /app/bin/wrapper.sh",
+        "mkdir -p ~/.config/ScriptedJourneys"
       ]
     }
   ]

@@ -5,6 +5,7 @@ import rooms as roomsObject
 import items
 import enemy as enemyObject
 import spell as spellObject
+import NPC as NPCObject
 import utils
 import playFunctions
 
@@ -16,8 +17,7 @@ class Map:
         self.folder = folder
         self.level = 1
         self.items, self.rooms, self.enemies, self.spells = self.load()
-        home = os.path.expanduser('~')
-        with open(os.path.join(f"{home}/Documents/Python/text_adventure", self.folder, "open.txt")) as txt:
+        with open(os.path.join(self.folder, "open.txt")) as txt:
             self.opening_text = txt.read()
         self.bossDefeated = False
     
@@ -28,7 +28,7 @@ class Map:
     
     def load(self):
         home = os.path.expanduser('~')
-        tree = ET.parse(os.path.join(f"{home}/Documents/Python/text_adventure", self.folder, f"lvl{self.level}.xml"))
+        tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         #tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         root = tree.getroot()
         
@@ -204,6 +204,7 @@ class Map:
                 pass
             bossdata.append(None if data.text == -1 else data.text)
         boss = enemyObject.Boss(bossdata[0], bossdata[1], True, bossdata[2], bossdata[3], mapweapons[bossdata[4]], bossdata[5], bossdata[6])
+        
         
         rooms = []
         for room in root.iter("room"):

@@ -15,6 +15,9 @@
         <enemies>
             <roomenemy>0</roomenemy>
         </enemies>
+        <NPCs>
+            <trader>0</trader>
+        </NPCs>
     </room>
     <room>
         <num>1</num>
@@ -33,6 +36,8 @@
         </items>
         <enemies>
         </enemies>
+        <NPCs>
+        </NPCs>
     </room>
     <item>
         <num>0</num>
@@ -71,6 +76,20 @@
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
         <usedesc>Item3 does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>3</num>
+        <name>item4</name>
+        <desc>A traded item</desc>
+        <updroomdesc>You are standing in a colourful room with no item</updroomdesc>
+        <portable>0</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>Item4 does nothing</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
@@ -148,4 +167,12 @@
         <description>This spell kills you.</description>
         <effect>player.hp = 0</effect>
     </spell>
+    <trader>
+        <num>0</num>
+        <name>Bob</name>
+        <desc>A trader named Bob.</desc>
+        <trades>
+            <trade value="1" type="item">3</trade>
+        </trades>
+    </trader>
 </xml>
