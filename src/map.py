@@ -8,13 +8,14 @@ import spell as spellObject
 import NPC as NPCObject
 import utils
 import playFunctions
+import config
 
 import xml.etree.ElementTree as ET
 import os
 
 class Map:
     def __init__(self, folder):
-        self.folder = folder
+        self.folder = os.path.join(config.maps_path, folder)
         self.level = 1
         self.items, self.rooms, self.enemies, self.spells = self.load()
         with open(os.path.join(self.folder, "open.txt")) as txt:

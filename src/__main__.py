@@ -15,7 +15,7 @@ def play(name):
     player_name = input()
     utils.output(f"Greetings {player_name}!\n\n", "magenta")
     
-    my_map = map.Map(os.path.join("maps", name))
+    my_map = map.Map(name)
     
     my_player = player.Player(player_name, my_map.rooms[0], 10, [])
     

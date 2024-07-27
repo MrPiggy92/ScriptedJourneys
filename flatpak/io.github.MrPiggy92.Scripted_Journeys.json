@@ -33,7 +33,6 @@
         "cp *.py /app/bin/",
         "cp wrapper.sh /app/bin/",
         "chmod +x /app/bin/wrapper.sh",
-        "mkdir -p ~/.config/ScriptedJourneys"
       ]
     }
   ]
