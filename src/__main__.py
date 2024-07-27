@@ -10,11 +10,7 @@ import os
 import sys
 import time
 
-def play(name):
-    utils.output("What is your name, brave adventurer? ", "magenta")
-    player_name = input()
-    utils.output(f"Greetings {player_name}!\n\n", "magenta")
-    
+def play(name):    
     my_map = map.Map(name)
     
     my_player = player.Player(player_name, my_map.rooms[0], 10, [])
@@ -34,7 +30,7 @@ def play(name):
         listexits(my_player)
         
         print(utils.colourify("magenta"))
-        action_input = input("> ")
+        action_input = input(" > ")
         print(utils.colourify("clear"))
     
         if action_input.lower().startswith("take "):

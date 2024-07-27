@@ -2,5 +2,9 @@ import os
 
 home = os.path.expanduser('~')
 
-maps_path = os.path.join(home, ".config", "Scripted_Journeys", "maps")
+config_folder = os.path.join(home, ".config", "Scripted_Journeys")
+
+maps_path = os.path.join(config_folder, "maps")
+
+playerdata_path = os.path.join(config_folder, "playerdata")
 
