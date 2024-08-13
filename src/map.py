@@ -15,14 +15,18 @@ import os
 class Map:
     def __init__(self, folder):
         self.folder = os.path.join(config.maps_path, folder)
+        self.all_levels = os.listdir(folder) - 1
         self.level = 1
-        self.items, self.rooms, self.enemies, self.spells = self.load()
+        self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
         with open(os.path.join(self.folder, "open.txt")) as txt:
             self.opening_text = txt.read()
         self.bossDefeated = False
     
     def next_level(self):
         self.level += 1
+        if self.level > self.all_levels:
+            utils.output(f"\n\nYou have completed {self.name}!\n\n", "bright_green")
+            raise SystemExit()
         utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
         self.items, self.rooms, self.enemies = self.load()
     
@@ -31,6 +35,8 @@ class Map:
         tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         #tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         root = tree.getroot()
+        
+        name = list(root.iter("mapname"))[0]
         
         mapitems = []
         for item in root.iter("item"):
@@ -273,4 +279,4 @@ class Map:
             else:
                 utils.output(f"Spell {spell.name} has been disabled due to a potential security hazard.", "magenta")
         
-        return mapitems, rooms, enemies, spells
+        return name, mapitems, rooms, enemies, spells

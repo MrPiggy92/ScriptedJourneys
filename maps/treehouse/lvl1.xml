@@ -1,5 +1,5 @@
 <xml>
-    <name>Treehouse</name>
+    <mapname>Treehouse</name>
     <room>
         <num>0</num>
         <name>Hallway</name>
@@ -144,7 +144,7 @@
         <num>0</num>
         <name>Goblin</name>
         <description>A small goblin dressed in leaves.</description>
-        <deaddesc>The cave troll collapses to the ground with a thunderous crash, defeated.</deaddesc>
+        <deaddesc>The goblin leaps out of the window, on the brink of death, and is never seen again.</deaddesc>
         <enemyweapon>0</enemyweapon>
         <hp>8</hp>
         <loot>
