@@ -5,7 +5,6 @@ import rooms as roomsObject
 import items
 import enemy as enemyObject
 import spell as spellObject
-import NPC as NPCObject
 import utils
 import playFunctions
 import config

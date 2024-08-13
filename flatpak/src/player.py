@@ -4,8 +4,7 @@
 import items
 
 class Player:
-    def __init__(self, name, currentroom, hp, inventory):
-        self.name = name
+    def __init__(self, currentroom, hp, inventory):
         self.currentroom = currentroom
         self.hp = hp
         self.inventory = inventory
