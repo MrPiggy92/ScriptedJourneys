@@ -1,6 +1,6 @@
 # Scripted Journeys
 
-Welcome to our text-based adventure game! Embark on an exciting journey filled with challenges and decisions that shape your destiny.
+WWelcome to Scripted Journeys, an enthralling text-based adventure where your decisions shape the narrative and uncover hidden mysteries across diverse realms. Each map teems with unique challenges, intricate plots, and fascinating characters, all waiting for you to explore and interact with. Your choices will determine your path, unlocking secrets, and altering the course of your journey in unexpected ways. Embark on a quest that combines storytelling, strategy, and imagination, where every script you write crafts your destiny. Are you ready to dive into a world where every decision is a step towards a new adventure?
 
 ## Getting Started
 
@@ -42,6 +42,7 @@ This game is a multi-map text-based adventure where you navigate through various
 - **Multiple Maps:** Explore different environments such as dungeons, forests, and towns.
 - **Item Management:** Collect and use items to overcome obstacles.
 - **Mini-bosses:** Fight small bosses as you work your way up the levels.
+- **Spells:** Cast powerful spells to do everything from instantly killing an enemy to teleporting through the map.
 
 ## Contributing
 
