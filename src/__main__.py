@@ -5,6 +5,7 @@ from playFunctions import *
 import utils
 import map
 import player
+import config
 
 import os
 import sys
@@ -83,4 +84,5 @@ def play(name):
             utils.output("You can't do that.", "magenta")
 
 if __name__ == "__main__":
+    utils.output("Maps:" + "\n ".join(os.listdir(config.maps_path)))
     play(input("Which map do you want to play? "))

@@ -217,7 +217,7 @@ def listenemies(player):
     for enemy in current_room.enemies:
         if enemy.alive:
             if isinstance(enemy, enemyObject.Boss):
-                utils.output(enemy.description + " The final boss", "red")
+                utils.output(enemy.description + "It is the final boss.", "red")
             else:
                 utils.output(enemy.description, "red")
         else:
