@@ -36,7 +36,8 @@
         "chmod +x /app/bin/wrapper.sh",
         "cp first_run.sh /app/bin/",
         "chmod +x /app/bin/first_run.sh",
-        "cp -r maps /app/lib"
+        "cp -r maps /app/lib",
+        "cp LICENSE /app/lib"
       ]
     }
   ]

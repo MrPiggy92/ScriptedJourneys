@@ -1,4 +1,21 @@
-# Text adventure
+# Scripted Journeys
+
+#
+# Copyright (C) 2024 MrPiggy92
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+#
 
 # Main script
 from playFunctions import *
@@ -10,6 +27,8 @@ import config
 import os
 import sys
 import time
+
+print(config.license_text)
 
 def play(name):    
     my_map = map.Map(name)
@@ -80,6 +99,10 @@ def play(name):
             exit()
         elif action_input.lower().startswith('c '):
             castspell(action_input.lower()[2:], my_player, my_map)
+        elif action_input.lower() == "show w":
+            print(config.warranty_text)
+        elif action_input.lower() == "show c":
+            print(config.license_link)
         else:
             utils.output("You can't do that.", "magenta")
 
