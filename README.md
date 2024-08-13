@@ -10,15 +10,15 @@ Welcome to our text-based adventure game! Embark on an exciting journey filled w
 ### Installation
 1. Download the Flatpak:
 ```bash
-curl https://github.com/MrPiggy92/text_adventure/raw/master/AdventureGame.flatpak
+curl https://github.com/MrPiggy92/ScriptedJourneys/raw/master/ScriptedJourneys.flatpak
 ```
 2. Install the Flatpak:
 ```bash
-flatpak --user install AdventureGame.flatpak
+flatpak --user install ScriptedJourneys.flatpak
 ```
 3. Run the Flatpak:
 ```bash
-flatpak run io.github.MrPiggy92.text_adventure
+flatpak run io.github.MrPiggy92.ScriptedJourneys
 ```
 We are working on a Flathub submission and a main menu entry, so those should be coming shortly.
 
