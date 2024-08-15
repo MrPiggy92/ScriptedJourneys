@@ -106,6 +106,6 @@ def play(name):
         else:
             utils.output("You can't do that.", "magenta")
 
-if __name__ == "__main__":
-    utils.output("Maps:" + "\n ".join(os.listdir(config.maps_path)))
-    play(input("Which map do you want to play? "))
+#print("Maps:" + "\n ".join(os.listdir(config.maps_path)))
+utils.output("Maps:" + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
+play(input("Which map do you want to play? "))

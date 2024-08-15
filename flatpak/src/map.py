@@ -32,7 +32,7 @@ import os
 class Map:
     def __init__(self, folder):
         self.folder = os.path.join(config.maps_path, folder)
-        self.all_levels = os.listdir(folder) - 1
+        self.all_levels = len(os.listdir(self.folder)) - 1
         self.level = 1
         self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
         with open(os.path.join(self.folder, "open.txt")) as txt:
