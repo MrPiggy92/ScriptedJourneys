@@ -6,12 +6,25 @@
   "command": "wrapper.sh",
   "finish-args": [
     "--filesystem=home",
-    "--filesystem=/tmp",
     "--socket=fallback-x11",
     "--socket=wayland",
     "--share=ipc"
   ],
   "modules": [
+    {
+      "name": "python",
+      "buildsystem": "simple",
+      "build-commands": [
+        "pip3 install --no-index --find-links=appdir --prefix=/app appdir"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.python.org/ftp/python/3.9.7/Python-3.9.7.tar.xz",
+          "sha256": "aaf8e1b81ab1b9cf899ed29eae1f69bcd1cf5c7b78553f23f293fbbcdcda98e6"
+        }
+      ]
+    },
     {
       "name": "ScriptedJourneys",
       "buildsystem": "simple",
@@ -34,6 +47,7 @@
         "mkdir -p /app/lib",
         "mkdir -p /app/share/applications",
         "mkdir -p /app/share/icons/hicolor/256x256/apps",
+        "mkdir -p /app/share/metainfo",
         "cp *.py /app/bin/",
         "cp wrapper.sh /app/bin/",
         "chmod +x /app/bin/wrapper.sh",
@@ -42,7 +56,8 @@
         "cp -r maps /app/lib",
         "cp LICENSE /app/lib",
         "cp io.github.MrPiggy92.ScriptedJourneys.desktop /app/share/applications",
-        "cp io.github.MrPiggy92.ScriptedJourneys.png /app/share/icons/hicolor/256x256/apps"
+        "cp io.github.MrPiggy92.ScriptedJourneys.png /app/share/icons/hicolor/256x256/apps",
+        "cp io.github.MrPiggy92.ScriptedJourneys.metainfo.xml /app/share/metainfo/"
       ]
     }
   ]
