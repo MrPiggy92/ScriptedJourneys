@@ -28,6 +28,7 @@ import config
 
 import xml.etree.ElementTree as ET
 import os
+import time
 
 class Map:
     def __init__(self, folder):
@@ -39,16 +40,17 @@ class Map:
             self.opening_text = txt.read()
         self.bossDefeated = False
     
-    def next_level(self):
+    def next_level(self, player):
         self.level += 1
         if self.level > self.all_levels:
             utils.output(f"\n\nYou have completed {self.name}!\n\n", "bright_green")
+            time.sleep(2)
             raise SystemExit()
         utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
-        self.items, self.rooms, self.enemies = self.load()
+        self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
+        player.currentroom = self.rooms[0]
     
     def load(self):
-        home = os.path.expanduser('~')
         tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         #tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         root = tree.getroot()

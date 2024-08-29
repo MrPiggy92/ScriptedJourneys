@@ -5,10 +5,10 @@
         <name>Hallway</name>
         <desc>A long hallway with wooden walls.</desc>
         <exits>
+            <exit>2</exit>
+            <exit>-1</exit>
             <exit>1</exit>
             <exit>-1</exit>
-            <exit>2</exit>
-            <exit>3</exit>
         </exits>
         <items>
         </items>
@@ -17,24 +17,8 @@
     </room>
     <room>
         <num>1</num>
-        <name>Bathroom</name>
-        <desc>An old-fashioned wooden bathroom.</desc>
-        <exits>
-            <exit>-1</exit>
-            <exit>0</exit>
-            <exit>-1</exit>
-            <exit>-1</exit>
-        </exits>
-        <items>
-        </items>
-        <enemies>
-            <roomboss>0</roomboss>
-        </enemies>
-    </room>
-    <room>
-        <num>2</num>
-        <name>Living Room</name>
-        <desc>A nice-looking room to have in your house.</desc>
+        <name>Bedroom</name>
+        <desc>A bedroom with a remarkably uncomfortable wooden bed.</desc>
         <exits>
             <exit>-1</exit>
             <exit>-1</exit>
@@ -48,17 +32,48 @@
         </enemies>
     </room>
     <room>
+        <num>2</num>
+        <name>Snug</name>
+        <desc>A wooden room that you might live in if it wasn't all wood - even the carpet!</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>0</exit>
+            <exit>3</exit>
+            <exit>4</exit>
+        </exits>
+        <items>
+            <roomitem>1</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
         <num>3</num>
-        <name>Kitchen</name>
-        <desc>A pristine but dark kitchen.</desc>
+        <name>Office</name>
+        <desc>A small office, finally not wooden, but made of leaves instead. One wrong step could send you hurtling to the forest floor.</desc>
         <exits>
             <exit>-1</exit>
             <exit>-1</exit>
-            <exit>0</exit>
+            <exit>-1</exit>
+            <exit>2</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>4</num>
+        <name>Bedroom</name>
+        <desc>A large room, a bedroom for a king, if kings lived in lonely treehouses in the midst of a massive forest.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>2</exit>
             <exit>-1</exit>
         </exits>
         <items>
-            <roomstatitem>0</roomstatitem>
+            <roomitem>2</roomitem>
         </items>
         <enemies>
         </enemies>
@@ -66,11 +81,11 @@
     
     <item>
         <num>0</num>
-        <name>Fireplace</name>
-        <desc>A simple stone fireplace.</desc>
+        <name>Bed</name>
+        <desc>A solid wooden bed, with a flamethrower under it.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>0</portable>
-        <revealsitem type="item">1</revealsitem>
+        <revealsitem type="weapon">0</revealsitem>
         <usedin>999999</usedin>
         <usedesc>Weapon does nothing</usedesc>
         <removesroomitem>-1</removesroomitem>
@@ -80,11 +95,11 @@
     </item>
     <item>
         <num>1</num>
-        <name>Glowing Embers</name>
-        <desc>Faintly glowing sparks from the last time this fireplace had a fire in it.</desc>
+        <name>Sofa</name>
+        <desc>A sofa carved out of the trunk of a great tree.</desc>
         <updroomdesc>-1</updroomdesc>
-        <portable>1</portable>
-        <revealsitem>-1</revealsitem>
+        <portable>0</portable>
+        <revealsitem type="statitem">0</revealsitem>
         <usedin>3</usedin>
         <usedesc>The Glowing Embers light up the room, revealing a sword in one corner</usedesc>
         <removesroomitem>-1</removesroomitem>
@@ -92,27 +107,41 @@
         <useroomdesc>A pristine kitchen.</useroomdesc>
         <disposable>0</disposable>
     </item>
-    
-    <statitem>
-        <num>0</num>
-        <name>Stilts</name>
-        <desc>A tall pair of wooden stilts.</desc>
+    <item>
+        <num>2</num>
+        <name>Bed</name>
+        <desc>A king-size double bed, with bedsheets made of poison ivy.There is enough space under it to hide a club.</desc>
         <updroomdesc>-1</updroomdesc>
-        <portable>1</portable>
-        <revealsitem>-1</revealsitem>
-        <usedin>-1</usedin>
-        <usedesc>You try to stand on the stilts but fall off. -4 HP</usedesc>
+        <portable>0</portable>
+        <revealsitem type="weapon">1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>0</disposable>
-        <hpchange>-4</hpchange>
+    </item>
+    
+    <statitem>
+        <num>0</num>
+        <name>Healing herbs</name>
+        <desc>A sprig of an ancient herb, said to heal any injury.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The herbs work their magic, healing 7HP.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>1</disposable>
+        <hpchange>7</hpchange>
     </statitem>
     
     <weapon>
         <num>0</num>
-        <name>Small Hammer</name>
-        <desc>A small mallet made of the wood from many trees.</desc>
+        <name>Club</name>
+        <desc>A heavy wooden club, inset with many nails.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
@@ -122,12 +151,27 @@
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>0</disposable>
-        <damage>2</damage>
+        <damage>1</damage>
     </weapon>
     <weapon>
         <num>1</num>
-        <name>Sword</name>
-        <desc>A sharp sword made of gleaming steel.</desc>
+        <name>Flamethrower</name>
+        <desc>A jumbled collection of wires, gas chambers, and matchboxes. This thing looks like it's going to blow itself to pieces.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>4</damage>
+    </weapon>
+    <weapon>
+        <num>2</num>
+        <name>Laser blaster</name>
+        <desc>A clean, space-age barrel of metal.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
@@ -142,11 +186,11 @@
     
     <boss>
         <num>0</num>
-        <name>Goblin</name>
-        <description>A small goblin dressed in leaves.</description>
-        <deaddesc>The goblin leaps out of the window, on the brink of death, and is never seen again.</deaddesc>
-        <enemyweapon>0</enemyweapon>
-        <hp>8</hp>
+        <name>Inventor</name>
+        <description>A cackling, evil inventor stands on the desk, wielding a powerful laser blaster.</description>
+        <deaddesc>The inventor's arm falls off, leaving a trail of sparks as the inventor malfunctions and crashes to the floor. It was a robot all along.</deaddesc>
+        <enemyweapon>2</enemyweapon>
+        <hp>10</hp>
         <loot>
         </loot>
     </boss>

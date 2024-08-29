@@ -19,8 +19,8 @@ flatpak --user install ScriptedJourneys.flatpak
 3. Run the Flatpak:
 ```bash
 flatpak run io.github.MrPiggy92.ScriptedJourneys
-```
-We are working on a Flathub submission and a main menu entry, so those should be coming shortly.
+``` Or you can use the applications menu
+We are working on a Flathub submission, so it should be coming shortly.
 
 
 ## Gameplay

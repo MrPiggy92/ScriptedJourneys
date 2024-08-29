@@ -72,13 +72,15 @@ def play(name):
         elif action_input.lower().startswith("go "):
             trytomove(action_input.upper()[3:], my_player)
         elif action_input.lower().startswith("quit"):
-            exit()
+            utils.output("Quitting")
+            time.sleep(1.5)
+            raise SystemExit()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
         elif action_input.lower().startswith("cast "):
             castspell(action_input.lower()[5:], my_player, my_map)
         elif action_input.lower() == "next" or action_input.lower() == 'n':
-            my_map.next_level()
+            my_map.next_level(my_player)
         elif action_input.lower().startswith("t "):
             item_name = action_input[2:]
             trytotake(item_name, my_player)
@@ -96,7 +98,9 @@ def play(name):
         elif action_input.lower().startswith("m "):
             trytomove(action_input.upper()[2:], my_player)
         elif action_input.lower() == 'q':
-            exit()
+            utils.output("Quitting")
+            time.sleep(1.5)
+            raise SystemExit()
         elif action_input.lower().startswith('c '):
             castspell(action_input.lower()[2:], my_player, my_map)
         elif action_input.lower() == "show w":

@@ -1,0 +1,14 @@
+{
+      "name": "python",
+      "buildsystem": "simple",
+      "build-commands": [
+        "pip3 install --no-index --find-links=appdir --prefix=/app appdir"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.python.org/ftp/python/3.9.7/Python-3.9.7.tar.xz",
+          "sha256": "f8145616e68c00041d1a6399b76387390388f8359581abc24432bb969b5e3c57"
+        }
+      ]
+    },
