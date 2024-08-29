@@ -54,6 +54,15 @@
   <releases>
     <release version="1.0.0" date="2024-09-01">
       <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/master/changelog</url>
+      <description>
+          <p>First release</p>
+          <ul>
+            <li>Multiple Maps: Explore different environments such as dungeons, forests, and towns.</li>
+            <li>Item Management: Collect and use items to overcome obstacles.</li>
+            <li>Mini-bosses: Fight small bosses as you work your way up the levels.</li>
+            <li>Spells: Cast powerful spells to do everything from instantly killing an enemy to teleporting through the map.</li>
+          </ul>
+      </description>
     </release>
   </releases>
 </component>
