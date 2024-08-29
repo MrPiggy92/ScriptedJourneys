@@ -72,7 +72,9 @@ def play(name):
         elif action_input.lower().startswith("go "):
             trytomove(action_input.upper()[3:], my_player)
         elif action_input.lower().startswith("quit"):
-            exit()
+            utils.output("Quitting")
+            time.sleep(1.5)
+            raise SystemExit()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
         elif action_input.lower().startswith("cast "):

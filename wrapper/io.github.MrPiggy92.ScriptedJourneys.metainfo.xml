@@ -9,11 +9,10 @@
   <project_license>GPL-3.0-only</project_license>
   
   <description>
-    <p>ScriptedJourneys is a text-based adventure game, with many maps to choose from!</p>
-    <p></p>
+    <p>ScriptedJourneys is a text-based adventure game where players can explore various maps, solve puzzles, and embark on exciting quests. The game features rich storytelling and a variety of maps to choose from, offering a unique experience each time you play. Discover hidden secrets and unravel mysteries in this engaging adventure.</p>
   </description>
   
-  <developer id="io.github.MrPiggy92">
+  <developer>
     <name>MrPiggy92</name>
   </developer>
   
