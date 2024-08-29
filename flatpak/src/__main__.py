@@ -72,7 +72,7 @@ def play(name):
         elif action_input.lower().startswith("go "):
             trytomove(action_input.upper()[3:], my_player)
         elif action_input.lower().startswith("quit"):
-            utils.output("Quitting")
+            utils.output("Quitting", "magenta")
             time.sleep(1.5)
             raise SystemExit()
         elif action_input.lower().startswith("tutorial"):
@@ -98,7 +98,7 @@ def play(name):
         elif action_input.lower().startswith("m "):
             trytomove(action_input.upper()[2:], my_player)
         elif action_input.lower() == 'q':
-            utils.output("Quitting")
+            utils.output("Quitting", "magenta")
             time.sleep(1.5)
             raise SystemExit()
         elif action_input.lower().startswith('c '):
@@ -110,6 +110,6 @@ def play(name):
         else:
             utils.output("You can't do that.", "magenta")
 
-#print("Maps:" + "\n ".join(os.listdir(config.maps_path)))
+print("\n\n\n")
 utils.output("Maps:" + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
 play(input("Which map do you want to play? "))
