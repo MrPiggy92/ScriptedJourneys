@@ -21,7 +21,8 @@
 import items
 
 class Player:
-    def __init__(self, currentroom, hp, inventory):
+    def __init__(self, name, currentroom, hp, inventory):
+        self.name = name
         self.currentroom = currentroom
         self.hp = hp
         self.inventory = inventory
