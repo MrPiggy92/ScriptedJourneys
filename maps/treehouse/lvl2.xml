@@ -60,6 +60,7 @@
         <items>
         </items>
         <enemies>
+            <roomboss>0</roomboss>
         </enemies>
     </room>
     <room>
@@ -82,7 +83,7 @@
     <item>
         <num>0</num>
         <name>Bed</name>
-        <desc>A solid wooden bed, with a flamethrower under it.</desc>
+        <desc>A solid wooden bed, with a club under it.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>0</portable>
         <revealsitem type="weapon">0</revealsitem>
@@ -110,7 +111,7 @@
     <item>
         <num>2</num>
         <name>Bed</name>
-        <desc>A king-size double bed, with bedsheets made of poison ivy.There is enough space under it to hide a club.</desc>
+        <desc>A king-size double bed, with bedsheets made of poison ivy.There is enough space under it to hide a flamethrower.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>0</portable>
         <revealsitem type="weapon">1</revealsitem>

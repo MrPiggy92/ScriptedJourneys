@@ -109,7 +109,7 @@ def fight(enemy_name, player, map):
             # Check enemy's HP
             if enemy.hp <= 0:
                 enemy.alive = False
-                utils.output(f"The {enemy.name} has been defeated!", "red")
+                utils.output(enemy.deaddesc, "red")
                 lootbody(enemy, player, map)
                 break
 
@@ -271,7 +271,6 @@ def trytouse(item, player, map):
                     player.hp += inventory_item.hp_change
                     checkhp(player, map)
                 if inventory_item.removesroomitem is not None:
-                    print(inventory_item.removesroomitem)
                     current_room.items.remove(inventory_item.removesroomitem)
                 if inventory_item.addsroomitem is not None:
                     current_room.items.append(inventory_item.addsroomitem)

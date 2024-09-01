@@ -111,5 +111,5 @@ def play(name):
             utils.output("You can't do that.", "magenta")
 
 print("\n\n\n")
-utils.output("Maps:" + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
+utils.output("Maps:\n " + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
 play(input("Which map do you want to play? "))
