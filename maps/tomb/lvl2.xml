@@ -204,8 +204,8 @@
     </item>
     <item>
         <num>1</num>
-        <name>Broken chest</name>
-        <desc>A solid wooden chest, now in splinters on the floor.</desc>
+        <name>Open chest</name>
+        <desc>A solid wooden chest, the lid lying open.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>0</portable>
         <revealsitem type="weapon">0</revealsitem>
@@ -252,7 +252,7 @@
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>2</usedin>
-        <usedesc>You use the key to unlock the chest. There are fireballs inside.</usedesc>
+        <usedesc>You use the key to unlock the chest.</usedesc>
         <removesroomitem type="item">0</removesroomitem>
         <addsroomitem type="item">1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
