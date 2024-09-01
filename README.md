@@ -56,7 +56,7 @@ We welcome contributions to improve the game! To contribute:
 
 ## Authors
 
-- [Sam](https://github.com/MrPiggy92) - Most work
+- [MrPiggy92](https://github.com/MrPiggy92) - Most work
 - [Linux Format](https://linuxformat.com) - Inspiration and some basic functions
 
 ## License
