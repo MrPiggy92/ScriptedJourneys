@@ -169,6 +169,6 @@ Cast spells using `cast spellname`
 Move to the next level using `next`
 You can also just use the first letter of each command, e.g. `t itemname` or `f enemyname`
         </description>
-        <effect></effect>
+        <effect>print()</effect>
     </spell>
 </xml>

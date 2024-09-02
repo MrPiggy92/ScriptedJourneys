@@ -27,7 +27,6 @@
             <exit>-1</exit>
         </exits>
         <items>
-            <roomitem>1</roomitem>
         </items>
         <enemies>
             <roomenemy>0</roomenemy>
@@ -44,7 +43,6 @@
             <exit>-1</exit>
         </exits>
         <items>
-            <roomitem>2</roomitem>
         </items>
         <enemies>
             <roomenemy>1</roomenemy>
@@ -158,9 +156,9 @@
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>1</usedin>
-        <usedesc>The pickaxe may help clear some debris or reveal hidden items.</usedesc>
+        <usedesc>The pickaxe clears some debris and reveals a lantern.</usedesc>
         <removesroomitem>-1</removesroomitem>
-        <addsroomitem>-1</addsroomitem>
+        <addsroomitem type="item">1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>0</disposable>
     </item>
@@ -185,7 +183,7 @@
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
-        <usedin>3</usedin>
+        <usedin>9999999</usedin>
         <usedesc>The map helps avoid traps and find hidden passages.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
@@ -199,7 +197,7 @@
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
-        <usedin>7</usedin>
+        <usedin>99999999999999</usedin>
         <usedesc>The amulet protects against certain traps and enemies.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
@@ -257,12 +255,12 @@
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
-        <usedesc>Heals up to 5 HP. Will only restore health if below 10 HP.</usedesc>
+        <usedesc>Heals up to 3 HP.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>1</disposable>
-        <hpchange>5</hpchange>
+        <hpchange>3</hpchange>
     </statitem>
     <statitem>
         <num>1</num>
@@ -272,12 +270,12 @@
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
-        <usedesc>Heals up to 10 HP. Will only restore health if below 10 HP.</usedesc>
+        <usedesc>Heals up to 5 HP.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>1</disposable>
-        <hpchange>10</hpchange>
+        <hpchange>5</hpchange>
     </statitem>
     <statitem>
         <num>2</num>
@@ -287,7 +285,7 @@
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
-        <usedesc>Heals up to 10 HP. Will only restore health if below 10 HP.</usedesc>
+        <usedesc>Heals up to 10 HP.</usedesc>
         <removesroomitem>-1</removesroomitem>
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
@@ -328,7 +326,7 @@
     </weapon>
     <weapon>
         <num>2</num>
-        <name>Runic Hammer</name>
+        <name>Warhammer</name>
         <desc>A heavy hammer inscribed with ancient runes. Delivers strong, precise blows.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
@@ -407,7 +405,7 @@
     <enemy>
         <num>0</num>
         <name>Troll</name>
-        <description>A hulking troll, more resilient and stronger than the average enemy.</description>
+        <description>A hulking troll.</description>
         <deaddesc>The cave troll falls with a mighty roar, its body collapsing in defeat.</deaddesc>
         <enemyweapon>1</enemyweapon>
         <hp>2</hp>
@@ -486,12 +484,12 @@
     <spell>
         <num>0</num>
         <name>korla bol</name>
-        <description></description>
+        <description> </description>
         <effect>
 cast = False
 try:
     for index, enemy in enumerate(player.currentroom.enemies):
-        if enemy.name == "Ancient Dragon":
+        if enemy.name == "Dragon":
             player.currentroom.enemies[index].health = 1
             utils.output("As you recite this spell, the dragon weakens, until it is as small and weak as a pea, easy to defeat.", "blue")
             cast = True
