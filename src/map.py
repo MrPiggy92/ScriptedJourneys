@@ -228,7 +228,7 @@ class Map:
             except:
                 pass
             bossdata.append(None if data.text == -1 else data.text)
-        boss = enemyObject.Boss(bossdata[0], bossdata[1], True, bossdata[2], bossdata[3], mapweapons[bossdata[4]], bossdata[5], bossdata[6])
+        enemies.append(enemyObject.Boss(bossdata[0], bossdata[1], True, bossdata[2], bossdata[3], mapweapons[bossdata[4]], bossdata[5], bossdata[6]))
         
         
         rooms = []
@@ -259,7 +259,7 @@ class Map:
                     counter = 0
                     for enemy in data:
                         if enemy.tag == "roomboss":
-                            data.text.append(boss)
+                            data.text.append(enemies[1])
                         else:
                             data.text.append(enemies[int(enemy.text)] if enemy.text != "-1" else None)
                         counter += 1
