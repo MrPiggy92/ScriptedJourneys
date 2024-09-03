@@ -167,6 +167,7 @@ Fight enemies using `fight enemyname`
 Check your inventory using `inventory`
 Cast spells using `cast spellname`
 Move to the next level using `next`
+Quit using `quit`
 You can also just use the first letter of each command, e.g. `t itemname` or `f enemyname`
         </description>
         <effect>print()</effect>
