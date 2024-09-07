@@ -56,6 +56,7 @@
             <exit>-1</exit>
         </exits>
         <items>
+            <roomweapon>1</roomweapon>
         </items>
         <enemies>
         </enemies>
@@ -71,6 +72,7 @@
             <exit>-1</exit>
         </exits>
         <items>
+            <roomitem>0</roomitem>
         </items>
         <enemies>
         </enemies>
@@ -86,6 +88,7 @@
             <exit>4</exit>
         </exits>
         <items>
+            <roomitem>1</roomitem>
         </items>
         <enemies>
         </enemies>
@@ -118,6 +121,7 @@
         <items>
         </items>
         <enemies>
+            <roomboss>0</roomboss>
         </enemies>
     </room>
     

@@ -30,7 +30,7 @@ import time
 
 print(config.license_text)
 
-def play(name):    
+def play(name):
     my_map = map.Map(name)
     
     my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
@@ -73,8 +73,7 @@ def play(name):
             trytomove(action_input.upper()[3:], my_player)
         elif action_input.lower().startswith("quit"):
             utils.output("Quitting", "magenta")
-            time.sleep(1.5)
-            raise SystemExit()
+            raise RuntimeError()
         elif action_input.lower().startswith("tutorial"):
             tutorial()
         elif action_input.lower().startswith("cast "):
@@ -99,8 +98,7 @@ def play(name):
             trytomove(action_input.upper()[2:], my_player)
         elif action_input.lower() == 'q':
             utils.output("Quitting", "magenta")
-            time.sleep(1.5)
-            raise SystemExit()
+            raise RuntimeError()
         elif action_input.lower().startswith('c '):
             castspell(action_input.lower()[2:], my_player, my_map)
         elif action_input.lower() == "show w":
@@ -110,6 +108,21 @@ def play(name):
         else:
             utils.output("You can't do that.", "magenta")
 
-print("\n\n\n")
-utils.output("Maps:\n " + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
-play(input("Which map do you want to play? "))
+while True:
+    try:
+        print("\n\n\n")
+        utils.output("Maps:\n " + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
+        utils.output("Which map do you want to play? (q to quit)", "magenta")
+        chosen_map = input("> ")
+        if chosen_map.lower() == 'q':
+            raise SystemExit()
+        else:
+            play(chosen_map)
+    except SystemExit:
+        utils.output("Quitting", "magenta")
+        time.sleep(1.5)
+        raise SystemExit()
+    except RuntimeError:
+        pass
+    except:
+        utils.output("That map does not exist.", "magenta")

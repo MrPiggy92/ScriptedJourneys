@@ -308,7 +308,7 @@
         <description>A small, scrappy goblin with a mischievous grin</description>
         <deaddesc>The goblin falls to the ground with a final screech, its body lying still and lifeless.</deaddesc>
         <enemyweapon>0</enemyweapon>
-        <hp>5</hp>
+        <hp>3</hp>
         <loot>
             <lootitem>3</lootitem>
         </loot>

@@ -41,14 +41,17 @@ class Map:
         self.bossDefeated = False
     
     def next_level(self, player):
-        self.level += 1
-        if self.level > self.all_levels:
-            utils.output(f"\n\nYou have completed {self.name}!\n\n", "bright_green")
-            time.sleep(2)
-            raise SystemExit()
-        utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
-        self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
-        player.currentroom = self.rooms[0]
+        if self.bossDefeated:
+            self.level += 1
+            if self.level > self.all_levels:
+                utils.output(f"\n\nYou have completed {self.name}!\n\n", "bright_green")
+                time.sleep(2)
+                raise RuntimeError()
+            utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
+            self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
+            player.currentroom = self.rooms[0]
+        else:
+            utils.output("You have to defeat the boss first.", "magenta")
     
     def load(self):
         tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
@@ -259,7 +262,7 @@ class Map:
                     counter = 0
                     for enemy in data:
                         if enemy.tag == "roomboss":
-                            data.text.append(enemies[1])
+                            data.text.append(enemies[-1])
                         else:
                             data.text.append(enemies[int(enemy.text)] if enemy.text != "-1" else None)
                         counter += 1

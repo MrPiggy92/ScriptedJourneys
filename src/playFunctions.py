@@ -255,7 +255,7 @@ def lookat(item, player):
 
     for inventory_item in player.inventory:
         if inventory_item.name.lower() == item.lower():
-            utils.output(inventory_item.itemdesc)
+            utils.output(inventory_item.itemdesc, "bright_yellow")
             return
 
     utils.output(f"There is no {item} here.", "magenta")

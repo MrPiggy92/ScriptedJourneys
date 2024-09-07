@@ -12,6 +12,7 @@
         </exits>
         <items>
             <roomitem>0</roomitem>
+            <roomstatitem>1</roomstatitem>
         </items>
         <enemies>
         </enemies>
@@ -54,11 +55,12 @@
         <desc>These ruins are ancient and overgrown with moss. Some ruins seem to hold hidden traps or secrets.</desc>
         <exits>
             <exit>-1</exit>
-            <exit>-1</exit>
-            <exit>4</exit>
             <exit>2</exit>
+            <exit>4</exit>
+            <exit>-1</exit>
         </exits>
         <items>
+            <roomstatitem>0</roomstatitem>
         </items>
         <enemies>
             <roomenemy>2</roomenemy>
@@ -72,10 +74,9 @@
             <exit>5</exit>
             <exit>-1</exit>
             <exit>-1</exit>
-            <exit>-1</exit>
+            <exit>3</exit>
         </exits>
         <items>
-            <roomitem>3</roomitem>
         </items>
         <enemies>
         </enemies>
@@ -91,7 +92,7 @@
             <exit>-1</exit>
         </exits>
         <items>
-            <roomitem>4</roomitem>
+            <roomstatitem>2</roomstatitem>
         </items>
         <enemies>
             <roomenemy>3</roomenemy>
@@ -103,9 +104,9 @@
         <desc>A precarious wooden bridge spans a deep chasm. The bridge creaks ominously as you cross.</desc>
         <exits>
             <exit>-1</exit>
-            <exit>5</exit>
-            <exit>7</exit>
             <exit>-1</exit>
+            <exit>7</exit>
+            <exit>5</exit>
         </exits>
         <items>
         </items>
@@ -124,7 +125,6 @@
             <exit>6</exit>
         </exits>
         <items>
-            <roomitem>5</roomitem>
         </items>
         <enemies>
             <roomenemy>5</roomenemy>
@@ -136,12 +136,11 @@
         <desc>The chamber is massive and filled with the bones of ancient creatures. A menacing dragon watches over its hoard.</desc>
         <exits>
             <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
             <exit>7</exit>
-            <exit>-1</exit>
-            <exit>-1</exit>
         </exits>
         <items>
-            <roomitem>6</roomitem>
         </items>
         <enemies>
             <roomboss>1</roomboss>
@@ -421,7 +420,6 @@
         <enemyweapon>2</enemyweapon>
         <hp>8</hp>
         <loot>
-            <lootitem>1</lootitem>
         </loot>
     </enemy>
     <enemy>
@@ -440,7 +438,7 @@
         <name>Sorcerer</name>
         <description>A powerful sorcerer wielding dark magic, capable of casting damaging spells.</description>
         <deaddesc>The dark sorcerer collapses under the weight of his own dark magic, defeated.</deaddesc>
-        <enemyweapon>2</enemyweapon>
+        <enemyweapon>3</enemyweapon>
         <hp>10</hp>
         <loot>
             <lootitem>4</lootitem>
@@ -451,10 +449,9 @@
         <name>Guardian</name>
         <description>A mechanical guardian with sharp spikes and a formidable defense.</description>
         <deaddesc>The spiked sentinel falls apart with a loud crash, its spikes clattering to the ground.</deaddesc>
-        <enemyweapon>1</enemyweapon>
+        <enemyweapon>4</enemyweapon>
         <hp>9</hp>
         <loot>
-            <lootitem>5</lootitem>
         </loot>
     </enemy>
     <enemy>
@@ -462,19 +459,19 @@
         <name>Drake</name>
         <description>A small drake with fiery breath and swift movements.</description>
         <deaddesc>The fire drake falls with a roar, its flames extinguished forever.</deaddesc>
-        <enemyweapon>0</enemyweapon>
+        <enemyweapon>5</enemyweapon>
         <hp>12</hp>
         <loot>
-            <lootitem>6</lootitem>
+            <lootitem>5</lootitem>
         </loot>
     </enemy>
     
     <boss>
         <num>1</num>
         <name>Dragon</name>
-        <description>An enormous dragon with scales of dark iron and eyes that burn with ancient fire. The only people who have ever defeated this type of drake have been wizards.</description>
+        <description>An enormous dragon with scales of dark iron and eyes that burn with ancient fire. The only people who have ever defeated this type of dragon have been wizards.</description>
         <deaddesc>The ancient dragon falls with a thunderous roar, its body crumbling into a heap of ash and bones.</deaddesc>
-        <enemyweapon>2</enemyweapon>
+        <enemyweapon>6</enemyweapon>
         <hp>50</hp>
         <loot>
             <lootitem>6</lootitem>
@@ -490,7 +487,7 @@ cast = False
 try:
     for index, enemy in enumerate(player.currentroom.enemies):
         if enemy.name == "Dragon":
-            player.currentroom.enemies[index].health = 1
+            player.currentroom.enemies[index].hp = 1
             utils.output("As you recite this spell, the dragon weakens, until it is as small and weak as a pea, easy to defeat.", "blue")
             cast = True
 except:
