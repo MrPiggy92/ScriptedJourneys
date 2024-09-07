@@ -18,6 +18,7 @@
 #
 
 import time
+import os
 
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
@@ -51,7 +52,7 @@ def colourify(colour):
     }
     return colours[colour]
 
-def wrap_text(text, line_length=160):
+def wrap_text(text, line_length=os.get_terminal_size()[0]):
     lines = []
     while len(text) > line_length:
         wrap_pos = text.rfind(' ', 0, line_length)

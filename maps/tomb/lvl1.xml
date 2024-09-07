@@ -188,7 +188,7 @@
     <statitem>
         <num>0</num>
         <name>Pumpkin</name>
-        <desc>A round orange pumkin.</desc>
+        <desc>A round orange pumpkin.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem type="weapon">1</revealsitem>

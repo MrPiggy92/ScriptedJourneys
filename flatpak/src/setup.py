@@ -36,7 +36,7 @@ try:
     
     with open(os.path.join(config.playerdata_path, "playerdata.json"), 'w') as file:
         json.dump(playerdata, file)
-finally:
+except:
     with open(os.path.join(config.playerdata_path, "playerdata.json"), 'w') as file:
         json.dump({"name": "Delete ~/.config/ScriptedJourneys/ and run this program again, but don't cancel and you can choose your name"}, file)
 

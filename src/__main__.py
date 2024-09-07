@@ -124,5 +124,6 @@ while True:
         raise SystemExit()
     except RuntimeError:
         pass
-    except:
+    except Exception as e:
         utils.output("That map does not exist.", "magenta")
+        print(e)

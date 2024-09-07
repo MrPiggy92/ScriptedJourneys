@@ -50,6 +50,7 @@ class Map:
             utils.output(f"\n\nLevel {self.level}\n\n", "bright_green")
             self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
             player.currentroom = self.rooms[0]
+            self.bossDefeated = False
         else:
             utils.output("You have to defeat the boss first.", "magenta")
     
