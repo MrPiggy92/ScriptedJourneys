@@ -1,11 +1,10 @@
 {
   "id": "io.github.MrPiggy92.ScriptedJourneys",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "22.08",
+  "runtime-version": "24.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "wrapper.sh",
   "finish-args": [
-    "--filesystem=home",
     "--socket=fallback-x11",
     "--socket=wayland",
     "--share=ipc"
@@ -18,7 +17,7 @@
         {
           "type": "git",
           "url": "https://github.com/MrPiggy92/ScriptedJourneys.git",
-          "commit": "d3f652af14f6ec43e6995e7e60aa452a76592db3"
+          "commit": "2d30238eb0706fcfd821bf378ab61cc4b2ae5e25"
         }
       ],
       "build-commands": [

@@ -42,7 +42,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details."""
 
-license_link = "To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt"
+license_link = f"To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or view {home}/LICENSE"
 
 try:
     with open(os.path.join(playerdata_path, "playerdata.json")) as playerdata:
