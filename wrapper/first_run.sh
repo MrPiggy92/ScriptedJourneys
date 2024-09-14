@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONFIG_DIR="$HOME/.config/ScriptedJourneys"
+CONFIG_DIR="$XDG_CONFIG_HOME/ScriptedJourneys"
 
 if [ ! -d "$CONFIG_DIR" ]; then
     mkdir -p "$CONFIG_DIR"

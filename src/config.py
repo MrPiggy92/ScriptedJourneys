@@ -20,9 +20,9 @@
 import os
 import json
 
-home = os.path.expanduser('~')
+home = os.path.expandvars('$XDG_CONFIG_HOME')
 
-config_folder = os.path.join(home, ".config", "ScriptedJourneys")
+config_folder = os.path.join(home, "ScriptedJourneys")
 
 maps_path = os.path.join(config_folder, "maps")
 
@@ -42,7 +42,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details."""
 
-license_link = "To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or look at ~/.config/ScriptedJourneys/LICENSE"
+license_link = "To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt"
 
 try:
     with open(os.path.join(playerdata_path, "playerdata.json")) as playerdata:
