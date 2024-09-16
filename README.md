@@ -10,21 +10,12 @@ Welcome to Scripted Journeys, an enthralling text-based adventure where your dec
 - Nothing!
 
 ### Installation
-1. Download the Flatpak:
-```bash
-curl https://github.com/MrPiggy92/ScriptedJourneys/raw/master/ScriptedJourneys.flatpak
+1. Install from Flatpak:
 ```
-2. Install the Flatpak:
-```bash
-flatpak --user install ScriptedJourneys.flatpak
+flatpak install io.github.MrPiggy92.ScriptedJourneys
 ```
-3. Run the Flatpak:
-```bash
-flatpak run io.github.MrPiggy92.ScriptedJourneys
-``` 
-Or you can use the applications menu
-We are working on a Flathub submission, so it should be coming shortly.
-
+2. Run:
+Use the applications menu (it should be under Games)
 
 ## Gameplay
 
