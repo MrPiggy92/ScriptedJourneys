@@ -52,8 +52,15 @@
   </screenshots>
   
   <releases>
-    <release version="1.0.0" date="2024-09-08">
+    <release version="1.0.1" date="2024-09-16">
       <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/master/changelog</url>
+      <description>
+          <p>Cleaned up after Flathub</p>
+          <p>The code was a bit of a mess after I submitted to Flathub. Now it's neat.</p>
+      </description>
+    </release>
+    <release version="1.0.0" date="2024-09-16">
+      <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/07f0c17ce51ae4f9d2860d2336e4e776a24740c1/changelog</url>
       <description>
           <p>First release</p>
           <ul>

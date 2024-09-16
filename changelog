@@ -1,3 +1,10 @@
+v1.0.1
+Neatened up after Flathub
+Some of the code used legacy ~/.config settings, now updated to use $XDG_CONFIG_HOME
+Some Manifest copies had old commit IDs, now all are updated.
+Replaced Flatpak building folder with just files.
+Replaced built Flatpak with flatpakref
+
 v1.0.0
 Multiple Maps: Explore different environments such as dungeons, forests, and towns.
 Item Management: Collect and use items to overcome obstacles.
