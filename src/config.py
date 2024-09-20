@@ -25,7 +25,7 @@ data_home = os.path.expandvars("$XDG_DATA_HOME")
 
 maps_path = os.path.join(data_home, "maps")
 
-playerdata_path = os.path.join(config_folder, "playerdata.json")
+playerdata_path = os.path.join(config_home, "playerdata.json")
 
 started_setup = os.path.exists(maps_path)
 
@@ -47,7 +47,7 @@ GNU General Public License for more details."""
 license_link = f"To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or view {os.path.join(data_home, 'LICENSE')}"
 
 try:
-    with open(layerdata_path) as playerdata:
+    with open(playerdata_path) as playerdata:
         playerdata = json.load(playerdata)
     player_name = playerdata["name"]
 except:
