@@ -1,3 +1,9 @@
+v1.0.2
+Updated setup process
+Setup was messy; it used a sub-dirctory in the config folder
+It also kept data in config folder
+Now, it is streamlined for new versions too. (It won't wipe any extra maps you made)
+
 v1.0.1
 Neatened up after Flathub
 Some of the code used legacy ~/.config settings, now updated to use $XDG_CONFIG_HOME
