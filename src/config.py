@@ -27,7 +27,9 @@ maps_path = os.path.join(data_home, "maps")
 
 playerdata_path = os.path.join(config_folder, "playerdata.json")
 
-license_text = f"""Scripted Journeys version 1.0.1
+started_setup = os.path.exists(maps_path)
+
+license_text = f"""Scripted Journeys version 1.0.2
 
 Copyright (C) 2024 MrPiggy92. Scripted Journeys comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
@@ -45,9 +47,9 @@ GNU General Public License for more details."""
 license_link = f"To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or view {os.path.join(data_home, 'LICENSE')}"
 
 try:
-    with open(os.path.join(playerdata_path)) as playerdata:
+    with open(layerdata_path) as playerdata:
         playerdata = json.load(playerdata)
     player_name = playerdata["name"]
 except:
-    pass
+    playerdata = {}
 
