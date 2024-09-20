@@ -2,14 +2,14 @@
 <component type="desktop-application">
   <id>io.github.MrPiggy92.ScriptedJourneys</id>
   
-  <name>ScriptedJourneys</name>
-  <summary>A text-based adventure game</summary>
+  <name>Scripted Journeys</name>
+  <summary>A multi-map text adventure</summary>
   
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   
   <description>
-    <p>ScriptedJourneys is a text-based adventure game where players can explore various maps, solve puzzles, and embark on exciting quests. The game features rich storytelling and a variety of maps to choose from, offering a unique experience each time you play. Discover hidden secrets and unravel mysteries in this engaging adventure.</p>
+    <p>Scripted Journeys is a text-based adventure game where players can explore various maps, solve puzzles, and embark on exciting quests. The game features rich storytelling and a variety of maps to choose from, offering a unique experience each time you play. Discover hidden secrets and unravel mysteries in this engaging adventure.</p>
   </description>
   
   <developer id="io.github.MrPiggy92">
@@ -52,8 +52,15 @@
   </screenshots>
   
   <releases>
+    <release version="1.0.2" date="2024-09-20">
+      <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/03e13bbfaa76cd019f0c2ee7f04956aef568e20f/changelog</url>
+      <description>
+          <p>Updated the setup process</p>
+          <p>now it won't wipe any map changes you made when you update.</p>
+      </description>
+    </release>
     <release version="1.0.1" date="2024-09-16">
-      <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/master/changelog</url>
+      <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/d737865cc502044d506ff24ea93934b7ed4d5572/changelog</url>
       <description>
           <p>Cleaned up after Flathub</p>
           <p>The code was a bit of a mess after I submitted to Flathub. Now it's neat.</p>
