@@ -42,8 +42,20 @@ if "name" not in config.playerdata:
     utils.output(f"Greetings {name}!\n\n", "magenta")
     need_to_write = True
 
+if "colour" not in config.playerdata:
+    colour = ''
+    while colour.lower() not in ['y', 'n']:
+        utils.output("Would you like colour, brave adventurer? [Y/n]", "magenta")
+        print(utils.colourify("magenta"))
+        colour = input(" > ")
+        print(utils.colourify("clear"))
+        if colour.lower() not in ['y', 'n']:
+            utils.output("Please enter y or n", "magenta")
+    colour = 0 if colour.lower() == 'n' else 1
+    need_to_write = True
+
 if need_to_write:
-    playerdata = {"name": name}
+    playerdata = {"name": name, "colour": colour}
     with open(config.playerdata_path, 'w') as file:
         json.dump(playerdata, file)
 

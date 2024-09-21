@@ -19,6 +19,7 @@
 
 import time
 import os
+import config
 
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
@@ -50,7 +51,7 @@ def colourify(colour):
         "orange": "\033[38;2;255;165;0m",
         "bold_pink": "\033[1m\033[38;2;255;105;180m"
     }
-    return colours[colour]
+    return colours[colour] if config.wants_colour else ''
 
 def wrap_text(text, line_length=os.get_terminal_size()[0]):
     lines = []

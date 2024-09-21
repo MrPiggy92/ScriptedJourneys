@@ -50,6 +50,9 @@ try:
     with open(playerdata_path) as playerdata:
         playerdata = json.load(playerdata)
     player_name = playerdata["name"]
+    wants_colour = bool(playerdata["colour"])
 except:
     playerdata = {}
+    player_name = ''
+    wants_colour = True
 
