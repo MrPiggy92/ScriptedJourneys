@@ -29,6 +29,7 @@ if not config.started_setup:
     os.system("touch $XDG_CONFIG_HOME/playerdata.json")
     utils.output("Welcome to Scripted Journeys, an enthralling text-based adventure where your decisions shape the narrative and uncover hidden mysteries across diverse realms. Each map teems with unique challenges, intricate plots, and fascinating characters, all waiting for you to explore and interact with. Your choices will determine your path, unlocking secrets, and altering the course of your journey in unexpected ways. Embark on a quest that combines storytelling, strategy, and imagination, where every script you write crafts your destiny. Are you ready to dive into a world where every decision is a step towards a new adventure?", "bold_pink")
 
+need_to_write = False
 if "name" not in config.playerdata:
     name = ''
     while name == '':
@@ -39,8 +40,10 @@ if "name" not in config.playerdata:
         if name == '':
             utils.output("You have to have a name.", "magenta")
     utils.output(f"Greetings {name}!\n\n", "magenta")
+    need_to_write = True
 
-playerdata = {"name": name}
-with open(config.playerdata_path, 'w') as file:
-    json.dump(playerdata, file)
+if need_to_write:
+    playerdata = {"name": name}
+    with open(config.playerdata_path, 'w') as file:
+        json.dump(playerdata, file)
 

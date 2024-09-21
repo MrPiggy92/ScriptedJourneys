@@ -3,7 +3,7 @@
   <id>io.github.MrPiggy92.ScriptedJourneys</id>
   
   <name>Scripted Journeys</name>
-  <summary>A multi-map text adventure</summary>
+  <summary>Play a multi-map text adventure</summary>
   
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
@@ -19,8 +19,8 @@
   <launchable type="desktop-id">io.github.MrPiggy92.ScriptedJourneys.desktop</launchable>
   
   <branding>
-    <color type="primary" scheme_preference="light">#F964CC</color>
-    <color type="primary" scheme_preference="dark">#7D0D78</color>
+    <color type="primary" scheme_preference="light">#8ff0a4</color>
+    <color type="primary" scheme_preference="dark">#0f4029</color>
   </branding>
   
   <content_rating type="oars-1.1">
