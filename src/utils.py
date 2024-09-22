@@ -29,7 +29,7 @@ def output(text, colour, delay=0.01):
             print(char, end='', flush=True)
             time.sleep(delay)
     else:
-        print(text)
+        print(text, end='')
     print(colourify("clear"))
 
 def colourify(colour):

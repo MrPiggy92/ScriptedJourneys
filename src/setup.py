@@ -61,7 +61,7 @@ if "colour" not in config.playerdata:
 if "scroll" not in config.playerdata:
     scroll = ''
     while scroll.lower() not in ['y', 'n']:
-        utils.output("Would you like colour, brave adventurer? [Y/n]", "magenta")
+        utils.output("Would you like this scrolling effect, brave adventurer? [Y/n]", "magenta")
         print(utils.colourify("magenta"))
         scroll = input(" > ")
         print(utils.colourify("clear"))
