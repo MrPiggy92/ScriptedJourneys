@@ -51,8 +51,10 @@ try:
         playerdata = json.load(playerdata)
     player_name = playerdata["name"]
     wants_colour = bool(playerdata["colour"])
+    wants_scroll = bool(playerdata["scroll"])
 except:
     playerdata = {}
     player_name = ''
     wants_colour = True
+    wants_scroll = True
 

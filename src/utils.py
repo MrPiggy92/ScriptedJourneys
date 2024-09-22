@@ -24,9 +24,12 @@ import config
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
     text = wrap_text(text)
-    for char in text:
-        print(char, end='', flush=True)
-        time.sleep(delay)
+    if config.wants_scroll:
+        for char in text:
+            print(char, end='', flush=True)
+            time.sleep(delay)
+    else:
+        print(text)
     print(colourify("clear"))
 
 def colourify(colour):
