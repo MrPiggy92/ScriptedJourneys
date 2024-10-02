@@ -51,13 +51,22 @@ def load_preferences():
     try:
         with open(playerdata_path) as playerdata:
             playerdata = json.load(playerdata)
-        player_name = playerdata["name"]
-        wants_colour = bool(playerdata["colour"])
-        wants_scroll = bool(playerdata["scroll"])
     except:
         playerdata = {}
         player_name = ''
         wants_colour = True
+        wants_scroll = True
+    try:
+        player_name = playerdata["name"]
+    except:
+        player_name = ''
+    try:
+        wants_colour = bool(playerdata["colour"])
+    except:
+        wants_colour = True
+    try:
+        wants_scroll = bool(playerdata["scroll"])
+    except:
         wants_scroll = True
     return playerdata, player_name, wants_colour, wants_scroll
 

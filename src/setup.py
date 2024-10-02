@@ -34,7 +34,8 @@ name = config.player_name
 colour = int(config.wants_colour)
 scroll = int(config.wants_scroll)
 
-if "name" not in config.playerdata:
+if "name" not in config.playerdata.keys():
+    utils.output("First, we need to update your preferences.", "cyan")
     name = ''
     while name == '':
         utils.output("What is your name, brave adventurer?", "magenta")
@@ -46,7 +47,9 @@ if "name" not in config.playerdata:
     utils.output(f"Greetings {name}!\n\n", "magenta")
     need_to_write = True
 
-if "colour" not in config.playerdata:
+if "colour" not in config.playerdata.keys():
+    if not need_to_write:
+        utils.output("First, we need to update your preferences.", "cyan")
     colour = ''
     while colour.lower() not in ['y', 'n']:
         utils.output("Would you like colour, brave adventurer? [Y/n]", "magenta")
@@ -58,7 +61,9 @@ if "colour" not in config.playerdata:
     colour = 0 if colour.lower() == 'n' else 1
     need_to_write = True
 
-if "scroll" not in config.playerdata:
+if "scroll" not in config.playerdata.keys():
+    if not need_to_write:
+        utils.output("First, we need to update your preferences.", "cyan")
     scroll = ''
     while scroll.lower() not in ['y', 'n']:
         utils.output("Would you like this scrolling effect, brave adventurer? [Y/n]", "magenta")
@@ -74,4 +79,5 @@ if need_to_write:
     playerdata = {"name": name, "colour": colour, "scroll": scroll}
     with open(config.playerdata_path, 'w') as file:
         json.dump(playerdata, file)
+    utils.output("Your preferences have been saved", "cyan")
 
