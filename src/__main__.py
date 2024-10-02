@@ -108,22 +108,32 @@ def play(name):
         else:
             utils.output("You can't do that.", "magenta")
 
-while True:
-    try:
-        print("\n\n\n")
-        utils.output("Maps:\n " + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
-        utils.output("Which map do you want to play? (q to quit)", "magenta")
-        chosen_map = input("> ")
-        if chosen_map.lower() == 'q':
+def control():
+    utils.output("To play a map, type `play mapname`.\nTo list maps, type `list`.\nTo edit settings, type `settings`.\nTo quit, type `quit`.", "magenta")
+    while True:
+        print(utils.colourify("magenta"))
+        action_input = input(" > ")
+        print(utils.colourify("clear"))
+        
+        if action_input.lower().startswith("play "):
+            try:
+                play(action_input.lower()[5:])
+            except FileNotFoundError:
+                utils.output("That map does not exist.", "magenta")
+            except RuntimeError as e:
+                print(e)
+        elif action_input.lower() == "list":
+            utils.output("Maps:\n " + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
+        elif action_input.lower() == "settings":
+            try:
+                settings()
+            except:
+                pass
+        elif action_input.lower() == "quit":
+            utils.output("Quitting", "magenta")
+            time.sleep(1.5)
             raise SystemExit()
         else:
-            play(chosen_map)
-    except SystemExit:
-        utils.output("Quitting", "magenta")
-        time.sleep(1.5)
-        raise SystemExit()
-    except RuntimeError:
-        pass
-    except Exception as e:
-        utils.output("That map does not exist.", "magenta")
-        print(e)
+            utils.output("You can't do that", "magenta")
+
+control()

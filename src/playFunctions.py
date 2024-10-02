@@ -19,8 +19,11 @@
 
 import utils, items
 import enemy as enemyObject
+import config
+
 from random import random
 from time import sleep
+import json
 
 def showhpbar(player):
     # Calculate the percentage of hit points
@@ -322,3 +325,46 @@ def safetorun(spell):
     if "__" in spell:
         return False
     return True
+
+def settings():
+    while True:
+        utils.output("Settings", "cyan")
+        for item in config.playerdata:
+            utils.output(f" {item}: {config.playerdata[item]}", "bright_yellow")
+        
+        utils.output(f"What would you like to change? (q to quit settings)", "clear")
+        print(utils.colourify("magenta"))
+        choice = input(" > ").lower()
+        print(utils.colourify("clear"))
+        
+        if choice == 'q':
+            raise RuntimeError()
+        try:
+            current_option = config.playerdata[choice]
+        except:
+            utils.output("That is not an option.", "magenta")
+            continue
+        
+        if type(current_option) == int:
+            new_entry = ''
+            while new_entry.lower() not in ['y', 'n']:
+                utils.output(f"Setting: {choice}\nCurrent entry: {'Y' if current_option == 1 else 'n'}\nNew entry: [Y/n]", "magenta")
+                print(utils.colourify("magenta"))
+                new_entry = input(" > ")
+                print(utils.colourify("clear"))
+                if new_entry.lower() not in ['y', 'n']:
+                    utils.output("Please enter y or n", "magenta")
+            new_entry = 0 if new_entry.lower() == 'n' else 1
+        else:
+            new_entry = ''
+            while new_entry == '':
+                utils.output(f"Setting: {choice}\nCurrent entry: {current_option}\nNew entry: ", "magenta")
+                print(utils.colourify("magenta"))
+                new_entry = input(" > ")
+                print(utils.colourify("clear"))
+                if new_entry == '':
+                    utils.output("You have to have a name.", "magenta")
+        
+        config.playerdata[choice] = new_entry
+        with open(config.playerdata_path, 'w') as file:
+            json.dump(config.playerdata, file)
