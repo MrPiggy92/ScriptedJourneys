@@ -109,8 +109,9 @@ def play(name):
             utils.output("You can't do that.", "magenta")
 
 def control():
-    utils.output("To play a map, type `play mapname`.\nTo list maps, type `list`.\nTo edit settings, type `settings`.\nTo quit, type `quit`.", "magenta")
+    utils.output("To play a map, type `play mapname`.\nTo list maps, type `list`.\nTo edit settings, type `settings`.\nTo quit, type `quit`.", "bright_yellow")
     while True:
+        utils.output("Control Centre", "bright_cyan")
         print(utils.colourify("magenta"))
         action_input = input(" > ")
         print(utils.colourify("clear"))

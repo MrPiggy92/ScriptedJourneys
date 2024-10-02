@@ -46,15 +46,19 @@ GNU General Public License for more details."""
 
 license_link = f"To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or view {os.path.join(data_home, 'LICENSE')}"
 
-try:
-    with open(playerdata_path) as playerdata:
-        playerdata = json.load(playerdata)
-    player_name = playerdata["name"]
-    wants_colour = bool(playerdata["colour"])
-    wants_scroll = bool(playerdata["scroll"])
-except:
-    playerdata = {}
-    player_name = ''
-    wants_colour = True
-    wants_scroll = True
 
+def load_preferences():
+    try:
+        with open(playerdata_path) as playerdata:
+            playerdata = json.load(playerdata)
+        player_name = playerdata["name"]
+        wants_colour = bool(playerdata["colour"])
+        wants_scroll = bool(playerdata["scroll"])
+    except:
+        playerdata = {}
+        player_name = ''
+        wants_colour = True
+        wants_scroll = True
+    return playerdata, player_name, wants_colour, wants_scroll
+
+playerdata, player_name, wants_colour, wants_scroll = load_preferences()

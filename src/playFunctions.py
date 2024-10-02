@@ -368,3 +368,4 @@ def settings():
         config.playerdata[choice] = new_entry
         with open(config.playerdata_path, 'w') as file:
             json.dump(config.playerdata, file)
+        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
