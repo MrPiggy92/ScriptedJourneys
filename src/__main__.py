@@ -124,7 +124,11 @@ def control():
             except RuntimeError as e:
                 print(e)
         elif action_input.lower() == "list":
-            utils.output("Maps:\n " + "\n ".join(os.listdir(config.maps_path)), "bright_yellow")
+            maps = os.listdir(config.maps_path)
+            for num, map in enumerate(maps):
+                if "<NotVisible>" in map:
+                    maps.pop(num)
+            utils.output("Maps:\n " + "\n ".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":
             try:
                 settings()

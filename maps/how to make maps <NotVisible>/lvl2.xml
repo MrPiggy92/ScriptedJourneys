@@ -1,7 +1,7 @@
 <xml>
-    <mapname>Tutorial</mapname>
+    <mapname>How to make maps</mapname>
     <room>
-        <num>0</num>
+        <num>0</num> <!-- Just the room ID-->
         <name>Room name</name>
         <desc>Description of the room</desc>
         <exits>
@@ -153,23 +153,6 @@
         <num>0</num>
         <name>name of spell</name>
         <description>Description of spell use (this one kills you)</description>
-        <effect>player.hp = 0</effect> <!-- python code run when spell is cast. I am making a filter so no-one can just add a bit of code that wipes your home folder -->
-    </spell>
-    <spell>
-        <num>0</num>
-        <name>tutorial</name>
-        <description>
-Navigate through different locations using `move direction(n,s,e,w)`
-Look at items using `look itemname`
-Take items using `take itemname`
-Use items using `use itemname`
-Fight enemies using `fight enemyname`
-Check your inventory using `inventory`
-Cast spells using `cast spellname`
-Move to the next level using `next`
-Quit using `quit`
-You can also just use the first letter of each command, e.g. `t itemname` or `f enemyname`
-        </description>
-        <effect>print()</effect>
+        <effect>player.hp = 0</effect> <!-- python code run when spell is cast. -->
     </spell>
 </xml>
