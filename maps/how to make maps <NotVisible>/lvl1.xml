@@ -1,9 +1,9 @@
 <xml>
-    <mapname>Tutorial</mapname>
+    <mapname>How to make maps</mapname>
     <room>
-        <num>0</num>
+        <num>0</num> <!-- Just the room ID-->
         <name>Room name</name>
-        <desc>This level is exactly the same as the last one (except this description), just to show you how levels work.</desc>
+        <desc>Description of the room</desc>
         <exits>
             <exit>1</exit> <!-- North -->   <!-- These numbers are the <num> values of the other rooms -->
             <exit>-1</exit> <!-- South -->  <!-- -1 means no exit -->
@@ -153,6 +153,6 @@
         <num>0</num>
         <name>name of spell</name>
         <description>Description of spell use (this one kills you)</description>
-        <effect>player.hp = 0</effect> <!-- python code run when spell is cast. I am making a filter so no-one can just add a bit of code that wipes your home folder -->
+        <effect>player.hp = 0</effect> <!-- python code run when spell is cast. -->
     </spell>
 </xml>

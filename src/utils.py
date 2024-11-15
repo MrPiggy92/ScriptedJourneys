@@ -19,13 +19,17 @@
 
 import time
 import os
+import config
 
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
     text = wrap_text(text)
-    for char in text:
-        print(char, end='', flush=True)
-        time.sleep(delay)
+    if config.wants_scroll:
+        for char in text:
+            print(char, end='', flush=True)
+            time.sleep(delay)
+    else:
+        print(text, end='')
     print(colourify("clear"))
 
 def colourify(colour):
@@ -50,7 +54,7 @@ def colourify(colour):
         "orange": "\033[38;2;255;165;0m",
         "bold_pink": "\033[1m\033[38;2;255;105;180m"
     }
-    return colours[colour]
+    return colours[colour] if config.wants_colour else ''
 
 def wrap_text(text, line_length=os.get_terminal_size()[0]):
     lines = []

@@ -52,6 +52,13 @@
   </screenshots>
   
   <releases>
+    <release version="1.1.0" date="2024-11-15">
+      <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/3d3951aed39d64d6b81e2dff51e251d9c37808f9/changelog</url>
+      <description>
+          <p>Added more preferences</p>
+          <p>You can choose if you want colour or the scrolling effect and change them in settings.</p>
+      </description>
+    </release>
     <release version="1.0.2" date="2024-09-20">
       <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/03e13bbfaa76cd019f0c2ee7f04956aef568e20f/changelog</url>
       <description>

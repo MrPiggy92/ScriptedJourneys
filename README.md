@@ -4,9 +4,6 @@ Welcome to Scripted Journeys, an enthralling text-based adventure where your dec
 
 ## Getting Started
 
-### Prerequisites
-- Nothing!
-
 ### Installation
 1. Install from Flatpak:
 ```
