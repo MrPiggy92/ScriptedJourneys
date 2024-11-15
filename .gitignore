@@ -1,2 +1,1 @@
-flatpak/repo
-flatpak/.flatpak-builder
+src/__pycache__
