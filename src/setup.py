@@ -30,7 +30,12 @@ if not config.started_setup:
     utils.output("Welcome to Scripted Journeys, an enthralling text-based adventure where your decisions shape the narrative and uncover hidden mysteries across diverse realms. Each map teems with unique challenges, intricate plots, and fascinating characters, all waiting for you to explore and interact with. Your choices will determine your path, unlocking secrets, and altering the course of your journey in unexpected ways. Embark on a quest that combines storytelling, strategy, and imagination, where every script you write crafts your destiny. Are you ready to dive into a world where every decision is a step towards a new adventure?", "bold_pink")
 
 need_to_write = False
-if "name" not in config.playerdata:
+name = config.player_name
+colour = int(config.wants_colour)
+scroll = int(config.wants_scroll)
+
+if "name" not in config.playerdata.keys():
+    utils.output("First, we need to update your preferences.", "cyan")
     name = ''
     while name == '':
         utils.output("What is your name, brave adventurer?", "magenta")
@@ -42,8 +47,37 @@ if "name" not in config.playerdata:
     utils.output(f"Greetings {name}!\n\n", "magenta")
     need_to_write = True
 
+if "colour" not in config.playerdata.keys():
+    if not need_to_write:
+        utils.output("First, we need to update your preferences.", "cyan")
+    colour = ''
+    while colour.lower() not in ['y', 'n']:
+        utils.output("Would you like colour, brave adventurer? [Y/n]", "magenta")
+        print(utils.colourify("magenta"))
+        colour = input(" > ")
+        print(utils.colourify("clear"))
+        if colour.lower() not in ['y', 'n']:
+            utils.output("Please enter y or n", "magenta")
+    colour = 0 if colour.lower() == 'n' else 1
+    need_to_write = True
+
+if "scroll" not in config.playerdata.keys():
+    if not need_to_write:
+        utils.output("First, we need to update your preferences.", "cyan")
+    scroll = ''
+    while scroll.lower() not in ['y', 'n']:
+        utils.output("Would you like this scrolling effect, brave adventurer? [Y/n]", "magenta")
+        print(utils.colourify("magenta"))
+        scroll = input(" > ")
+        print(utils.colourify("clear"))
+        if scroll.lower() not in ['y', 'n']:
+            utils.output("Please enter y or n", "magenta")
+    scroll = 0 if scroll.lower() == 'n' else 1
+    need_to_write = True
+
 if need_to_write:
-    playerdata = {"name": name}
+    playerdata = {"name": name, "colour": colour, "scroll": scroll}
     with open(config.playerdata_path, 'w') as file:
         json.dump(playerdata, file)
+    utils.output("Your preferences have been saved", "cyan")
 
