@@ -330,7 +330,10 @@ def settings():
     while True:
         utils.output("Settings", "cyan")
         for item in config.playerdata:
-            utils.output(f" {item}: {config.playerdata[item]}", "bright_yellow")
+            if type(config.playerdata[item]) == str:
+                utils.output(f" {item}: {config.playerdata[item]}", "bright_yellow")
+            else:
+                utils.output(f" {item}: {'Y' if config.playerdata[item] == 1 else 'n'}", "bright_yellow")
         
         utils.output(f"What would you like to change? (q to quit settings)", "clear")
         print(utils.colourify("magenta"))

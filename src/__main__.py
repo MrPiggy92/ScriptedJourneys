@@ -17,6 +17,12 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
+# Set title
+print("\033]0;Scripted Journeys\007")
+
+# Setup
+import setup
+
 # Main script
 from playFunctions import *
 import utils
@@ -29,6 +35,7 @@ import sys
 import time
 
 print(config.license_text)
+
 
 def play(name):
     my_map = map.Map(name)
@@ -126,7 +133,7 @@ def control():
         elif action_input.lower() == "list":
             maps = os.listdir(config.maps_path)
             for num, map in enumerate(maps):
-                if "<NotVisible>" in map:
+                if "_NotVisible_" in map:
                     maps.pop(num)
             utils.output("Maps:\n " + "\n ".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":

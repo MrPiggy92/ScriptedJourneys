@@ -18,10 +18,14 @@
 #
 
 import os
+import sys
 import json
 
-config_home = os.path.expandvars("$XDG_CONFIG_HOME")
-data_home = os.path.expandvars("$XDG_DATA_HOME")
+if sys.platform == "win32":
+    config_home = data_home = os.path.join(os.path.expandvars("%LOCALAPPDATA%"), "ScriptedJourneys")
+else:
+    config_home = os.path.expandvars("$XDG_CONFIG_HOME")
+    data_home = os.path.expandvars("$XDG_DATA_HOME")
 
 maps_path = os.path.join(data_home, "maps")
 
@@ -29,7 +33,7 @@ playerdata_path = os.path.join(config_home, "playerdata.json")
 
 started_setup = os.path.exists(maps_path)
 
-license_text = f"""Scripted Journeys version 1.0.2
+license_text = f"""Scripted Journeys version 1.1.0
 
 Copyright (C) 2024 MrPiggy92. Scripted Journeys comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
