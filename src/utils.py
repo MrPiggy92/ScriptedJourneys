@@ -17,8 +17,9 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-import time
 import os
+import time
+
 import config
 
 def output(text, colour, delay=0.01):

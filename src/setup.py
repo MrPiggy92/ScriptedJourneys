@@ -17,11 +17,11 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-import config
-import utils
-
 import os
 import json
+
+import utils
+import config
 
 if not config.started_setup:
     os.system("cp -r /app/lib/maps $XDG_DATA_HOME")

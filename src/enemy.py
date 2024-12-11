@@ -17,10 +17,23 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-# Enemy
 class Enemy:
-    def __init__(self, num, name, alive, description, deaddesc, weapon, hp, loot):
-        self.num = num
+    """
+    Represents a basic enemy in the game.
+
+    Attributes:
+        id (int): Unique identifier for the enemy.
+        name (str): The name of the enemy.
+        alive (bool): Whether the enemy is alive.
+        description (str): A description of the enemy when alive.
+        deaddesc (str): A description of the enemy when defeated.
+        weapon (str): The weapon the enemy wields.
+        hp (int): The health points of the enemy.
+        loot (list): Items dropped by the enemy when defeated.
+    """
+
+    def __init__(self, id, name, alive, description, deaddesc, weapon, hp, loot):
+        self.id = id
         self.name = name
         self.alive = alive
         self.description = description
@@ -29,7 +42,36 @@ class Enemy:
         self.hp = hp
         self.loot = loot
 
+    def __str__(self):
+        """
+        Returns a string representation of the enemy's current state.
+        """
+        status = "Alive" if self.alive else "Defeated"
+        return f"{self.name} ({status}) - HP: {self.hp}"
+
+
 class Boss(Enemy):
-    def __init__(self, num, name, alive, description, deaddesc, weapon, hp, loot):
-        super().__init__(num, name, alive, description, deaddesc, weapon, hp, loot)
-        
+    """
+    Represents a boss enemy in the game. Bosses inherit from the Enemy class.
+
+    Attributes:
+        id (int): Unique identifier for the boss.
+        name (str): The name of the boss.
+        alive (bool): Whether the boss is alive.
+        description (str): A description of the boss when alive.
+        deaddesc (str): A description of the boss when defeated.
+        weapon (str): The weapon the boss wields.
+        hp (int): The health points of the boss.
+        loot (list): Items dropped by the boss when defeated.
+        special_attack (str): A unique attack used by the boss.
+    """
+
+    def __init__(self, id, name, alive, description, deaddesc, weapon, hp, loot):
+        super().__init__(id, name, alive, description, deaddesc, weapon, hp, loot)
+
+    def __str__(self):
+        """
+        Returns a string representation of the boss's current state.
+        """
+        status = "Alive" if self.alive else "Defeated"
+        return f"Boss {self.name} ({status}) - HP: {self.hp}, Special Attack: {self.special_attack}"

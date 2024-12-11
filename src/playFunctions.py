@@ -17,13 +17,16 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-import utils, items
-import enemy as enemyObject
-import config
-
+import json
 from random import random
 from time import sleep
-import json
+
+import utils
+import items
+import config
+import enemy as enemyObject
+
+
 
 def showhpbar(player):
     # Calculate the percentage of hit points
@@ -47,11 +50,13 @@ def showhpbar(player):
     return
 
 
-def trytomove(direction, player):
+def trytomove(direction, player, _map):
     current_room = player.currentroom
     exits = current_room.exits
     
     direction = direction[0] if direction != '' else ''
+    direction = direction.upper()
+    print(direction)
 
     if direction in ['N', 'S', 'E', 'W']:
         direction_index = ['N', 'S', 'E', 'W'].index(direction)
@@ -178,7 +183,7 @@ def listroomitems(player):
         utils.output("There are no items here.", "clear")
 
 
-def trytotake(item, player):
+def trytotake(item, player, _map):
     current_room = player.currentroom
 
     for room_item in current_room.items:
@@ -209,7 +214,7 @@ def trytotake(item, player):
     utils.output(f"There is no {item} here.", "magenta")
 
 
-def listinventory(player):
+def listinventory(player, _map):
     # utils.output player information in a colored section
     utils.output(player.name, "green")
 
@@ -246,10 +251,10 @@ def listenemies(player):
             utils.output(enemy.deaddesc, "red")
 
 
-def lookat(item, player):
+def lookat(item, player, _map):
     for room_item in player.currentroom.items:
         if room_item.name.lower() == item.lower():
-            utils.output(room_item.itemdesc, "bright_yellow")
+            utils.output(room_item.description, "bright_yellow")
             if room_item.revealsitem is not None:
                 player.currentroom.items.append(room_item.revealsitem)
                 utils.output(f"You also see {room_item.revealsitem.name}.", "yellow")
@@ -258,7 +263,7 @@ def lookat(item, player):
 
     for inventory_item in player.inventory:
         if inventory_item.name.lower() == item.lower():
-            utils.output(inventory_item.itemdesc, "bright_yellow")
+            utils.output(inventory_item.description, "bright_yellow")
             return
 
     utils.output(f"There is no {item} here.", "magenta")
@@ -338,7 +343,7 @@ def settings():
         print(utils.colourify("clear"))
         
         if choice == 'q':
-            raise RuntimeError()
+            break
         try:
             current_option = config.playerdata[choice]
         except:

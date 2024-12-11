@@ -20,11 +20,34 @@
 # Player
 import items
 
+
 class Player:
-    def __init__(self, name, currentroom, hp, inventory):
+    def __init__(self, name, currentroom, hp=10, inventory=[]):
+        """
+        Initializes the Player object.
+
+        Attributes:
+            name (str): The player's name.
+            currentroom: The starting room for the player.
+            hp (int): The player's health points.
+            inventory (list): A list of items in the player's possession.
+        """
         self.name = name
         self.currentroom = currentroom
         self.hp = hp
         self.inventory = inventory
-        self.weapon = items.Weapon(0, "Fists", "Your fists, ready for punching", None, True, None, 0, None, None, None, None, 0, 0.5)
-#updroomdesc, portable, revealsitem, usedin, usedesc, removesroomitem, addsroomitem, useroomdesc, disposable, damage)
+        self.weapon = items.Weapon(
+            id=0,
+            name="Fists",
+            description="Your fists, ready for punching.",
+            updroomdesc=None,
+            portable=True,
+            revealsitem=None,
+            usedin=None,
+            usedesc=None,
+            removesroomitem=None,
+            addsroomitem=None,
+            useroomdesc=None,
+            disposable=False,
+            damage=0.5,  # Base damage for fists
+        )
