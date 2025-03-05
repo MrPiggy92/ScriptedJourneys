@@ -17,135 +17,139 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-# Set title
-print("\033]0;Scripted Journeys\007")
-
-# Setup
-import setup
-
 # Main script
-from playFunctions import *
-import utils
-import map
-import player
-import config
-
 import os
 import sys
 import time
 
-print(config.license_text)
+import utils
+import map
+import player
+import config
+from playFunctions import *
+
+import setup
+
+config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
+
+# --- Constants ---
+COMMANDS = {
+    "take": {"func": trytotake, "args": 1, "desc": "Take an item"},
+    "t": {"func": trytotake, "args": 1, "desc": "Take an item (shorthand)"},
+    "inventory": {"func": listinventory, "args": 0, "desc": "List inventory"},
+    "i": {"func": listinventory, "args": 0, "desc": "List inventory (shorthand)"},
+    "look": {"func": lookat, "args": 1, "desc": "Examine an item"},
+    "l": {"func": lookat, "args": 1, "desc": "Examine an item (shorthand)"},
+    "use": {"func": trytouse, "args": 1, "desc": "Use an item"},
+    "u": {"func": trytouse, "args": 1, "desc": "Use an item (shorthand)"},
+    "fight": {"func": fight, "args": 1, "desc": "Fight an enemy"},
+    "f": {"func": fight, "args": 1, "desc": "Fight an enemy (shorthand)"},
+    "move": {"func": trytomove, "args": 1, "desc": "Move to another room"},
+    "m": {"func": trytomove, "args": 1, "desc": "Move to another room (shorthand)"},
+    "quit": {"func": None, "args": 0, "desc": "Quit the game"},
+    #"tutorial": {"func": tutorial, "args": 0, "desc": "Show tutorial"},
+    "cast": {"func": castspell, "args": 1, "desc": "Cast a spell"},
+    "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
+    "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
+    "show": {"func": config.show, "args": 1, "desc": "Show warranty"},
+    "show": {"func": config.show, "args": 1, "desc": "Show license"},
+}
+
+# --- Game Functions ---
+def display_room(player):
+    """
+    Displays the current room's state.
+    """
+    utils.output(player.currentroom.name, "bright_cyan")
+    utils.output(player.currentroom.description, "clear")
+    listroomitems(player)
+    listenemies(player)
+    listexits(player)
+
+
+def parse_action(action_input, player, game_map):
+    """
+    Parses and executes the player's action.
+    """
+    parts = action_input.strip().lower().split(" ", 1)
+    command = parts[0]
+    arg = parts[1] if len(parts) > 1 else None
+
+    if command in COMMANDS:
+        command_info = COMMANDS[command]
+        if command_info["func"]:
+            if command_info["args"] == 0:
+                command_info["func"](player, game_map)
+            elif command_info["args"] == 1 and arg:
+                command_info["func"](arg, player, game_map)
+            else:
+                utils.output(f"Invalid usage of '{command}'.", "magenta")
+        else:
+            utils.output("Quitting", "magenta")
+            raise RuntimeError()
+    else:
+        utils.output("You can't do that.", "magenta")
 
 
 def play(name):
+    """
+    Main gameplay loop.
+    """
     my_map = map.Map(name)
-    
     my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
-    
-    utils.output(my_map.opening_text, "bold_pink", 0.03)
-    
+    #utils.output(my_map.opening_text, "bold_pink", 0.03)
     time.sleep(0.5)
-
 
     while True:
         utils.output("\n", "clear")
         checkhp(my_player, my_map)
-        utils.output(my_player.currentroom.name, "bright_cyan")
-        utils.output(my_player.currentroom.description, "clear")
-        listroomitems(my_player)
-        listenemies(my_player)
-        listexits(my_player)
-        
-        print(utils.colourify("magenta"))
-        action_input = input(" > ")
-        print(utils.colourify("clear"))
-    
-        if action_input.lower().startswith("take "):
-            item_name = action_input[5:]
-            trytotake(item_name, my_player)
-        elif action_input.lower() == "inventory":
-            listinventory(my_player)
-        elif action_input.lower().startswith("look "):
-            item_name = action_input[5:]
-            lookat(item_name, my_player)
-        elif action_input.lower().startswith("use "):
-            item_name = action_input[4:]
-            trytouse(item_name, my_player, my_map)
-        elif action_input.lower().startswith("fight "):
-            enemy_name = action_input[6:]
-            fight(enemy_name, my_player, my_map)
-        elif action_input.lower().startswith("move "):
-            trytomove(action_input.upper()[5:], my_player)
-        elif action_input.lower().startswith("go "):
-            trytomove(action_input.upper()[3:], my_player)
-        elif action_input.lower().startswith("quit"):
-            utils.output("Quitting", "magenta")
-            raise RuntimeError()
-        elif action_input.lower().startswith("tutorial"):
-            tutorial()
-        elif action_input.lower().startswith("cast "):
-            castspell(action_input.lower()[5:], my_player, my_map)
-        elif action_input.lower() == "next" or action_input.lower() == 'n':
-            my_map.next_level(my_player)
-        elif action_input.lower().startswith("t "):
-            item_name = action_input[2:]
-            trytotake(item_name, my_player)
-        elif action_input.lower() == "i":
-            listinventory(my_player)
-        elif action_input.lower().startswith("l "):
-            item_name = action_input[2:]
-            lookat(item_name, my_player)
-        elif action_input.lower().startswith("u "):
-            item_name = action_input[2:]
-            trytouse(item_name, my_player, my_map)
-        elif action_input.lower().startswith("f "):
-            enemy_name = action_input[2:]
-            fight(enemy_name, my_player, my_map)
-        elif action_input.lower().startswith("m "):
-            trytomove(action_input.upper()[2:], my_player)
-        elif action_input.lower() == 'q':
-            utils.output("Quitting", "magenta")
-            raise RuntimeError()
-        elif action_input.lower().startswith('c '):
-            castspell(action_input.lower()[2:], my_player, my_map)
-        elif action_input.lower() == "show w":
-            print(config.warranty_text)
-        elif action_input.lower() == "show c":
-            print(config.license_link)
-        else:
-            utils.output("You can't do that.", "magenta")
+        display_room(my_player)
+
+        action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
+        utils.output("", "clear")
+
+        try:
+            parse_action(action_input, my_player, my_map)
+        except RuntimeError:
+            break
+        except Exception as e:
+            utils.output(f"Error: {e}", "magenta")
+
 
 def control():
+    """
+    Control center for the game.
+    """
     utils.output("To play a map, type `play mapname`.\nTo list maps, type `list`.\nTo edit settings, type `settings`.\nTo quit, type `quit`.", "bright_yellow")
+
     while True:
         utils.output("Control Centre", "bright_cyan")
-        print(utils.colourify("magenta"))
-        action_input = input(" > ")
-        print(utils.colourify("clear"))
-        
+        action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
+        utils.output("", "clear")
+
         if action_input.lower().startswith("play "):
             try:
-                play(action_input.lower()[5:])
+                play(action_input[5:])
             except FileNotFoundError:
                 utils.output("That map does not exist.", "magenta")
-            except RuntimeError as e:
-                print(e)
         elif action_input.lower() == "list":
-            maps = os.listdir(config.maps_path)
-            for num, map in enumerate(maps):
-                if "_NotVisible_" in map:
-                    maps.pop(num)
-            utils.output("Maps:\n " + "\n ".join(maps), "bright_yellow")
+            maps = [
+                file
+                for file in os.listdir(config.maps_path)
+                if "<NotVisible>" not in file
+            ]
+            utils.output("Maps:\n" + "\n".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":
-            try:
-                settings()
-            except:
-                pass
+            settings()
         elif action_input.lower() == "quit":
             utils.output("Quitting", "magenta")
             time.sleep(1.5)
-            raise SystemExit()
+            break
         else:
-            utils.output("You can't do that", "magenta")
+            utils.output("You can't do that.", "magenta")
 
-control()
+
+# --- Run Control Center ---
+if __name__ == "__main__":
+    print(config.license_text)
+    control()
