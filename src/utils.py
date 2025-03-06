@@ -17,9 +17,8 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-import os
 import time
-
+import os
 import config
 
 def output(text, colour, delay=0.01):
@@ -57,7 +56,7 @@ def colourify(colour):
     }
     return colours[colour] if config.wants_colour else ''
 
-def wrap_text(text, line_length=os.get_terminal_size()[0]):
+def wrap_text(text, line_length=150):
     lines = []
     while len(text) > line_length:
         wrap_pos = text.rfind(' ', 0, line_length)

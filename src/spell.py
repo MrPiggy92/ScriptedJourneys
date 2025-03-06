@@ -18,17 +18,8 @@
 #
 
 class Spell:
-    """
-    Class to represent a spell
-    
-    Attributes:
-        id (int): Unique identifier of this spell
-        name (str): name of the spell
-        description (str): Text outputted when spell is used
-        effect (str): Python code run when spell is cast
-    """
-    def __init__(self, id, name, description, effect):
-        self.id = id
+    def __init__(self, num, name, description, effect):
+        self.num = num
         self.name = name
         self.description = description
         self.effect = effect

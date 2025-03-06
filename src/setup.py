@@ -17,16 +17,34 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-import os
-import json
-
-import utils
 import config
+import utils
+
+import os
+import sys
+import json
+import time
+
+if sys.platform == "win32":
+    try:
+        app_root = sys._MEIPASS
+    except:
+        utils.output("Error in setup: sys._MEIPASS not found. Please file an issue on Github or look for an existing issue.", "red")
+        time.sleep(5)
+        raise SystemExit()
+    copy = "robocopy /E /NFL /NDL /NJH /NJS /NC /NS"
+else:
+    app_root = "/app"
+    copy = "cp -r"
+
+#print(os.listdir(sys._MEIPASS))
+#print(os.listdir(os.path.join(sys._MEIPASS, "lib")))
+#print(os.listdir(os.path.join(sys._MEIPASS, "lib", "maps")))
 
 if not config.started_setup:
-    os.system("cp -r /app/lib/maps $XDG_DATA_HOME")
-    os.system("cp /app/lib/LICENSE $XDG_DATA_HOME")
-    os.system("touch $XDG_CONFIG_HOME/playerdata.json")
+    os.system(f"{copy} {os.path.join(app_root, 'lib', 'maps')} {config.maps_path}")
+    os.system(f"{copy} {os.path.join(app_root, 'lib', 'LICENSE')} {config.data_home}")
+    os.system(f"echo '' > {config.playerdata_path}" if sys.platform == "win32" else "touch $XDG_CONFIG_HOME/playerdata.json")
     utils.output("Welcome to Scripted Journeys, an enthralling text-based adventure where your decisions shape the narrative and uncover hidden mysteries across diverse realms. Each map teems with unique challenges, intricate plots, and fascinating characters, all waiting for you to explore and interact with. Your choices will determine your path, unlocking secrets, and altering the course of your journey in unexpected ways. Embark on a quest that combines storytelling, strategy, and imagination, where every script you write crafts your destiny. Are you ready to dive into a world where every decision is a step towards a new adventure?", "bold_pink")
 
 need_to_write = False
@@ -80,4 +98,5 @@ if need_to_write:
     with open(config.playerdata_path, 'w') as file:
         json.dump(playerdata, file)
     utils.output("Your preferences have been saved", "cyan")
+    time.sleep(1.5)
 

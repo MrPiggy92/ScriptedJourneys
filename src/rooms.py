@@ -19,20 +19,8 @@
 
 # Room
 class Room:
-    """
-    Represents a room in-game
-    
-    Attributes:
-        id (int): Unique identifier of the room
-        name (str): Room name
-        description (str): Description of the room
-        exits (list): The exits from the room to other rooms
-        items (list): The items contained in the room
-        enemies (list): Any enemies found in this room
-    """
-    
-    def __init__(self, id, name, description, exits, items, enemies):
-        self.id = id
+    def __init__(self, number, name, description, exits, items, enemies):
+        self.number = number
         self.name = name
         self.description = description
         self.exits = exits
@@ -40,7 +28,4 @@ class Room:
         self.enemies = enemies
     
     def __repr__(self):
-        """
-        Returns a string representation of the room.
-        """
-        return f"Room(id={self.id}, name='{self.name}')"
+        return self.name
