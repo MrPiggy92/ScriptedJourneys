@@ -53,7 +53,7 @@
   
   <releases>
     <release version="1.2.0" date="2024-12-31">
-        <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/bc3f16794a4d8e6b54ef8e29d110ba7698de5b95/changelog</url>
+        <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/629ec6b3461c5565cb1ce9c1d2e1cff9a68b23bd/changelog</url>
         <description>
             <p>Added Windows support</p>
             <p>Also improved code readability</p>
