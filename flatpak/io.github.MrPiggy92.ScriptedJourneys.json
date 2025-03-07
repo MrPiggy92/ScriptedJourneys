@@ -23,7 +23,6 @@
       "build-commands": [
         "install -Dm755 wrapper/wrapper.sh -t /app/bin/",
         "cp src/*.py /app/bin/",
-        "install -Dm755 wrapper/first_run.sh -t /app/bin/",
         "install -Dm644 LICENSE -t /app/lib",
         "cp -r maps /app/lib",
         "install -Dm644 wrapper/io.github.MrPiggy92.ScriptedJourneys.desktop -t /app/share/applications",
