@@ -1,1 +1,0 @@
-This map contains basic information for how to make maps. Level 2 is the exact same as level 1, just to show you how to add multiple levels. If you don't want to see your map when you type `list`, add <NotVisible> to its name.
