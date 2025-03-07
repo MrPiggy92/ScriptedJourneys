@@ -51,7 +51,6 @@ COMMANDS = {
     "cast": {"func": castspell, "args": 1, "desc": "Cast a spell"},
     "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
     "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
-    "show": {"func": config.show, "args": 1, "desc": "Show warranty"},
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }
 

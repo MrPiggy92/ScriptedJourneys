@@ -50,7 +50,11 @@ GNU General Public License for more details."""
 
 license_link = f"To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or view {os.path.join(data_home, 'LICENSE')}"
 
-
+def show(type):
+    if type == 'w':
+        print(warranty_text)
+    else:
+        print(license_link)
 def load_preferences():
     try:
         with open(playerdata_path) as playerdata:
