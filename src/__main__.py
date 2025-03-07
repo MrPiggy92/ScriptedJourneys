@@ -135,7 +135,7 @@ def control():
             maps = [
                 file
                 for file in os.listdir(config.maps_path)
-                if "<NotVisible>" not in file
+                if "_NotVisible_" not in file
             ]
             utils.output("Maps:\n" + "\n".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":
