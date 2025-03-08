@@ -47,7 +47,7 @@ def showhpbar(player):
     return
 
 
-def trytomove(direction, player):
+def trytomove(direction, player, map):
     current_room = player.currentroom
     exits = current_room.exits
     
@@ -178,7 +178,7 @@ def listroomitems(player):
         utils.output("There are no items here.", "clear")
 
 
-def trytotake(item, player):
+def trytotake(item, player, map):
     current_room = player.currentroom
 
     for room_item in current_room.items:
@@ -209,7 +209,7 @@ def trytotake(item, player):
     utils.output(f"There is no {item} here.", "magenta")
 
 
-def listinventory(player):
+def listinventory(player, map):
     # utils.output player information in a colored section
     utils.output(player.name, "green")
 
@@ -246,7 +246,7 @@ def listenemies(player):
             utils.output(enemy.deaddesc, "red")
 
 
-def lookat(item, player):
+def lookat(item, player, map):
     for room_item in player.currentroom.items:
         if room_item.name.lower() == item.lower():
             utils.output(room_item.itemdesc, "bright_yellow")
