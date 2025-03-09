@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Scripted Journeys"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "1.2.1"
 #define MyAppPublisher "MrPiggy92"
 #define MyAppURL "https://github.com/MrPiggy92/ScriptedJourneys"
 #define MyAppExeName "ScriptedJourneys.exe"
