@@ -35,7 +35,7 @@ playerdata_path = os.path.join(config_home, "playerdata.json")
 
 started_setup = os.path.exists(maps_path)
 
-license_text = f"""Scripted Journeys version 1.2.0
+license_text = f"""Scripted Journeys version 1.2.1
 
 Copyright (C) 2024 MrPiggy92. Scripted Journeys comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
