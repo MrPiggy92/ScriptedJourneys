@@ -23,9 +23,11 @@ import json
 
 if sys.platform == "win32":
     config_home = data_home = os.path.join(os.path.expandvars("%LOCALAPPDATA%"), "ScriptedJourneys")
-else:
+elif os.path.expandvars("$XDG_DATA_HOME") != "$XDG_DATA_HOME":
     config_home = os.path.expandvars("$XDG_CONFIG_HOME")
     data_home = os.path.expandvars("$XDG_DATA_HOME")
+else:
+    config_home = data_home = os.path.expandvars("$HOME/.config/ScriptedJourneys")       
 
 maps_path = os.path.join(data_home, "maps")
 
