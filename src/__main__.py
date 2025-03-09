@@ -47,6 +47,7 @@ COMMANDS = {
     "move": {"func": trytomove, "args": 1, "desc": "Move to another room"},
     "m": {"func": trytomove, "args": 1, "desc": "Move to another room (shorthand)"},
     "quit": {"func": None, "args": 0, "desc": "Quit the game"},
+    "q": {"func": None, "args": 0, "desc": "Quit the game (shorthand)"},
     #"tutorial": {"func": tutorial, "args": 0, "desc": "Show tutorial"},
     "cast": {"func": castspell, "args": 1, "desc": "Cast a spell"},
     "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
@@ -96,7 +97,7 @@ def play(name):
     """
     my_map = map.Map(name)
     my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
-    #utils.output(my_map.opening_text, "bold_pink", 0.03)
+    utils.output(my_map.opening_text, "bold_pink", 0.03)
     time.sleep(0.5)
 
     while True:

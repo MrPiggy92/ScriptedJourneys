@@ -51,7 +51,7 @@ def trytomove(direction, player, map):
     current_room = player.currentroom
     exits = current_room.exits
     
-    direction = direction[0] if direction != '' else ''
+    direction = direction[0].upper() if direction != '' else ''
 
     if direction in ['N', 'S', 'E', 'W']:
         direction_index = ['N', 'S', 'E', 'W'].index(direction)
@@ -113,6 +113,7 @@ def fight(enemy_name, player, map):
             if enemy.hp <= 0:
                 enemy.alive = False
                 utils.output(enemy.deaddesc, "red")
+                utils.output("That was the final boss of this level! To move to the next level, type `next`.", "bright_green")
                 lootbody(enemy, player, map)
                 break
 
