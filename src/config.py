@@ -23,9 +23,11 @@ import json
 
 if sys.platform == "win32":
     config_home = data_home = os.path.join(os.path.expandvars("%LOCALAPPDATA%"), "ScriptedJourneys")
-else:
+elif os.path.expandvars("$XDG_DATA_HOME") != "$XDG_DATA_HOME":
     config_home = os.path.expandvars("$XDG_CONFIG_HOME")
     data_home = os.path.expandvars("$XDG_DATA_HOME")
+else:
+    config_home = data_home = os.path.expandvars("$HOME/.config/ScriptedJourneys")
 
 maps_path = os.path.join(data_home, "maps")
 
@@ -33,7 +35,7 @@ playerdata_path = os.path.join(config_home, "playerdata.json")
 
 started_setup = os.path.exists(maps_path)
 
-license_text = f"""Scripted Journeys version 1.2.0
+license_text = f"""Scripted Journeys version 1.2.1
 
 Copyright (C) 2024 MrPiggy92. Scripted Journeys comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
@@ -50,6 +52,11 @@ GNU General Public License for more details."""
 
 license_link = f"To read the full GPL-3.0 license, please visit https://www.gnu.org/licenses/gpl-3.0.txt or view {os.path.join(data_home, 'LICENSE')}"
 
+def show(type):
+    if type == 'w':
+        print(warranty_text)
+    else:
+        print(license_link)
 
 def load_preferences():
     try:

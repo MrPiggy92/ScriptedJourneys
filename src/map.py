@@ -59,7 +59,7 @@ class Map:
         #tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         root = tree.getroot()
         
-        name = list(root.iter("mapname"))[0]
+        name = str(list(root.iter("mapname"))[0])
         
         mapitems = []
         for item in root.iter("item"):

@@ -47,11 +47,11 @@ COMMANDS = {
     "move": {"func": trytomove, "args": 1, "desc": "Move to another room"},
     "m": {"func": trytomove, "args": 1, "desc": "Move to another room (shorthand)"},
     "quit": {"func": None, "args": 0, "desc": "Quit the game"},
+    "q": {"func": None, "args": 0, "desc": "Quit the game"},
     #"tutorial": {"func": tutorial, "args": 0, "desc": "Show tutorial"},
     "cast": {"func": castspell, "args": 1, "desc": "Cast a spell"},
     "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
     "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
-    "show": {"func": config.show, "args": 1, "desc": "Show warranty"},
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }
 
@@ -73,6 +73,7 @@ def parse_action(action_input, player, game_map):
     """
     parts = action_input.strip().lower().split(" ", 1)
     command = parts[0]
+    command = utils.fuzzy_match(command, list(COMMANDS.keys()))
     arg = parts[1] if len(parts) > 1 else None
 
     if command in COMMANDS:
@@ -136,7 +137,7 @@ def control():
             maps = [
                 file
                 for file in os.listdir(config.maps_path)
-                if "<NotVisible>" not in file
+                if "_NotVisible_" not in file
             ]
             utils.output("Maps:\n" + "\n".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":

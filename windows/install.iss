@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Scripted Journeys"
-#define MyAppVersion "1.1.0"
+#define MyAppVersion "1.2.1"
 #define MyAppPublisher "MrPiggy92"
 #define MyAppURL "https://github.com/MrPiggy92/ScriptedJourneys"
-#define MyAppExeName "__main__.exe"
+#define MyAppExeName "ScriptedJourneys.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -43,7 +43,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\liann\OneDrive\Documents\Family - Sam's things\scripted journeys\windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\liann\Documents\ScriptedJourneys\windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
