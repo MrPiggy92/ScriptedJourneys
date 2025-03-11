@@ -113,8 +113,8 @@ def play(name):
             parse_action(action_input, my_player, my_map)
         except RuntimeError:
             break
-        except Exception as e:
-            utils.output(f"Error: {e}", "magenta")
+        #except Exception as e:
+        #    utils.output(f"Error: {e}", "magenta")
 
 
 def control():

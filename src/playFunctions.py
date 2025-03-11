@@ -185,33 +185,44 @@ def listroomitems(player):
 
 def trytotake(item, player, map):
     current_room = player.currentroom
-
+    taken = False
+    new_items = list(current_room.items)
+    
+    #print(current_room.items)
     for room_item in current_room.items:
-
-        if room_item.name.lower() == item.lower():
+        #print(room_item.name)
+        if room_item.name.lower() == item.lower() or item.lower() == "all":
+            taken = True
+            thisTaken = False
             if isinstance(room_item, items.StatItem):
+                thisTaken = True
                 player.inventory.append(room_item)
                 utils.output(f"You have taken the {room_item.name}.", "clear")
-                current_room.items.remove(room_item)
-                return
+                #print(room_item)
+                #print(current_room.items)
+                #print(room_item in current_room.items)
+                #print(current_room.items.index(room_item))
+                new_items.remove(room_item)
 
             if isinstance(room_item, items.Weapon):
+                thisTaken = True
                 utils.output(f"You have taken the {room_item.name}.", "clear")
                 player.weapon = room_item
-                current_room.items.remove(room_item)
-                return
+                new_items.remove(room_item)
 
-            if room_item.portable:
+            if room_item.portable and not thisTaken:
                 player.inventory.append(room_item)
-                current_room.items.remove(room_item)
+                new_items.remove(room_item)
                 utils.output(f"You have taken the {room_item.name}.", "clear")
                 if room_item.updroomdesc is not None:
                     current_room.description = room_item.updroomdesc
-            else:
+            elif not thisTaken:
                 utils.output(f"You can't pick up the {room_item.name}. It can't be moved.", "magenta")
-            return
-
-    utils.output(f"There is no {item} here.", "magenta")
+        #print([item.name for item in current_room.items])
+    if not taken:
+        utils.output(f"There is no {item} here.", "magenta")
+    else:
+        player.currentroom.items = list(new_items)
 
 
 def listinventory(player, map):
