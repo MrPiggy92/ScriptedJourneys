@@ -310,6 +310,10 @@ def trytouse(item, player, map):
     utils.output(f"You don't have the {item}.", "magenta")
 
 def die(player, map):
+    if player.lives_remaining == 0:
+        utils.output("You have been defeated! You lose.", "bright_red")
+        raise RuntimeError()
+    player.lives_remaining -= 1
     utils.output(f"You have been defeated! Try again.", "bright_red")
     for item in player.inventory:
         player.currentroom.items.append(item)
