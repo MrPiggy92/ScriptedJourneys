@@ -196,6 +196,9 @@ def trytotake(item, player, map):
             thisTaken = False
             if isinstance(room_item, items.StatItem):
                 thisTaken = True
+                if len(player.inventory) >= 5:
+                    utils.output("You can't have more than 5 items in your inventory.", "magenta")
+                    continue
                 player.inventory.append(room_item)
                 utils.output(f"You have taken the {room_item.name}.", "clear")
                 #print(room_item)
@@ -211,6 +214,9 @@ def trytotake(item, player, map):
                 new_items.remove(room_item)
 
             if room_item.portable and not thisTaken:
+                if len(player.inventory) >= 5:
+                    utils.output("You can't have more than 5 items in your inventory.", "magenta")
+                    continue
                 player.inventory.append(room_item)
                 new_items.remove(room_item)
                 utils.output(f"You have taken the {room_item.name}.", "clear")

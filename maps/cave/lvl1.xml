@@ -160,10 +160,10 @@
     <item>
         <num>1</num>
         <name>Chest</name>
-        <desc>A large chest, locked with a massive rusted hunk of metal.</desc>
+        <desc>A large chest, with an unusual herb inside</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>0</portable>
-        <revealsitem>-1</revealsitem>
+        <revealsitem type="statitem">2</revealsitem>
         <usedin>-1</usedin>
         <usedesc>The Crystal Shard lights up the room.</usedesc>
         <removesroomitem>-1</removesroomitem>
@@ -234,7 +234,7 @@
         <num>2</num>
         <name>Healing Herb</name>
         <desc>A faintly glowing vibrant leaf.</desc>
-        <updroomdesc>This large, oppressive chamber was the lair of a fearsome cave troll.</updroomdesc>
+        <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
         <usedin>-1</usedin>
