@@ -51,6 +51,8 @@ COMMANDS = {
     #"tutorial": {"func": tutorial, "args": 0, "desc": "Show tutorial"},
     "cast": {"func": castspell, "args": 1, "desc": "Cast a spell"},
     "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
+    "equip": {"func": trytoequip, "args": 1, "desc": "Equip a weapon"},
+    "e": {"func": trytoequip, "args": 1, "desc": "Equip a weapon (shorthand)"},
     "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }

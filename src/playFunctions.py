@@ -193,27 +193,7 @@ def trytotake(item, player, map):
         #print(room_item.name)
         if room_item.name.lower() == item.lower() or item.lower() == "all":
             taken = True
-            thisTaken = False
-            if isinstance(room_item, items.StatItem):
-                thisTaken = True
-                if len(player.inventory) >= 5:
-                    utils.output("You can't have more than 5 items in your inventory.", "magenta")
-                    continue
-                player.inventory.append(room_item)
-                utils.output(f"You have taken the {room_item.name}.", "clear")
-                #print(room_item)
-                #print(current_room.items)
-                #print(room_item in current_room.items)
-                #print(current_room.items.index(room_item))
-                new_items.remove(room_item)
-
-            if isinstance(room_item, items.Weapon):
-                thisTaken = True
-                utils.output(f"You have taken the {room_item.name}.", "clear")
-                player.weapon = room_item
-                new_items.remove(room_item)
-
-            if room_item.portable and not thisTaken:
+            if room_item.portable:
                 if len(player.inventory) >= 5:
                     utils.output("You can't have more than 5 items in your inventory.", "magenta")
                     continue
@@ -222,7 +202,7 @@ def trytotake(item, player, map):
                 utils.output(f"You have taken the {room_item.name}.", "clear")
                 if room_item.updroomdesc is not None:
                     current_room.description = room_item.updroomdesc
-            elif not thisTaken:
+            else:
                 utils.output(f"You can't pick up the {room_item.name}. It can't be moved.", "magenta")
         #print([item.name for item in current_room.items])
     if not taken:
@@ -230,6 +210,16 @@ def trytotake(item, player, map):
     else:
         player.currentroom.items = list(new_items)
 
+def trytoequip(item, player, map):
+    for playeritem in player.inventory:
+        if item.lower() == playeritem.name.lower() and type(playeritem) == items.Weapon:
+            if player.weapon.name.lower() != "fists":
+                player.inventory.append(player.weapon)
+            player.weapon = playeritem
+            player.inventory.remove(playeritem)
+            utils.output(f"You have equipped the {item}.", "clear") 
+            return
+    utils.output(f"You don't have a weapon called {item}.", "magenta")
 
 def listinventory(player, map):
     # utils.output player information in a colored section

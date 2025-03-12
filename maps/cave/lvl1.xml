@@ -187,7 +187,7 @@
     </item>
     <item>
         <num>3</num>
-        <name>Pouch of Gold</name>
+        <name>Gold</name>
         <desc>A small leather pouch, full of gold coins.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
