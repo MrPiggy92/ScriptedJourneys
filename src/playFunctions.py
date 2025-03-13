@@ -259,7 +259,7 @@ def listinventory(player, map):
             utils.output(f"- {item.name}", "yellow")
 
 
-def listenemies(player):
+def listenemies(player, map):
     current_room = player.currentroom
 
     if current_room.enemies == None:
@@ -269,7 +269,10 @@ def listenemies(player):
     for enemy in current_room.enemies:
         if enemy.alive:
             if isinstance(enemy, enemyObject.Boss):
-                utils.output(enemy.description + "It is the final boss.", "red")
+                if map.level == map.all_levels:
+                    utils.output(enemy.description + " It is the final boss.", "red")
+                else:
+                    utils.output(enemy.description + " It is the boss of this level.", "red")
             else:
                 utils.output(enemy.description, "red")
         else:

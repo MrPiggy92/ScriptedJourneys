@@ -5,13 +5,19 @@ Welcome to Scripted Journeys, an enthralling text-based adventure where your dec
 ## Getting Started
 
 ### Installation
-1. Install from Flatpak:
-```
-flatpak install io.github.MrPiggy92.ScriptedJourneys
-```
-2. Run:
-Use the applications menu (it should be under Games)
-
+#### Windows:
+ 1. Download the .exe file
+ 2. Double-click and go through the installer
+ 3. Run from the start menu
+#### Linux with flatpak:
+ 1. Set up flatpak according to https://flatpak.org/setup
+ 2. Run the command `flatpak install flathub io.github.MrPiggy92.ScriptedJourneys`
+ 3. Run fro mthe main menu
+#### Linux from source code:
+ 1. Download and extract .tar.gz
+ 2. Make folder ~/.config/ScriptedJourneys
+ 3. Copy the maps folder into ~/.config/ScriptedJourneys
+ 4. Run src/__main__.py
 ## Gameplay
 
 ### Overview

@@ -63,14 +63,14 @@ COMMANDS = {
 }
 
 # --- Game Functions ---
-def display_room(player):
+def display_room(player, map):
     """
     Displays the current room's state.
     """
     utils.output(player.currentroom.name, "bright_cyan")
     utils.output(player.currentroom.description, "clear")
     listroomitems(player)
-    listenemies(player)
+    listenemies(player, map)
     listexits(player)
 
 
@@ -113,7 +113,7 @@ def play(name, my_map=None, my_player=None):
     while True:
         utils.output("\n", "clear")
         checkhp(my_player, my_map)
-        display_room(my_player)
+        display_room(my_player, my_map)
 
         action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
         utils.output("", "clear")
