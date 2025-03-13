@@ -53,6 +53,8 @@ COMMANDS = {
     "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
     "equip": {"func": trytoequip, "args": 1, "desc": "Equip a weapon"},
     "e": {"func": trytoequip, "args": 1, "desc": "Equip a weapon (shorthand)"},
+    "drop": {"func": trytodrop, "args": 1, "desc": "Drop an item"},
+    "d": {"func": trytodrop, "args": 1, "desc": "Drop an item (shorthand"},
     "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }

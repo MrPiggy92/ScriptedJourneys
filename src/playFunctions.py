@@ -220,7 +220,23 @@ def trytoequip(item, player, map):
             utils.output(f"You have equipped the {item}.", "clear") 
             return
     utils.output(f"You don't have a weapon called {item}.", "magenta")
-
+def trytodrop(item, player, map):
+    current_room = player.currentroom
+    dropped = False
+    new_items = list(player.inventory)
+    
+    #print(current_room.items)
+    for player_item in player.inventory:
+        #print(room_item.name)
+        if player_item.name.lower() == item.lower() or item.lower() == "all":
+            dropped = True
+            new_items.remove(player_item)
+            current_room.items.append(player_item)
+            utils.output(f"You have dropped the {player_item.name}.", "clear")
+    if not dropped:
+        utils.output(f"You don't have a {item}.", "magenta")
+    else:
+        player.inventory = list(new_items)
 def listinventory(player, map):
     # utils.output player information in a colored section
     utils.output(player.name, "green")
