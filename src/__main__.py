@@ -31,7 +31,7 @@ from playFunctions import *
 
 import setup
 
-config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
+config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening_text = config.load_preferences()
 
 # --- Constants ---
 COMMANDS = {
@@ -106,8 +106,8 @@ def play(name, my_map=None, my_player=None):
     if not my_map:
         my_map = map.Map(name)
         my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
-        
-    #utils.output(my_map.opening_text, "bold_pink", 0.03)
+    if config.wants_opening_text:
+        utils.output(my_map.opening_text, "bold_pink", 0.03)
     time.sleep(0.5)
 
     while True:
@@ -131,8 +131,12 @@ def control():
     """
     Control center for the game.
     """
-    utils.output("To play a map, type `play mapname`.\nTo list maps, type `list`.\nTo edit settings, type `settings`.\nTo quit, type `quit`.", "bright_yellow")
-
+    utils.output("To play a map, type `play mapname`.", "bright_yellow")
+    utils.output("To list maps, type `list`.", "bright_yellow")
+    utils.output("To resume your savegame, type `resume`.", "bright_yellow")
+    utils.output("To edit settings, type `settings`.", "bright_yellow")
+    utils.output("To quit, type `quit`.", "bright_yellow")
+    
     while True:
         utils.output("Control Centre", "bright_cyan")
         action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))

@@ -79,6 +79,10 @@ def load_preferences():
         wants_scroll = bool(playerdata["scroll"])
     except:
         wants_scroll = True
-    return playerdata, player_name, wants_colour, wants_scroll
+    try:
+        wants_opening_text = bool(playerdata["opening"])
+    except:
+        wants_opening_text = True
+    return playerdata, player_name, wants_colour, wants_scroll, wants_opening_text
 
-playerdata, player_name, wants_colour, wants_scroll = load_preferences()
+playerdata, player_name, wants_colour, wants_scroll, wants_opening_text = load_preferences()

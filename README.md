@@ -32,6 +32,10 @@ This game is a multi-map text-based adventure where you navigate through various
 - Fight enemies using `fight <enemy>`
 - Check your inventory using `inventory`
 - Cast spells using `cast <spell>`
+- Equip weapons using `equip <item>`
+- Drop items using `drop <item>`
+- Save your current game using `save`
+- Move to the next level with `next`
 
 ### Features
 - **Multiple Maps:** Explore different environments such as dungeons, forests, and towns.

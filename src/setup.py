@@ -92,9 +92,22 @@ if "scroll" not in config.playerdata.keys():
             utils.output("Please enter y or n", "magenta")
     scroll = 0 if scroll.lower() == 'n' else 1
     need_to_write = True
+if "opening" not in config.playerdata.keys():
+    if not need_to_write:
+        utils.output("First, we need to update your preferences.", "cyan")
+    opening = ''
+    while opening.lower() not in ['y', 'n']:
+        utils.output("Would you like a short paragraph of lore for each map, brave adventurer? [Y/n]", "magenta")
+        print(utils.colourify("magenta"))
+        opening = input(" > ")
+        print(utils.colourify("clear"))
+        if opening.lower() not in ['y', 'n']:
+            utils.output("Please enter y or n", "magenta")
+    opening = 0 if opening.lower() == 'n' else 1
+    need_to_write = True
 
 if need_to_write:
-    playerdata = {"name": name, "colour": colour, "scroll": scroll}
+    playerdata = {"name": name, "colour": colour, "scroll": scroll, "opening": opening}
     with open(config.playerdata_path, 'w') as file:
         json.dump(playerdata, file)
     utils.output("Your preferences have been saved", "cyan")
