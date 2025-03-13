@@ -24,6 +24,8 @@ import config
 from random import random
 from time import sleep
 import json
+import pickle
+import os
 
 def showhpbar(player):
     # Calculate the percentage of hit points
@@ -404,3 +406,9 @@ def settings():
         with open(config.playerdata_path, 'w') as file:
             json.dump(config.playerdata, file)
         config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
+
+def save(player, map):
+    dataToSave = [player, map]
+    with open(os.path.join(config.config_home, "saveGame.pkl"), "wb") as saveFile:
+        pickle.dump(dataToSave, saveFile)
+    utils.output("Your game has been saved.", "magenta")

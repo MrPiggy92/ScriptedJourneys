@@ -21,6 +21,7 @@
 import os
 import sys
 import time
+import pickle
 
 import utils
 import map
@@ -55,6 +56,8 @@ COMMANDS = {
     "e": {"func": trytoequip, "args": 1, "desc": "Equip a weapon (shorthand)"},
     "drop": {"func": trytodrop, "args": 1, "desc": "Drop an item"},
     "d": {"func": trytodrop, "args": 1, "desc": "Drop an item (shorthand"},
+    "save": {"func": save, "args": 0, "desc": "Save game"},
+    "s": {"func": save, "args": 0, "desc": "Save game (shorthand)"},
     "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }
@@ -96,12 +99,14 @@ def parse_action(action_input, player, game_map):
         utils.output("You can't do that.", "magenta")
 
 
-def play(name):
+def play(name, my_map=None, my_player=None):
     """
     Main gameplay loop.
     """
-    my_map = map.Map(name)
-    my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
+    if not my_map:
+        my_map = map.Map(name)
+        my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
+        
     #utils.output(my_map.opening_text, "bold_pink", 0.03)
     time.sleep(0.5)
 
@@ -151,6 +156,12 @@ def control():
             utils.output("Quitting", "magenta")
             time.sleep(1.5)
             break
+        elif action_input.lower() == "resume":
+            utils.output("Loading save game...", "magenta")
+            name = os.path.join(config.config_home, "saveGame.pkl")
+            with open(name, "rb") as saveFile:
+                player, my_map = pickle.load(saveFile)
+            play(None, my_map, player)
         else:
             utils.output("You can't do that.", "magenta")
 
