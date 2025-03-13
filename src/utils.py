@@ -67,7 +67,7 @@ def wrap_text(text, line_length=150):
     lines.append(text)
     return "\n".join(lines)
 
-def fuzzy_match(target, matches, threshold=5):
+def fuzzy_match(target, matches, threshold=3):
     bestMatch = ''
     bestSimilarity = 9999
     for string in matches:
@@ -75,7 +75,7 @@ def fuzzy_match(target, matches, threshold=5):
         if similarity < bestSimilarity:
             bestSimilarity = similarity
             bestMatch = string
-    if bestSimilarity >= 5:
+    if bestSimilarity >= threshold:
         return None
     if bestMatch != target:
         output(f"Assuming you mean {bestMatch}.", "magenta")

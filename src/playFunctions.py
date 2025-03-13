@@ -86,7 +86,8 @@ def fight(enemy_name, player, map):
         return
 
     for room_enemy in current_room.enemies:
-        if room_enemy.name.lower() == enemy_name.lower():
+        if utils.levenshteinDistance(room_enemy.name.lower(), enemy_name.lower()) < 3:
+            utils.output(f"Assuming you mean {room_enemy.name}.")
             enemy = room_enemy
             break
     #print(enemy.hp)
@@ -193,7 +194,7 @@ def trytotake(item, player, map):
     #print(current_room.items)
     for room_item in current_room.items:
         #print(room_item.name)
-        if room_item.name.lower() == item.lower() or item.lower() == "all":
+        if utils.levenshteinDistance(room_item.name.lower(), item.lower()) < 3 or item.lower() == "all":
             taken = True
             if room_item.portable:
                 if len(player.inventory) >= 5:
@@ -214,7 +215,7 @@ def trytotake(item, player, map):
 
 def trytoequip(item, player, map):
     for playeritem in player.inventory:
-        if item.lower() == playeritem.name.lower() and type(playeritem) == items.Weapon:
+        if utils.levenshteinDistance(item.lower(), playeritem.name.lower()) < 3 and type(playeritem) == items.Weapon:
             if player.weapon.name.lower() != "fists":
                 player.inventory.append(player.weapon)
             player.weapon = playeritem
@@ -230,7 +231,7 @@ def trytodrop(item, player, map):
     #print(current_room.items)
     for player_item in player.inventory:
         #print(room_item.name)
-        if player_item.name.lower() == item.lower() or item.lower() == "all":
+        if utils.levenshteinDistance(player_item.name.lower(), item.lower()) < 3 or item.lower() == "all":
             dropped = True
             new_items.remove(player_item)
             current_room.items.append(player_item)
@@ -281,7 +282,7 @@ def listenemies(player, map):
 
 def lookat(item, player, map):
     for room_item in player.currentroom.items:
-        if room_item.name.lower() == item.lower():
+        if utils.levenshteinDistance(room_item.name.lower(), item.lower()) < 3:
             utils.output(room_item.itemdesc, "bright_yellow")
             if room_item.revealsitem is not None:
                 player.currentroom.items.append(room_item.revealsitem)
@@ -301,7 +302,7 @@ def trytouse(item, player, map):
     current_room = player.currentroom
 
     for inventory_item in player.inventory:
-        if inventory_item.name.lower() == item.lower():
+        if utils.levenshteinDistance(inventory_item.name.lower(), item.lower()) < 3:
             if inventory_item.usedin == current_room.number or inventory_item.usedin == None:
                 if isinstance(inventory_item, items.StatItem):
                     player.hp += inventory_item.hp_change
@@ -344,7 +345,7 @@ def die(player, map):
 
 def castspell(spell, player, map):
     for mapspell in map.spells:
-        if mapspell.name.lower() == spell:
+        if utils.levenshteinDistance(mapspell.name.lower(), spell.lower()) < 3:
             spell = mapspell
             break
     if type(spell) == str:
