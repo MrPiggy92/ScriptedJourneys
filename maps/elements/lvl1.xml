@@ -1,0 +1,363 @@
+<xml>
+    <mapname>Elements</mapname>
+    <room>
+        <num>0</num>
+        <name>Lookout point</name>
+        <desc>You are in a room on a pirate ship.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>2</exit>
+            <exit>1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>1</num>
+        <name>Wheelhouse</name>
+        <desc>You are in a large room with a wheel in the middle.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>7</exit>
+            <exit>-1</exit>
+            <exit>0</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>2</num>
+        <name>Crew Quarters</name>
+        <desc>There are many beds lined up along the side of the room.</desc>
+        <exits>
+            <exit>0</exit>
+            <exit>5</exit>
+            <exit>7</exit>
+            <exit>3</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>3</num>
+        <name>Armoury</name>
+        <desc>This room is full of armour and weapons.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>4</exit>
+            <exit>2</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomweapon>0</roomweapon>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>4</num>
+        <name>Brig</name>
+        <desc>The brig of this ship is a disgusting place, moldy and wet.</desc>
+        <exits>
+            <exit>3</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+            <roomenemy>0</roomenemy>
+        </enemies>
+    </room>
+    <room>
+        <num>5</num>
+        <name>Store room</name>
+        <desc>You are surrounded by basic supplies, food and water.</desc>
+        <exits>
+            <exit>2</exit>
+            <exit>6</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>6</num>
+        <name>Captain's Quarters</name>
+        <desc>The best room in the ship, spacious and carpeted.</desc>
+        <exits>
+            <exit>5</exit>
+            <exit>-1</exit>
+            <exit>10</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomweapon>2</roomweapon>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>7</num>
+        <name>Stairway to deck</name>
+        <desc>This room has a small stairway. Unfortunately, it has been blocked off.</desc>
+        <exits>
+            <exit>1</exit>
+            <exit>9</exit>
+            <exit>8</exit>
+            <exit>2</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>8</num>
+        <name>Surgery</name>
+        <desc>The room of the ship's doctor, full of amputated limbs and potions.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>7</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomstatitem>0</roomstatitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>9</num>
+        <name>Prayer room</name>
+        <desc>This room is where the pirates pray to the demon that has taken control of their boat.</desc>
+        <exits>
+            <exit>7</exit>
+            <exit>10</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>1</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>10</num>
+        <name>Cannon room</name>
+        <desc>Many massive cannons line the walls of this room.</desc>
+        <exits>
+            <exit>9</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>6</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    
+    <item>
+        <num>0</num>
+        <name>Key</name>
+        <desc>A large golden key.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>9</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem type="item">1</removesroomitem>
+        <addsroomitem type="item">2</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>1</num>
+        <name>Chest</name>
+        <desc>A small oak chest, locked with a golden padlock.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>0</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>9</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem type="item">1</removesroomitem>
+        <addsroomitem type="item">2</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>2</num>
+        <name>Chest</name>
+        <desc>A small oak chest. You open it to reveal a scrap of parchment.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>0</portable>
+        <revealsitem type="item">3</revealsitem>
+        <usedin>9</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem type="item">1</removesroomitem>
+        <addsroomitem type="item">2</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>3</num>
+        <name>Parchment</name>
+        <desc>An ancient scrap of parchment. It has the words "Ondorax Invocum: The spell to summon a demon." written on it in curly writing.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>9999999999</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem type="item">1</removesroomitem>
+        <addsroomitem type="item">2</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    
+    
+    <statitem>
+        <num>0</num>
+        <name>Health Potion</name>
+        <desc>A vial full of glowing pink liquid.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The Health Potion heals 5 HP.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>1</disposable>
+        <hpchange>5</hpchange>
+    </statitem>
+    <statitem>
+        <num>1</num>
+        <name>Healing Water</name>
+        <desc>A vial full of perfectly clear water.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>-1</usedin>
+        <usedesc>The vial of healing water heals all your health.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>1</disposable>
+        <hpchange>15</hpchange>
+    </statitem>
+    
+    <weapon>
+        <num>0</num>
+        <name>Bayonet</name>
+        <desc>A large musket with a lethal-looking bayonet on the end.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>1</damage>
+    </weapon>
+    <weapon>
+        <num>1</num>
+        <name>Cutlass</name>
+        <desc>A short, wide-bladed cutlass.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>1</damage>
+    </weapon>
+    <weapon>
+        <num>2</num>
+        <name>Flail</name>
+        <desc>A heavy flail of solid, spiked metal.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>3</damage>
+    </weapon>
+    <weapon>
+        <num>3</num>
+        <name>demonic hammer</name>
+        <desc>A heavy hammer made entirely out of water. It is unknown how the weapon holds itself together after the demon is dead.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>2</damage>
+    </weapon>
+    
+    <enemy>
+        <num>0</num>
+        <name>Pirate</name>
+        <description>A pirate, seemingly possessed, stutters towards you with a cutlass in hand.</description>
+        <deaddesc>The pirate falls to the ground, life seeping out onto the deck.</deaddesc>
+        <enemyweapon>1</enemyweapon>
+        <hp>7</hp>
+        <loot>
+            <lootitem>0</lootitem>
+        </loot>
+    </enemy>
+    
+    <boss>
+        <num>0</num>
+        <name>Demon</name>
+        <description>An enormous demon made entirely out of water screams at you.</description>
+        <deaddesc>The demon falls to the floor and disintegrates.</deaddesc>
+        <enemyweapon>3</enemyweapon>
+        <hp>12</hp>
+        <loot>
+            <lootstatitem>1</lootstatitem>
+        </loot>
+    </boss>
+    
+    <spell>
+        <num>0</num>
+        <name>Ondorax Invocum</name>
+        <description>The spell swirls around, trying to summon a demon...</description>
+        <effect>
+failed = False
+for enemy in player.currentroom.enemies:
+    if enemy.name == "Demon":
+        failed = True
+        utils.output("But there is already one here!", "blue")
+if not(failed):
+    player.currentroom.enemies.append(map.enemies[-1])
+    utils.output("And it succeeds! A massive demon now prowls the room.", "blue")
+        </effect>
+    </spell>
+</xml>
