@@ -33,8 +33,8 @@
     </room>
     <room>
         <num>2</num>
-        <name>UNAMED</name>
-        <desc>UNAMED</desc>
+        <name>Storeroom</name>
+        <desc>This is where they store the weapons ready for battle.</desc>
         <exits>
             <exit>3</exit>
             <exit>-1</exit>
@@ -64,8 +64,8 @@
     </room>
     <room>
         <num>4</num>
-        <name>UNAMED</name>
-        <desc>UNAMED</desc>
+        <name>Cemetary</name>
+        <desc>The myriad pots of cremated ashes show the fate of the previous champions.</desc>
         <exits>
             <exit>-1</exit>
             <exit>-1</exit>
