@@ -62,6 +62,12 @@ COMMANDS = {
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }
 
+def devcheats(cheat, player, map):
+    cheat = cheat[12:]
+    print(cheat)
+    if cheat.startswith("kill"):
+        player.currentroom.enemies[0].hp = 0
+
 # --- Game Functions ---
 def display_room(player, map):
     """
@@ -117,6 +123,9 @@ def play(name, my_map=None, my_player=None):
 
         action_input = utils.cinput()
         utils.output("", "clear")
+        
+        if action_input.startswith("@dev.cheats"):
+            devcheats(action_input, my_player, my_map)
 
         try:
             parse_action(action_input, my_player, my_map)

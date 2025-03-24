@@ -152,6 +152,7 @@ def lootbody(enemy, player, map):
         utils.output(f"- {enemy.weapon.name}", "yellow")
 
     if enemy.loot is not None:
+        #print(enemy.loot)
         for item in enemy.loot:
             current_room.items.append(item)
             utils.output(f"- {item.name}", "yellow")
@@ -404,7 +405,7 @@ def settings():
         config.playerdata[choice] = new_entry
         with open(config.playerdata_path, 'w') as file:
             json.dump(config.playerdata, file)
-        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
+        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening = config.load_preferences()
 
 def save(player, map):
     dataToSave = [player, map]

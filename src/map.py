@@ -36,6 +36,7 @@ class Map:
         self.all_levels = len(os.listdir(self.folder)) - 1
         self.level = 1
         self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
+        #print(self.enemies[-1].loot)
         #print(type(self.enemies))
         with open(os.path.join(self.folder, "open.txt")) as txt:
             self.opening_text = txt.read()
@@ -211,6 +212,11 @@ class Map:
                     for item in data:
                         if item.tag == "lootitem":
                             data.text.append(mapitems[int(item.text)])
+                        elif item.tag == "lootstatitem":
+                            #print("
+                            data.text.append(mapstatitems[int(item.text)])
+                        elif item.tag == "lootweapon":
+                            data.text.append(mapweapons[int(item.text)])
                 try:
                     data.text = int(data.text)
                 except:
@@ -228,6 +234,11 @@ class Map:
                 for item in data:
                     if item.tag == "lootitem":
                         data.text.append(mapitems[int(item.text)])
+                    elif item.tag == "lootstatitem":
+                        #print("
+                        data.text.append(mapstatitems[int(item.text)])
+                    elif item.tag == "lootweapon":
+                        data.text.append(mapweapons[int(item.text)])
             try:
                 data.text = int(data.text)
             except:
