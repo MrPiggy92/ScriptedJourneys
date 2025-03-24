@@ -36,6 +36,7 @@ class Map:
         self.all_levels = len(os.listdir(self.folder)) - 1
         self.level = 1
         self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
+        #print(type(self.enemies))
         with open(os.path.join(self.folder, "open.txt")) as txt:
             self.opening_text = txt.read()
         self.bossDefeated = False
@@ -268,7 +269,7 @@ class Map:
                             data.text.append(enemies[int(enemy.text)] if enemy.text != "-1" else None)
                         counter += 1
                     if counter == 0:
-                        data.text = None
+                        data.text = []
                 else:
                     try:
                         data.text = int(data.text)

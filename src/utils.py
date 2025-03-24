@@ -20,6 +20,20 @@
 import time
 import os
 import config
+import sys
+
+# Platform-specific imports
+if sys.platform == "win32":
+    import msvcrt
+else:
+    import termios
+
+def clear_input_buffer():
+    if sys.platform == "win32":
+        while msvcrt.kbhit():  # While there are characters in the buffer
+            msvcrt.getch()  # Read and discard them
+    else:
+        termios.tcflush(sys.stdin, termios.TCIFLUSH)
 
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
@@ -31,6 +45,9 @@ def output(text, colour, delay=0.01):
     else:
         print(text, end='')
     print(colourify("clear"))
+def cinput():
+    clear_input_buffer()
+    return input(" > ")
 
 def colourify(colour):
     colours = {

@@ -115,7 +115,7 @@ def play(name, my_map=None, my_player=None):
         checkhp(my_player, my_map)
         display_room(my_player, my_map)
 
-        action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
+        action_input = utils.cinput()
         utils.output("", "clear")
 
         try:
@@ -139,7 +139,7 @@ def control():
     
     while True:
         utils.output("Control Centre", "bright_cyan")
-        action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
+        action_input = utils.cinput()
         utils.output("", "clear")
 
         if action_input.lower().startswith("play "):
@@ -151,7 +151,7 @@ def control():
             maps = [
                 file
                 for file in os.listdir(config.maps_path)
-                if "_NotVisible_" not in file
+                if ("_NotVisible_" not in file) and ("<NotVisible>" not in file)
             ]
             utils.output("Maps:\n" + "\n".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":
@@ -163,9 +163,12 @@ def control():
         elif action_input.lower() == "resume":
             utils.output("Loading save game...", "magenta")
             name = os.path.join(config.config_home, "saveGame.pkl")
-            with open(name, "rb") as saveFile:
-                player, my_map = pickle.load(saveFile)
-            play(None, my_map, player)
+            if os.path.exists(name):
+                with open(name, "rb") as saveFile:
+                    player, my_map = pickle.load(saveFile)
+                play(None, my_map, player)
+            else:
+                utils.output("You have no save game.", "magenta")
         else:
             utils.output("You can't do that.", "magenta")
 

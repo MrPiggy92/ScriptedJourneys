@@ -58,7 +58,7 @@ if "name" not in config.playerdata.keys():
     while name == '':
         utils.output("What is your name, brave adventurer?", "magenta")
         print(utils.colourify("magenta"))
-        name = input(" > ")
+        name = utils.cinput()
         print(utils.colourify("clear"))
         if name == '':
             utils.output("You have to have a name.", "magenta")
@@ -72,7 +72,7 @@ if "colour" not in config.playerdata.keys():
     while colour.lower() not in ['y', 'n']:
         utils.output("Would you like colour, brave adventurer? [Y/n]", "magenta")
         print(utils.colourify("magenta"))
-        colour = input(" > ")
+        colour = utils.cinput()
         print(utils.colourify("clear"))
         if colour.lower() not in ['y', 'n']:
             utils.output("Please enter y or n", "magenta")
@@ -86,7 +86,7 @@ if "scroll" not in config.playerdata.keys():
     while scroll.lower() not in ['y', 'n']:
         utils.output("Would you like this scrolling effect, brave adventurer? [Y/n]", "magenta")
         print(utils.colourify("magenta"))
-        scroll = input(" > ")
+        scroll = utils.cinput()
         print(utils.colourify("clear"))
         if scroll.lower() not in ['y', 'n']:
             utils.output("Please enter y or n", "magenta")
@@ -99,7 +99,7 @@ if "opening" not in config.playerdata.keys():
     while opening.lower() not in ['y', 'n']:
         utils.output("Would you like a short paragraph of lore for each map, brave adventurer? [Y/n]", "magenta")
         print(utils.colourify("magenta"))
-        opening = input(" > ")
+        opening = utils.cinput()
         print(utils.colourify("clear"))
         if opening.lower() not in ['y', 'n']:
             utils.output("Please enter y or n", "magenta")

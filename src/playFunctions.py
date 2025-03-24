@@ -87,7 +87,7 @@ def fight(enemy_name, player, map):
 
     for room_enemy in current_room.enemies:
         if utils.levenshteinDistance(room_enemy.name.lower(), enemy_name.lower()) < 3:
-            utils.output(f"Assuming you mean {room_enemy.name}.")
+            #utils.output(f"Assuming you mean {room_enemy.name}.")
             enemy = room_enemy
             break
     #print(enemy.hp)
@@ -130,7 +130,7 @@ def fight(enemy_name, player, map):
                 break
             
             utils.output("Continue?", "magenta")
-            run = input("> ").lower()
+            run = utils.cinput().lower()
             if run.startswith('n'):
                 utils.output(f"You have run away from the {enemy.name}.", "magenta")
                 break
@@ -352,8 +352,9 @@ def castspell(spell, player, map):
         utils.output("This spell does not exist.", "magenta")
         return
     if safetorun(spell):
-        exec(spell.effect)
+        #print(spell.effect)
         utils.output(spell.description, "blue")
+        exec(spell.effect)
         checkhp(player, map)
     else:
         utils.output("This spell has been disabled due to a potential security hazard.", "magenta")
@@ -374,9 +375,7 @@ def settings():
                 utils.output(f" {item}: {'Y' if config.playerdata[item] == 1 else 'n'}", "bright_yellow")
         
         utils.output(f"What would you like to change? (q to quit settings)", "clear")
-        print(utils.colourify("magenta"))
-        choice = input(" > ").lower()
-        print(utils.colourify("clear"))
+        choice = utils.cinput().lower()
         
         if choice == 'q':
             raise RuntimeError()
@@ -390,9 +389,7 @@ def settings():
             new_entry = ''
             while new_entry.lower() not in ['y', 'n']:
                 utils.output(f"Setting: {choice}\nCurrent entry: {'Y' if current_option == 1 else 'n'}\nNew entry: [Y/n]", "magenta")
-                print(utils.colourify("magenta"))
-                new_entry = input(" > ")
-                print(utils.colourify("clear"))
+                new_entry = utils.cinput()
                 if new_entry.lower() not in ['y', 'n']:
                     utils.output("Please enter y or n", "magenta")
             new_entry = 0 if new_entry.lower() == 'n' else 1
@@ -400,9 +397,7 @@ def settings():
             new_entry = ''
             while new_entry == '':
                 utils.output(f"Setting: {choice}\nCurrent entry: {current_option}\nNew entry: ", "magenta")
-                print(utils.colourify("magenta"))
-                new_entry = input(" > ")
-                print(utils.colourify("clear"))
+                new_entry = utils.cinput()
                 if new_entry == '':
                     utils.output("You have to have a name.", "magenta")
         
