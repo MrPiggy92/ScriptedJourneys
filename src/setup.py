@@ -51,6 +51,8 @@ need_to_write = False
 name = config.player_name
 colour = int(config.wants_colour)
 scroll = int(config.wants_scroll)
+opening = int(config.wants_opening_text)
+hardcore = int(config.wants_hardcore)
 
 if "name" not in config.playerdata.keys():
     utils.output("First, we need to update your preferences.", "cyan")
@@ -105,9 +107,22 @@ if "opening" not in config.playerdata.keys():
             utils.output("Please enter y or n", "magenta")
     opening = 0 if opening.lower() == 'n' else 1
     need_to_write = True
+if "hardcore" not in config.playerdata.keys():
+    if not need_to_write:
+        utils.output("First, we need to update your preferences.", "cyan")
+    hardcore = ''
+    while hardcore.lower() not in ['y', 'n']:
+        utils.output("Would you like hardcore mode (1 life per map instead of 3), brave adventurer? [Y/n]", "magenta")
+        print(utils.colourify("magenta"))
+        hardcore = utils.cinput()
+        print(utils.colourify("clear"))
+        if hardcore.lower() not in ['y', 'n']:
+            utils.output("Please enter y or n", "magenta")
+    hardcore = 0 if hardcore.lower() == 'n' else 1
+    need_to_write = True
 
 if need_to_write:
-    playerdata = {"name": name, "colour": colour, "scroll": scroll, "opening": opening}
+    playerdata = {"name": name, "colour": colour, "scroll": scroll, "opening": opening, "hardcore": hardcore}
     with open(config.playerdata_path, 'w') as file:
         json.dump(playerdata, file)
     utils.output("Your preferences have been saved", "cyan")

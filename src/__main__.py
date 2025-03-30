@@ -31,7 +31,7 @@ from playFunctions import *
 
 import setup
 
-config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening_text = config.load_preferences()
+config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening_text, config.wants_hardcore = config.load_preferences()
 
 # --- Constants ---
 COMMANDS = {
@@ -67,6 +67,9 @@ def devcheats(cheat, player, map):
     print(cheat)
     if cheat.startswith("kill"):
         player.currentroom.enemies[0].hp = 0
+    elif cheat.startswith("next"):
+        map.bossDefeated = True
+        map.next_level(player)
 
 # --- Game Functions ---
 def display_room(player, map):
@@ -164,7 +167,10 @@ def control():
             ]
             utils.output("Maps:\n" + "\n".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":
-            settings()
+            try:
+                settings()
+            except RuntimeError:
+                pass
         elif action_input.lower() == "quit":
             utils.output("Quitting", "magenta")
             time.sleep(1.5)

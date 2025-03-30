@@ -35,7 +35,7 @@ playerdata_path = os.path.join(config_home, "playerdata.json")
 
 started_setup = os.path.exists(maps_path)
 
-license_text = f"""Scripted Journeys version 1.2.1
+license_text = f"""Scripted Journeys version 1.3.0
 
 Copyright (C) 2024 MrPiggy92. Scripted Journeys comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
@@ -83,6 +83,10 @@ def load_preferences():
         wants_opening_text = bool(playerdata["opening"])
     except:
         wants_opening_text = True
-    return playerdata, player_name, wants_colour, wants_scroll, wants_opening_text
+    try:
+        wants_hardcore = bool(playerdata["hardcore"])
+    except:
+        wants_hardcore = False
+    return playerdata, player_name, wants_colour, wants_scroll, wants_opening_text, wants_hardcore
 
-playerdata, player_name, wants_colour, wants_scroll, wants_opening_text = load_preferences()
+playerdata, player_name, wants_colour, wants_scroll, wants_opening_text, wants_hardcore = load_preferences()

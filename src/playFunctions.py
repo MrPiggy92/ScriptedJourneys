@@ -329,10 +329,10 @@ def trytouse(item, player, map):
     utils.output(f"You don't have the {item}.", "magenta")
 
 def die(player, map):
+    player.lives_remaining -= 1
     if player.lives_remaining == 0:
         utils.output("You have been defeated! You lose.", "bright_red")
         raise RuntimeError()
-    player.lives_remaining -= 1
     utils.output(f"You have been defeated! Try again.", "bright_red")
     for item in player.inventory:
         player.currentroom.items.append(item)
@@ -405,7 +405,7 @@ def settings():
         config.playerdata[choice] = new_entry
         with open(config.playerdata_path, 'w') as file:
             json.dump(config.playerdata, file)
-        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening = config.load_preferences()
+        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening_text, config.wants_hardcore = config.load_preferences()
 
 def save(player, map):
     dataToSave = [player, map]
