@@ -1,0 +1,307 @@
+<xml>
+    <mapname>Elements</mapname>
+    <room>
+        <num>0</num>
+        <name>Cavern</name>
+        <desc>You are in a large cavern with water dripping from the ceiling.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>2</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>1</num>
+        <name>Underground River</name>
+        <desc>It is hard to hear anything with this river crashing around.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>3</exit>
+            <exit>-1</exit>
+            <exit>2</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>2</num>
+        <name>Abandoned mine</name>
+        <desc>It looks like someone tried to mine something here but gave up pretty quickly.</desc>
+        <exits>
+            <exit>0</exit>
+            <exit>5</exit>
+            <exit>1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>0</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>3</num>
+        <name>Spider Lair</name>
+        <desc>This lair is full of massive cobwebs, makign it hard to move.</desc>
+        <exits>
+            <exit>1</exit>
+            <exit>7</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+            <roomenemy>0</roomenemy>
+        </enemies>
+    </room>
+    <room>
+        <num>4</num>
+        <name>Fossilised rock</name>
+        <desc>The walls of this cave are full of ancient fossils.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>6</exit>
+            <exit>-1</exit>
+            <exit>5</exit>
+        </exits>
+        <items>
+            <roomitem>2</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>5</num>
+        <name>Darkened room</name>
+        <desc>This area is so dark you can't see your hands in front of your face.</desc>
+        <exits>
+            <exit>2</exit>
+            <exit>-1</exit>
+            <exit>4</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>6</num>
+        <name>Crystal Cave</name>
+        <desc>The walls in this cave are covered in simple yellow crystals.</desc>
+        <exits>
+            <exit>4</exit>
+            <exit>-1</exit>
+            <exit>7</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomitem>3</roomitem>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>7</num>
+        <name>Flooded Cavern</name>
+        <desc>This section was flooded millenia ago.</desc>
+        <exits>
+            <exit>3</exit>
+            <exit>8</exit>
+            <exit>-1</exit>
+            <exit>6</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>8</num>
+        <name>Lush cave</name>
+        <desc>A small hole in the ceiling lets light in and a small pond provides water, making ideal conditions for plant life.</desc>
+        <exits>
+            <exit>7</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+            <roomweapon>2</roomweapon>
+        </items>
+        <enemies>
+        </enemies>
+    </room>
+    <room>
+        <num>9</num>
+        <name>Large Cavern</name>
+        <desc>This massive cavern was purpose-built to hold a demon.</desc>
+        <exits>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+            <exit>-1</exit>
+        </exits>
+        <items>
+        </items>
+        <enemies>
+            <roomboss>0</roomboss>
+        </enemies>
+    </room>
+    
+    <item>
+        <num>0</num>
+        <name>Fungus</name>
+        <desc>A mass of glowing yellow-green fungi.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>5</usedin>
+        <usedesc>The glowing fungus lights up the cavern, revealing a stone tablet in one corner.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem type="item">1</addsroomitem>
+        <useroomdesc>This is a boring old bit of the cave.</useroomdesc>
+        <disposable>1</disposable>
+    </item>
+    <item>
+        <num>1</num>
+        <name>Stone tablet</name>
+        <desc>A small stone block. On it are the words `Portalus Apeiro: The spell for teleportation`.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>-1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>9</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>2</num>
+        <name>Fossil</name>
+        <desc>The fossilised remains of an ancient cave-dwelling creature.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>99999999</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    <item>
+        <num>3</num>
+        <name>Crystal</name>
+        <desc>A simple yellow crystal.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>99999999</usedin>
+        <usedesc>You use the key to unlock the chest.</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+    </item>
+    
+    <weapon>
+        <num>0</num>
+        <name>Pickaxe</name>
+        <desc>A simple iron pickaxe.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>1</damage>
+    </weapon>
+    <weapon>
+        <num>1</num>
+        <name>Spider claws</name>
+        <desc>A pair of long, curved ivory talons.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>4</damage>
+    </weapon>
+    <weapon>
+        <num>2</num>
+        <name>Vine whip</name>
+        <desc>A long length of vine.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>2</damage>
+    </weapon>
+    <weapon>
+        <num>3</num>
+        <name>Club</name>
+        <desc>A primitive, weak rocky club.</desc>
+        <updroomdesc>-1</updroomdesc>
+        <portable>1</portable>
+        <revealsitem>-1</revealsitem>
+        <usedin>999999</usedin>
+        <usedesc>Weapon does nothing</usedesc>
+        <removesroomitem>-1</removesroomitem>
+        <addsroomitem>-1</addsroomitem>
+        <useroomdesc>-1</useroomdesc>
+        <disposable>0</disposable>
+        <damage>1</damage>
+    </weapon>
+    
+    <enemy>
+        <num>0</num>
+        <name>Spider</name>
+        <description>A worryingly large spider advances, mandibles dripping with venom.</description>
+        <deaddesc>The spider falls to the ground before erupting into a mass of glowing yellow-green fungi.</deaddesc>
+        <enemyweapon>1</enemyweapon>
+        <hp>5</hp>
+        <loot>
+            <lootitem>0</lootitem>
+        </loot>
+    </enemy>
+    
+    <boss>
+        <num>0</num>
+        <name>Demon</name>
+        <description>An enormous demon formed from solid rock stares at you.</description>
+        <deaddesc>The demon falls to the floor and cracks in half.</deaddesc>
+        <enemyweapon>3</enemyweapon>
+        <hp>14</hp>
+        <loot>
+        </loot>
+    </boss>
+    
+    <spell>
+        <num>0</num>
+        <name>Portalus Apeiro</name>
+        <description>In a flash, you are transported to the demon's lair. There is no way back.</description>
+        <effect>player.currentroom = map.rooms[-1]</effect>
+    </spell>
+</xml>
