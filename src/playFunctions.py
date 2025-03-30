@@ -198,8 +198,8 @@ def trytotake(item, player, map):
         if utils.levenshteinDistance(room_item.name.lower(), item.lower()) < 3 or item.lower() == "all":
             taken = True
             if room_item.portable:
-                if len(player.inventory) >= 5:
-                    utils.output("You can't have more than 5 items in your inventory.", "magenta")
+                if len(player.inventory) >= 3:
+                    utils.output("You can't have more than 3 items in your inventory.", "magenta")
                     continue
                 player.inventory.append(room_item)
                 new_items.remove(room_item)
@@ -362,7 +362,7 @@ def castspell(spell, player, map):
 
 def safetorun(spell):
     spell = spell.effect
-    if "__" in spell:
+    if "import" in spell or "utils.os" in spell or "utils.sys" in spell or "os" in spell or "pickle" in spell:
         return False
     return True
 
