@@ -52,6 +52,20 @@
   </screenshots>
   
   <releases>
+    <release version="1.3.0" date="2025-04-09">
+        <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/8b3b67f523880a237c8107bcc74d7ec07db4ea47/changelog</url>
+        <description>
+            <p>Added many features</p>
+            <ul>
+                <li>Added fuzzy matching</li>
+                <li>Added innventory limit</li>
+                <li>Added lives limit</li>
+                <li>Added hardcore mode</li>
+                <li>Added drop command</li>
+                <li>Added equip command</li>
+            </ul>
+        </description>
+    </release>
     <release version="1.2.1" date="2025-03-09">
         <url type="details">https://github.com/MrPiggy92/ScriptedJourneys/blob/b43345819f9ba0847fa6415588cfa1947643a066/changelog</url>
         <description>
