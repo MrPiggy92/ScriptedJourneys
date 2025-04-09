@@ -20,6 +20,20 @@
 import time
 import os
 import config
+import sys
+
+# Platform-specific imports
+if sys.platform == "win32":
+    import msvcrt
+else:
+    import termios
+
+def clear_input_buffer():
+    if sys.platform == "win32":
+        while msvcrt.kbhit():  # While there are characters in the buffer
+            msvcrt.getch()  # Read and discard them
+    else:
+        termios.tcflush(sys.stdin, termios.TCIFLUSH)
 
 def output(text, colour, delay=0.01):
     text = colourify(colour) + text
@@ -31,6 +45,9 @@ def output(text, colour, delay=0.01):
     else:
         print(text, end='')
     print(colourify("clear"))
+def cinput():
+    clear_input_buffer()
+    return input(" > ")
 
 def colourify(colour):
     colours = {
@@ -66,3 +83,37 @@ def wrap_text(text, line_length=150):
         text = text[wrap_pos:].lstrip()
     lines.append(text)
     return "\n".join(lines)
+
+def fuzzy_match(target, matches, threshold=3):
+    bestMatch = ''
+    bestSimilarity = 9999
+    for string in matches:
+        similarity = levenshteinDistance(string, target)
+        if similarity < bestSimilarity:
+            bestSimilarity = similarity
+            bestMatch = string
+    if bestSimilarity >= threshold:
+        return None
+    if bestMatch != target:
+        output(f"Assuming you mean {bestMatch}.", "magenta")
+    return bestMatch
+            
+
+def levenshteinDistance(string1, string2):
+    len1 = len(string1)
+    len2 = len(string2)
+    matrix =[[0 for _ in range(0, len2+1)] for _ in range(0, len1+1)]
+    for i in range(0, len1+1):
+        matrix[i][0] = i
+    for j in range(0, len2+1):
+        matrix[0][j] = j
+    for i in range(1, len1+1):
+        for j in range(1, len2+1):
+            if string1[i-1] == string2[j-1]:
+                cost = 0
+            else:
+                cost = 1
+            matrix[i][j] = min(matrix[i-1][j]+1, matrix[i][j-1]+1, matrix[i-1][j-1]+cost)
+    #print('\n'.join([str(i) for i in matrix]))
+    return matrix[len1][len2]
+    

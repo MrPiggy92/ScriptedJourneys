@@ -27,7 +27,7 @@ elif os.path.expandvars("$XDG_DATA_HOME") != "$XDG_DATA_HOME":
     config_home = os.path.expandvars("$XDG_CONFIG_HOME")
     data_home = os.path.expandvars("$XDG_DATA_HOME")
 else:
-    config_home = data_home = os.path.expandvars("$HOME/.config/ScriptedJourneys")       
+    config_home = data_home = os.path.expandvars("$HOME/.config/ScriptedJourneys")
 
 maps_path = os.path.join(data_home, "maps")
 
@@ -35,7 +35,7 @@ playerdata_path = os.path.join(config_home, "playerdata.json")
 
 started_setup = os.path.exists(maps_path)
 
-license_text = f"""Scripted Journeys version 1.2.1
+license_text = f"""Scripted Journeys version 1.3.0
 
 Copyright (C) 2024 MrPiggy92. Scripted Journeys comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
@@ -57,6 +57,7 @@ def show(type):
         print(warranty_text)
     else:
         print(license_link)
+
 def load_preferences():
     try:
         with open(playerdata_path) as playerdata:
@@ -78,6 +79,14 @@ def load_preferences():
         wants_scroll = bool(playerdata["scroll"])
     except:
         wants_scroll = True
-    return playerdata, player_name, wants_colour, wants_scroll
+    try:
+        wants_opening_text = bool(playerdata["opening"])
+    except:
+        wants_opening_text = True
+    try:
+        wants_hardcore = bool(playerdata["hardcore"])
+    except:
+        wants_hardcore = False
+    return playerdata, player_name, wants_colour, wants_scroll, wants_opening_text, wants_hardcore
 
-playerdata, player_name, wants_colour, wants_scroll = load_preferences()
+playerdata, player_name, wants_colour, wants_scroll, wants_opening_text, wants_hardcore = load_preferences()

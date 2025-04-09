@@ -21,6 +21,7 @@
 import os
 import sys
 import time
+import pickle
 
 import utils
 import map
@@ -30,7 +31,7 @@ from playFunctions import *
 
 import setup
 
-config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
+config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening_text, config.wants_hardcore = config.load_preferences()
 
 # --- Constants ---
 COMMANDS = {
@@ -47,23 +48,39 @@ COMMANDS = {
     "move": {"func": trytomove, "args": 1, "desc": "Move to another room"},
     "m": {"func": trytomove, "args": 1, "desc": "Move to another room (shorthand)"},
     "quit": {"func": None, "args": 0, "desc": "Quit the game"},
-    "q": {"func": None, "args": 0, "desc": "Quit the game (shorthand)"},
+    "q": {"func": None, "args": 0, "desc": "Quit the game"},
     #"tutorial": {"func": tutorial, "args": 0, "desc": "Show tutorial"},
     "cast": {"func": castspell, "args": 1, "desc": "Cast a spell"},
     "c": {"func": castspell, "args": 1, "desc": "Cast a spell (shorthand)"},
+    "equip": {"func": trytoequip, "args": 1, "desc": "Equip a weapon"},
+    "e": {"func": trytoequip, "args": 1, "desc": "Equip a weapon (shorthand)"},
+    "drop": {"func": trytodrop, "args": 1, "desc": "Drop an item"},
+    "d": {"func": trytodrop, "args": 1, "desc": "Drop an item (shorthand"},
+    "save": {"func": save, "args": 0, "desc": "Save game"},
+    "s": {"func": save, "args": 0, "desc": "Save game (shorthand)"},
     "next": {"func": lambda player, game_map: game_map.next_level(player), "args": 0, "desc": "Move to the next level"},
     "show": {"func": config.show, "args": 1, "desc": "Show license"},
 }
 
+def devcheats(cheat, player, map):
+    cheat = cheat[12:]
+    print(cheat)
+    map.cheats_used = True
+    if cheat.startswith("kill"):
+        player.currentroom.enemies[0].hp = 0
+    elif cheat.startswith("next"):
+        map.bossDefeated = True
+        map.next_level(player)
+
 # --- Game Functions ---
-def display_room(player):
+def display_room(player, map):
     """
     Displays the current room's state.
     """
     utils.output(player.currentroom.name, "bright_cyan")
     utils.output(player.currentroom.description, "clear")
     listroomitems(player)
-    listenemies(player)
+    listenemies(player, map)
     listexits(player)
 
 
@@ -73,6 +90,7 @@ def parse_action(action_input, player, game_map):
     """
     parts = action_input.strip().lower().split(" ", 1)
     command = parts[0]
+    command = utils.fuzzy_match(command, list(COMMANDS.keys()))
     arg = parts[1] if len(parts) > 1 else None
 
     if command in COMMANDS:
@@ -91,40 +109,50 @@ def parse_action(action_input, player, game_map):
         utils.output("You can't do that.", "magenta")
 
 
-def play(name):
+def play(name, my_map=None, my_player=None):
     """
     Main gameplay loop.
     """
-    my_map = map.Map(name)
-    my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
-    utils.output(my_map.opening_text, "bold_pink", 0.03)
+    if not my_map:
+        my_map = map.Map(name)
+        my_player = player.Player(config.player_name, my_map.rooms[0], 10, [])
+    if config.wants_opening_text:
+        utils.output(my_map.opening_text, "bold_pink", 0.03)
     time.sleep(0.5)
 
     while True:
         utils.output("\n", "clear")
         checkhp(my_player, my_map)
-        display_room(my_player)
+        display_room(my_player, my_map)
 
-        action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
+        action_input = utils.cinput()
         utils.output("", "clear")
+        
+        if action_input.startswith("@dev.cheats"):
+            devcheats(action_input, my_player, my_map)
 
         try:
             parse_action(action_input, my_player, my_map)
         except RuntimeError:
+            print()
             break
-        except Exception as e:
-            utils.output(f"Error: {e}", "magenta")
+        #except Exception as e:
+        #    utils.output(f"Error: {e}", "magenta")
 
 
 def control():
     """
     Control center for the game.
     """
-    utils.output("To play a map, type `play mapname`.\nTo list maps, type `list`.\nTo edit settings, type `settings`.\nTo quit, type `quit`.", "bright_yellow")
-
+    utils.output("To play a map, type `play mapname`.", "bright_yellow")
+    utils.output("To list maps, type `list`.", "bright_yellow")
+    utils.output("To resume your savegame, type `resume`.", "bright_yellow")
+    utils.output("To edit settings, type `settings`.", "bright_yellow")
+    utils.output("To quit, type `quit`.", "bright_yellow")
+    
     while True:
         utils.output("Control Centre", "bright_cyan")
-        action_input = input(utils.colourify("magenta") + " > " + utils.colourify("clear"))
+        action_input = utils.cinput()
         utils.output("", "clear")
 
         if action_input.lower().startswith("play "):
@@ -136,15 +164,27 @@ def control():
             maps = [
                 file
                 for file in os.listdir(config.maps_path)
-                if "_NotVisible_" not in file
+                if ("_NotVisible_" not in file) and ("<NotVisible>" not in file)
             ]
             utils.output("Maps:\n" + "\n".join(maps), "bright_yellow")
         elif action_input.lower() == "settings":
-            settings()
+            try:
+                settings()
+            except RuntimeError:
+                pass
         elif action_input.lower() == "quit":
             utils.output("Quitting", "magenta")
             time.sleep(1.5)
             break
+        elif action_input.lower() == "resume":
+            utils.output("Loading save game...", "magenta")
+            name = os.path.join(config.config_home, "saveGame.pkl")
+            if os.path.exists(name):
+                with open(name, "rb") as saveFile:
+                    player, my_map = pickle.load(saveFile)
+                play(None, my_map, player)
+            else:
+                utils.output("You have no save game.", "magenta")
         else:
             utils.output("You can't do that.", "magenta")
 

@@ -24,6 +24,8 @@ import config
 from random import random
 from time import sleep
 import json
+import pickle
+import os
 
 def showhpbar(player):
     # Calculate the percentage of hit points
@@ -84,7 +86,8 @@ def fight(enemy_name, player, map):
         return
 
     for room_enemy in current_room.enemies:
-        if room_enemy.name.lower() == enemy_name.lower():
+        if utils.levenshteinDistance(room_enemy.name.lower(), enemy_name.lower()) < 3:
+            #utils.output(f"Assuming you mean {room_enemy.name}.")
             enemy = room_enemy
             break
     #print(enemy.hp)
@@ -113,7 +116,6 @@ def fight(enemy_name, player, map):
             if enemy.hp <= 0:
                 enemy.alive = False
                 utils.output(enemy.deaddesc, "red")
-                utils.output("That was the final boss of this level! To move to the next level, type `next`.", "bright_green")
                 lootbody(enemy, player, map)
                 break
 
@@ -128,7 +130,7 @@ def fight(enemy_name, player, map):
                 break
             
             utils.output("Continue?", "magenta")
-            run = input("> ").lower()
+            run = utils.cinput().lower()
             if run.startswith('n'):
                 utils.output(f"You have run away from the {enemy.name}.", "magenta")
                 break
@@ -150,6 +152,7 @@ def lootbody(enemy, player, map):
         utils.output(f"- {enemy.weapon.name}", "yellow")
 
     if enemy.loot is not None:
+        #print(enemy.loot)
         for item in enemy.loot:
             current_room.items.append(item)
             utils.output(f"- {item.name}", "yellow")
@@ -157,6 +160,11 @@ def lootbody(enemy, player, map):
     # Remove the enemy from the room
     current_room.enemies.remove(enemy)
     if isinstance(enemy, enemyObject.Boss):
+        
+        if map.level == map.all_levels:
+            utils.output("That was the final boss of this map! Type `next` to finish.", "bright_green")
+        else:
+            utils.output("That was the boss of this level! To move to the next level, type `next`.", "bright_green")
         map.bossDefeated = True
 
 
@@ -181,35 +189,58 @@ def listroomitems(player):
 
 def trytotake(item, player, map):
     current_room = player.currentroom
-
+    taken = False
+    new_items = list(current_room.items)
+    
+    #print(current_room.items)
     for room_item in current_room.items:
-
-        if room_item.name.lower() == item.lower():
-            if isinstance(room_item, items.StatItem):
-                player.inventory.append(room_item)
-                utils.output(f"You have taken the {room_item.name}.", "clear")
-                current_room.items.remove(room_item)
-                return
-
-            if isinstance(room_item, items.Weapon):
-                utils.output(f"You have taken the {room_item.name}.", "clear")
-                player.weapon = room_item
-                current_room.items.remove(room_item)
-                return
-
+        #print(room_item.name)
+        if utils.levenshteinDistance(room_item.name.lower(), item.lower()) < 3 or item.lower() == "all":
+            taken = True
             if room_item.portable:
+                if len(player.inventory) >= 3:
+                    utils.output("You can't have more than 3 items in your inventory.", "magenta")
+                    continue
                 player.inventory.append(room_item)
-                current_room.items.remove(room_item)
+                new_items.remove(room_item)
                 utils.output(f"You have taken the {room_item.name}.", "clear")
                 if room_item.updroomdesc is not None:
                     current_room.description = room_item.updroomdesc
             else:
                 utils.output(f"You can't pick up the {room_item.name}. It can't be moved.", "magenta")
+        #print([item.name for item in current_room.items])
+    if not taken:
+        utils.output(f"There is no {item} here.", "magenta")
+    else:
+        player.currentroom.items = list(new_items)
+
+def trytoequip(item, player, map):
+    for playeritem in player.inventory:
+        if utils.levenshteinDistance(item.lower(), playeritem.name.lower()) < 3 and type(playeritem) == items.Weapon:
+            if player.weapon.name.lower() != "fists":
+                player.inventory.append(player.weapon)
+            player.weapon = playeritem
+            player.inventory.remove(playeritem)
+            utils.output(f"You have equipped the {playeritem.name}.", "clear") 
             return
-
-    utils.output(f"There is no {item} here.", "magenta")
-
-
+    utils.output(f"You don't have a weapon called {item}.", "magenta")
+def trytodrop(item, player, map):
+    current_room = player.currentroom
+    dropped = False
+    new_items = list(player.inventory)
+    
+    #print(current_room.items)
+    for player_item in player.inventory:
+        #print(room_item.name)
+        if utils.levenshteinDistance(player_item.name.lower(), item.lower()) < 3 or item.lower() == "all":
+            dropped = True
+            new_items.remove(player_item)
+            current_room.items.append(player_item)
+            utils.output(f"You have dropped the {player_item.name}.", "clear")
+    if not dropped:
+        utils.output(f"You don't have a {item}.", "magenta")
+    else:
+        player.inventory = list(new_items)
 def listinventory(player, map):
     # utils.output player information in a colored section
     utils.output(player.name, "green")
@@ -230,7 +261,7 @@ def listinventory(player, map):
             utils.output(f"- {item.name}", "yellow")
 
 
-def listenemies(player):
+def listenemies(player, map):
     current_room = player.currentroom
 
     if current_room.enemies == None:
@@ -240,7 +271,10 @@ def listenemies(player):
     for enemy in current_room.enemies:
         if enemy.alive:
             if isinstance(enemy, enemyObject.Boss):
-                utils.output(enemy.description + "It is the final boss.", "red")
+                if map.level == map.all_levels:
+                    utils.output(enemy.description + " It is the final boss.", "red")
+                else:
+                    utils.output(enemy.description + " It is the boss of this level.", "red")
             else:
                 utils.output(enemy.description, "red")
         else:
@@ -249,7 +283,7 @@ def listenemies(player):
 
 def lookat(item, player, map):
     for room_item in player.currentroom.items:
-        if room_item.name.lower() == item.lower():
+        if utils.levenshteinDistance(room_item.name.lower(), item.lower()) < 3:
             utils.output(room_item.itemdesc, "bright_yellow")
             if room_item.revealsitem is not None:
                 player.currentroom.items.append(room_item.revealsitem)
@@ -269,7 +303,7 @@ def trytouse(item, player, map):
     current_room = player.currentroom
 
     for inventory_item in player.inventory:
-        if inventory_item.name.lower() == item.lower():
+        if utils.levenshteinDistance(inventory_item.name.lower(), item.lower()) < 3:
             if inventory_item.usedin == current_room.number or inventory_item.usedin == None:
                 if isinstance(inventory_item, items.StatItem):
                     player.hp += inventory_item.hp_change
@@ -295,6 +329,10 @@ def trytouse(item, player, map):
     utils.output(f"You don't have the {item}.", "magenta")
 
 def die(player, map):
+    player.lives_remaining -= 1
+    if player.lives_remaining == 0:
+        utils.output("You have been defeated! You lose.", "bright_red")
+        raise RuntimeError()
     utils.output(f"You have been defeated! Try again.", "bright_red")
     for item in player.inventory:
         player.currentroom.items.append(item)
@@ -308,22 +346,23 @@ def die(player, map):
 
 def castspell(spell, player, map):
     for mapspell in map.spells:
-        if mapspell.name.lower() == spell:
+        if utils.levenshteinDistance(mapspell.name.lower(), spell.lower()) < 3:
             spell = mapspell
             break
     if type(spell) == str:
         utils.output("This spell does not exist.", "magenta")
         return
     if safetorun(spell):
-        exec(spell.effect)
+        #print(spell.effect)
         utils.output(spell.description, "blue")
+        exec(spell.effect)
         checkhp(player, map)
     else:
         utils.output("This spell has been disabled due to a potential security hazard.", "magenta")
 
 def safetorun(spell):
     spell = spell.effect
-    if "__" in spell:
+    if "import" in spell or "utils.os" in spell or "utils.sys" in spell or "os" in spell or "pickle" in spell:
         return False
     return True
 
@@ -337,9 +376,7 @@ def settings():
                 utils.output(f" {item}: {'Y' if config.playerdata[item] == 1 else 'n'}", "bright_yellow")
         
         utils.output(f"What would you like to change? (q to quit settings)", "clear")
-        print(utils.colourify("magenta"))
-        choice = input(" > ").lower()
-        print(utils.colourify("clear"))
+        choice = utils.cinput().lower()
         
         if choice == 'q':
             raise RuntimeError()
@@ -353,9 +390,7 @@ def settings():
             new_entry = ''
             while new_entry.lower() not in ['y', 'n']:
                 utils.output(f"Setting: {choice}\nCurrent entry: {'Y' if current_option == 1 else 'n'}\nNew entry: [Y/n]", "magenta")
-                print(utils.colourify("magenta"))
-                new_entry = input(" > ")
-                print(utils.colourify("clear"))
+                new_entry = utils.cinput()
                 if new_entry.lower() not in ['y', 'n']:
                     utils.output("Please enter y or n", "magenta")
             new_entry = 0 if new_entry.lower() == 'n' else 1
@@ -363,13 +398,17 @@ def settings():
             new_entry = ''
             while new_entry == '':
                 utils.output(f"Setting: {choice}\nCurrent entry: {current_option}\nNew entry: ", "magenta")
-                print(utils.colourify("magenta"))
-                new_entry = input(" > ")
-                print(utils.colourify("clear"))
+                new_entry = utils.cinput()
                 if new_entry == '':
                     utils.output("You have to have a name.", "magenta")
         
         config.playerdata[choice] = new_entry
         with open(config.playerdata_path, 'w') as file:
             json.dump(config.playerdata, file)
-        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll = config.load_preferences()
+        config.playerdata, config.player_name, config.wants_colour, config.wants_scroll, config.wants_opening_text, config.wants_hardcore = config.load_preferences()
+
+def save(player, map):
+    dataToSave = [player, map]
+    with open(os.path.join(config.config_home, "saveGame.pkl"), "wb") as saveFile:
+        pickle.dump(dataToSave, saveFile)
+    utils.output("Your game has been saved.", "magenta")

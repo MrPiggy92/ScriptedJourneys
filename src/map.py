@@ -36,6 +36,9 @@ class Map:
         self.all_levels = len(os.listdir(self.folder)) - 1
         self.level = 1
         self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
+        self.cheats_used = False
+        #print(self.enemies[-1].loot)
+        #print(type(self.enemies))
         with open(os.path.join(self.folder, "open.txt")) as txt:
             self.opening_text = txt.read()
         self.bossDefeated = False
@@ -59,7 +62,7 @@ class Map:
         #tree = ET.parse(os.path.join(self.folder, f"lvl{self.level}.xml"))
         root = tree.getroot()
         
-        name = list(root.iter("mapname"))[0]
+        name = str(list(root.iter("mapname"))[0])
         
         mapitems = []
         for item in root.iter("item"):
@@ -210,6 +213,11 @@ class Map:
                     for item in data:
                         if item.tag == "lootitem":
                             data.text.append(mapitems[int(item.text)])
+                        elif item.tag == "lootstatitem":
+                            #print("
+                            data.text.append(mapstatitems[int(item.text)])
+                        elif item.tag == "lootweapon":
+                            data.text.append(mapweapons[int(item.text)])
                 try:
                     data.text = int(data.text)
                 except:
@@ -227,6 +235,11 @@ class Map:
                 for item in data:
                     if item.tag == "lootitem":
                         data.text.append(mapitems[int(item.text)])
+                    elif item.tag == "lootstatitem":
+                        #print("
+                        data.text.append(mapstatitems[int(item.text)])
+                    elif item.tag == "lootweapon":
+                        data.text.append(mapweapons[int(item.text)])
             try:
                 data.text = int(data.text)
             except:
@@ -268,7 +281,7 @@ class Map:
                             data.text.append(enemies[int(enemy.text)] if enemy.text != "-1" else None)
                         counter += 1
                     if counter == 0:
-                        data.text = None
+                        data.text = []
                 else:
                     try:
                         data.text = int(data.text)

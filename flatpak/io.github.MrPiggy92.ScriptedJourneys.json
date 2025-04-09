@@ -17,12 +17,13 @@
         {
           "type": "git",
           "url": "https://github.com/MrPiggy92/ScriptedJourneys.git",
-          "commit": "629ec6b3461c5565cb1ce9c1d2e1cff9a68b23bd"
+          "commit": "80d58d29945555a13cb6eb5e1ae9098d5095b000"
         }
       ],
       "build-commands": [
         "install -Dm755 wrapper/wrapper.sh -t /app/bin/",
         "cp src/*.py /app/bin/",
+        "install -Dm755 wrapper/first_run.sh -t /app/bin/",
         "install -Dm644 LICENSE -t /app/lib",
         "cp -r maps /app/lib",
         "install -Dm644 wrapper/io.github.MrPiggy92.ScriptedJourneys.desktop -t /app/share/applications",
