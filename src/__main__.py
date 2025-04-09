@@ -65,6 +65,7 @@ COMMANDS = {
 def devcheats(cheat, player, map):
     cheat = cheat[12:]
     print(cheat)
+    map.cheats_used = True
     if cheat.startswith("kill"):
         player.currentroom.enemies[0].hp = 0
     elif cheat.startswith("next"):

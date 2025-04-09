@@ -221,7 +221,7 @@ def trytoequip(item, player, map):
                 player.inventory.append(player.weapon)
             player.weapon = playeritem
             player.inventory.remove(playeritem)
-            utils.output(f"You have equipped the {item}.", "clear") 
+            utils.output(f"You have equipped the {playeritem.name}.", "clear") 
             return
     utils.output(f"You don't have a weapon called {item}.", "magenta")
 def trytodrop(item, player, map):

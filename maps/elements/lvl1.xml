@@ -216,7 +216,7 @@
     <item>
         <num>3</num>
         <name>Parchment</name>
-        <desc>An ancient scrap of parchment. It has the words "Ondorax Invocum: The spell to summon a demon." written on it in curly writing.</desc>
+        <desc>An ancient scrap of parchment. It has two spells on it: "Ondorax Invocum: The spell to summon a demon." and "Undarum Suffoco: The spell to quench flames."</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
         <revealsitem>-1</revealsitem>
@@ -307,7 +307,7 @@
     </weapon>
     <weapon>
         <num>3</num>
-        <name>demonic hammer</name>
+        <name>Demonic Hammer</name>
         <desc>A heavy hammer made entirely out of water. It is unknown how the weapon holds itself together after the demon is dead.</desc>
         <updroomdesc>-1</updroomdesc>
         <portable>1</portable>
@@ -357,7 +357,14 @@ for enemy in player.currentroom.enemies:
         utils.output("But there is already one here!", "blue")
 if not(failed):
     player.currentroom.enemies.append(map.enemies[-1])
-    utils.output("And it succeeds! A massive demon now prowls the room.", "blue")
+    utils.output("And it succeeds! A massive water demon now prowls the room.", "blue")
+        </effect>
+    </spell>
+    <spell>
+        <num>1</num>
+        <name>Undarum Suffoco</name>
+        <description>The spell tries to find some fire to extinguish but can't find any.</description>
+        <effect>fdhddfds = 3
         </effect>
     </spell>
 </xml>

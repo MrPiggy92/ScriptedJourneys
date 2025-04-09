@@ -36,6 +36,7 @@ class Map:
         self.all_levels = len(os.listdir(self.folder)) - 1
         self.level = 1
         self.name, self.items, self.rooms, self.enemies, self.spells = self.load()
+        self.cheats_used = False
         #print(self.enemies[-1].loot)
         #print(type(self.enemies))
         with open(os.path.join(self.folder, "open.txt")) as txt:

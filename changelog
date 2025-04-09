@@ -1,3 +1,14 @@
+v1.3.0
+Added fuzzy matching
+Added innventory limit
+Added lives limit
+Added hardcore mode
+Added drop command
+Added equip command
+
+v1.2.1
+Fixed bug where trying to move would crash the game
+
 v1.2.0
 Added windows support
 Improved code readability

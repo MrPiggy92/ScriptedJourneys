@@ -272,7 +272,7 @@
         <addsroomitem>-1</addsroomitem>
         <useroomdesc>-1</useroomdesc>
         <disposable>0</disposable>
-        <damage>1</damage>
+        <damage>2</damage>
     </weapon>
     
     <enemy>
@@ -303,5 +303,12 @@
         <name>Portalus Apeiro</name>
         <description>In a flash, you are transported to the demon's lair. There is no way back.</description>
         <effect>player.currentroom = map.rooms[-1]</effect>
+    </spell>
+    <spell>
+        <num>1</num>
+        <name>Undarum Suffoco</name>
+        <description>The spell tries to find some fire to extinguish but can't find any.</description>
+        <effect>fdhddfds = 3
+        </effect>
     </spell>
 </xml>
