@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Scripted Journeys"
-#define MyAppVersion "1.2.1"
+#define MyAppVersion "1.3.0"
 #define MyAppPublisher "MrPiggy92"
 #define MyAppURL "https://github.com/MrPiggy92/ScriptedJourneys"
 #define MyAppExeName "ScriptedJourneys.exe"
@@ -28,7 +28,7 @@ ArchitecturesAllowed=x64compatible
 ; the 64-bit view of the registry.
 ArchitecturesInstallIn64BitMode=x64compatible
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\liann\OneDrive\Documents\Family - Sam's things\scripted journeys\LICENSE
+LicenseFile=C:\Users\liann\Documents\ScriptedJourneys\LICENSE
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputBaseFilename=Scripted Journeys
